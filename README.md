@@ -1,9 +1,12 @@
-# Fabric Example Mod
+# Felt API
+A Minecraft modding API to supplement Fabric API.
 
-## Setup
+## What is Felt API?
+Felt API is a combination of ports from MinecraftForge, ports from QuiltMC, and our own efforts.
+In short we wish to make Minecraft modding on Fabric as simple as possible.
 
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
+## Port to Forge?
+No, but you're welcome to do it yourself if you'd like
 
-## License
-
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+## Quilt?
+Quilt is for sleeping :D
