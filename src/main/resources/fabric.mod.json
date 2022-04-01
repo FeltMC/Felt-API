@@ -1,25 +1,26 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "felt-api",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Felt API",
+  "description": "A reimplementation of Fringe APIs on Fabric",
   "authors": [
-    "Me!"
+    "FeltMC",
+    "PseudoDistant"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "",
+    "sources": "https://github.com/FeltMC/Felt-API"
   },
 
-  "license": "CC0-1.0",
+  "license": "LGPL",
   "icon": "assets/modid/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "io.github.feltmc.feltapi.FeltAPI"
     ]
   },
   "mixins": [
@@ -31,8 +32,5 @@
     "fabric": "*",
     "minecraft": "1.18.x",
     "java": ">=17"
-  },
-  "suggests": {
-    "another-mod": "*"
   }
 }
