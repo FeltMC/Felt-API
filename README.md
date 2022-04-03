@@ -1,6 +1,3 @@
-#Felt API Stream
-A Version of FeltAPI meant for our needs of porting mods which will be pushed upstream.
-
 # Felt API
 A Minecraft modding API to supplement Fabric API.
 
