@@ -8,9 +8,7 @@ import net.minecraft.block.Material;
 import net.minecraft.block.piston.PistonBehavior;
 
 @Mixin(Material.Builder.class)
-public interface MaterialBuilderAccessor {
-	@Accessor
-	void setPistonBehavior(PistonBehavior behavior);
+public interface MaterialBuilderAccessor extends net.fabricmc.fabric.mixin.object.builder.MaterialBuilderAccessor{
 
 	@Accessor
 	void setBlocksMovement(boolean blocksMovement);
@@ -30,6 +28,5 @@ public interface MaterialBuilderAccessor {
 	@Accessor
 	void setBlocksLight(boolean blocksLight);
 
-	@Invoker
-	Material.Builder invokeLightPassesThrough();
+
 }

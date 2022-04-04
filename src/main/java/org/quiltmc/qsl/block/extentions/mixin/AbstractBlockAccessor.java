@@ -6,7 +6,6 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 import net.minecraft.block.AbstractBlock;
 
 @Mixin(AbstractBlock.class)
-public interface AbstractBlockAccessor {
-	@Accessor
-	AbstractBlock.Settings getSettings();
+public interface AbstractBlockAccessor extends net.fabricmc.fabric.mixin.object.builder.AbstractBlockAccessor{
+
 }
