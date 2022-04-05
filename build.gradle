@@ -1,13 +1,13 @@
 plugins {
-	id 'fabric-loom' version '0.11-SNAPSHOT'
+	id 'fabric-loom' version '0.11-SNAPSHOT' apply false
 	id 'maven-publish'
+	id 'java'
 }
 
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 archivesBaseName = project.archives_base_name
-version = project.mod_version + "+" + (ENV.GITHUB_RUN_NUMBER ? "" : "local-") + getBranch()
+version = project.mod_version //+ "+" + (ENV.GITHUB_RUN_NUMBER ? "" : "local-") + getBranch()
 group = project.maven_group
 
 def getSubprojectVersion(project) {
@@ -18,17 +18,7 @@ def getSubprojectVersion(project) {
 		throw new NullPointerException("Could not find version for " + project.name)
 	}
 
-	if (grgit == null) {
-		return version + "+nogit"
-	}
-
-	def latestCommits = grgit.log(paths: [project.name], maxCommits: 1)
-
-	if (latestCommits.isEmpty()) {
-		return version + "+uncommited"
-	}
-
-	return version + "+" + latestCommits.get(0).id.substring(0, 8) + DigestUtils.sha256Hex(project.rootProject.minecraft_version).substring(0, 2)
+	return version
 }
 
 def getBranch() {
@@ -47,6 +37,8 @@ def getBranch() {
 }
 
 allprojects {
+	apply plugin: "fabric-loom"
+
 	repositories {
 		// Add repositories to retrieve artifacts from in here.
 		// You should only use this when depending on other mods because
@@ -75,7 +67,6 @@ allprojects {
 
 	tasks.withType(JavaCompile).configureEach {
 		// Minecraft 1.18 (1.18-pre2) upwards uses Java 17.
-		it.options.release = 17
 	}
 
 	java {
@@ -94,9 +85,9 @@ allprojects {
 // configure the maven publication
 	publishing {
 		publications {
-			mavenJava(MavenPublication) {
+			/*mavenJava(MavenPublication) {
 				from components.java
-			}
+			}*/
 		}
 
 		// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
