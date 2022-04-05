@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "io.github.feltmc.feltapi.mixin.ore_feature",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "GenerationSettingsBuilderMixin"
+  ],
+  "client": [
+  ],
+  "server": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+}
+}

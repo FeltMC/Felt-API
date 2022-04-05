@@ -12,3 +12,4 @@ pluginManagement {
 rootProject.name = "felt-api"
 
 include("felt-api-base")
+include("felt-ore-feature-api-v1")

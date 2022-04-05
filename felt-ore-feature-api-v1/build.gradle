@@ -1,0 +1,2 @@
+archivesBaseName = "felt-ore-feature-api-v1"
+version = getSubprojectVersion(project)
