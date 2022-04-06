@@ -47,6 +47,30 @@ allprojects {
 		// for more information about repositories.
 	}
 
+	sourceSets {
+		testmod {
+			compileClasspath += main.compileClasspath
+			runtimeClasspath += main.runtimeClasspath
+		}
+	}
+
+	loom {
+		runs {
+			testmodClient {
+				client()
+				ideConfigGenerated project.rootProject == project
+				name = "Testmod Client"
+				source sourceSets.testmod
+			}
+			testmodServer {
+				server()
+				ideConfigGenerated project.rootProject == project
+				name = "Testmod Server"
+				source sourceSets.testmod
+			}
+		}
+	}
+
 	dependencies {
 		// To change the versions see the gradle.properties file
 		minecraft "com.mojang:minecraft:${project.minecraft_version}"

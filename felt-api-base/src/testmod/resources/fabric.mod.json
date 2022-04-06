@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "felt-api-base-testmod",
+  "name": "Felt API Base Test Mod",
+  "version": "1.0.0",
+  "environment": "*",
+  "license": "LGPL",
+  "entrypoints": {
+    "main": [
+      "io.github.feltmc.feltapi.test.base.FeltApiBaseTestInit"
+    ]
+  }
+}
