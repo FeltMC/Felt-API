@@ -15,15 +15,15 @@
     "homepage": "",
     "sources": "https://github.com/FeltMC/Felt-API"
   },
-
+  "entrypoints": {
+    "main": [
+      "io.github.feltmc.feltapi.impl.ore_feature.FeltOreFeatureAPiInit"
+    ]
+  },
   "license": "LGPL",
   "icon": "assets/modid/icon.png",
 
   "environment": "*",
-  "mixins": [
-    "felt-ore-features.mixins.json"
-  ],
-
   "depends": {
     "fabricloader": ">=0.13.3",
     "fabric": "*",

@@ -36,14 +36,6 @@ public class FeltOreFeature extends Feature<FeltOreFeatureConfig> {
         BlockPos blockpos = context.getOrigin();
         StructureWorldAccess structureWorldAccess = context.getWorld();
         FeltOreFeatureConfig config = context.getConfig();
-        //if (!config.getDimensions().contains(structureWorldAccess.toServerWorld().getRegistryKey())) return false;
-        List<Biome.Category> types = OreFeaturesData.FEATURE_MAP.get(config.getDomain() + ":" + config.getId()).validBiomes();
-        List<Biome.Category> invalidTypes = OreFeaturesData.FEATURE_MAP.get(config.getDomain() + ":" + config.getId()).invalidBiomes();
-        Biome.Category compare = Biome.getCategory(structureWorldAccess.getBiome(blockpos));
-        boolean hasType = (types.isEmpty() || types.contains(compare)) && !invalidTypes.contains(compare);
-        if (!hasType){
-            return false;
-        }
         return generate(structureWorldAccess, random, blockpos, config);
     }
 
