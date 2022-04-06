@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "felt-api",
+  "id": "felt-ore-feature-api-v1",
   "version": "${version}",
 
-  "name": "Felt API",
+  "name": "Felt Ore Feature API (v1)",
   "description": "A reimplementation of Fringe APIs on Fabric",
   "authors": [
     "FeltMC",
@@ -21,7 +21,7 @@
 
   "environment": "*",
   "mixins": [
-    "modid.mixins.json"
+    "felt-ore-features.mixins.json"
   ],
 
   "depends": {

@@ -4,8 +4,11 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.BlockState;
 import net.minecraft.structure.rule.RuleTest;
+import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.FeatureConfig;
 
+import java.util.List;
 import java.util.Random;
 import java.util.function.BiFunction;
 
@@ -54,5 +57,17 @@ public class FeltOreFeatureConfig implements FeatureConfig {
 
     public FeltOreFeatureConfig(String domain, String id, RuleTest test, BlockState state, int size) {
         this(domain, id, new FeltRuleTest(domain, id, test, state), size, 0.0F);
+    }
+
+    public List<RegistryKey<World>> getDimensions(){
+        return OreFeaturesData.FEATURE_MAP.get(domain + ":" + id).dimensions();
+    }
+
+    public String getDomain() {
+        return domain;
+    }
+
+    public String getId() {
+        return id;
     }
 }
