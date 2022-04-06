@@ -30,7 +30,7 @@ public class DimensionalPlacementModifier extends AbstractConditionalPlacementMo
 
     @Override
     protected boolean shouldPlace(FeaturePlacementContext context, Random random, BlockPos pos) {
-        return dimensions.contains(context.getWorld().toServerWorld().getRegistryKey());
+        return dimensions.isEmpty() || dimensions.contains(context.getWorld().toServerWorld().getRegistryKey());
     }
 
     @Override
