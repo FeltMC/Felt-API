@@ -2,6 +2,7 @@ package io.github.feltmc.feltapi.impl.ore_feature;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import io.github.feltmc.feltapi.api.ore_feature.v1.FeltRuleTest;
 import net.minecraft.block.BlockState;
 import net.minecraft.structure.rule.RuleTest;
 import net.minecraft.util.registry.RegistryKey;

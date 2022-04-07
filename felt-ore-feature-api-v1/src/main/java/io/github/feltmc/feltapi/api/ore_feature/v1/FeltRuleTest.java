@@ -1,4 +1,4 @@
-package io.github.feltmc.feltapi.impl.ore_feature;
+package io.github.feltmc.feltapi.api.ore_feature.v1;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

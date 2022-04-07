@@ -1,6 +1,7 @@
 package io.github.feltmc.feltapi.impl.ore_feature;
 
 import com.mojang.serialization.Codec;
+import io.github.feltmc.feltapi.api.ore_feature.v1.FeltRuleTest;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkSectionPos;
@@ -9,14 +10,11 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.ChunkSectionCache;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkSection;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.OreConfiguredFeatures;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 
 import java.util.BitSet;
-import java.util.List;
 import java.util.Random;
 import java.util.function.Function;
 
