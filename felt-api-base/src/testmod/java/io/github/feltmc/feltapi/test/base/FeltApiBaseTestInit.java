@@ -23,6 +23,6 @@ public class FeltApiBaseTestInit implements ModInitializer {
             }
             if (ore == null) return null;
             return r.nextBoolean() ? ore : ore2;
-        }, -32, 32, 25, 8, 0.0f, List.of(World.OVERWORLD));
+        }, -32, 32, 25, 8, 0.0f, World.OVERWORLD);
     }
 }
