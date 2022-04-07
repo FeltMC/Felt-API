@@ -22,7 +22,7 @@ public class FeltOreFeatureAPiInit implements ModInitializer {
     private static BiConsumer<BiomeSelectionContext, BiomeModificationContext> oreModifier() {
         return (biomeSelectionContext, biomeModificationContext) -> {
             OreFeaturesData.FEATURE_MAP.forEach((s, m) -> {
-                boolean hasType = (m.filtered().apply(biomeSelectionContext));
+                boolean hasType = (m.filtered().test(biomeSelectionContext));
                 if (hasType){
                     biomeModificationContext.getGenerationSettings().addFeature(GenerationStep.Feature.UNDERGROUND_ORES, m.placedFeature().getKey().get());
                 }
