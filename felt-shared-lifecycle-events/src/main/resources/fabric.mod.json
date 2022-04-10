@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "felt-shared-lifecycle-events",
+  "version": "${version}",
+  "name": "Felt Shared Lifecycle Events",
+  "description": "A reimplementation of Fringe APIs on Fabric",
+  "contact": {
+    "homepage": "https://feltmc.guthub.io",
+    "issues": "https://github.com/FeltMC/Felt-API/issues",
+    "sources": "https://github.com/FeltMC/Felt-API"
+  },
+  "authors": [
+    "FeltMC",
+    "PseudoDistant",
+    "Qubic (local furry)",
+    "Trinsdar"
+  ],
+  "entrypoints": {
+    "main": [
+      "io.github.feltmc.feltapi.impl.event.lifecycle.LifecycleEventsImpl"
+    ],
+    "client": [
+      "io.github.feltmc.feltapi.impl.event.lifecycle.ClientLifecycleEventsImpl"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.4.0",
+    "fabric-lifecycle-events-v1": "*"
+  }
+}
