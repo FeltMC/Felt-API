@@ -1,2 +1,6 @@
 archivesBaseName = "felt-api-base"
 version = getSubprojectVersion(project)
+
+dependencies {
+    testmodImplementation project(path: ':felt-ore-feature-api-v1', configuration: 'namedElements')
+}
