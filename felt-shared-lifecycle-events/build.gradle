@@ -1,0 +1,6 @@
+archivesBaseName = "felt-shared-lifecycle-events"
+version = getSubprojectVersion(project)
+
+dependencies {
+    testmodImplementation project(path: ':felt-shared-lifecycle-events', configuration: 'namedElements')
+}

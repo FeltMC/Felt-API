@@ -2,7 +2,6 @@
   "schemaVersion": 1,
   "id": "felt-ore-feature-api-v1",
   "version": "${version}",
-
   "name": "Felt Ore Feature API (v1)",
   "description": "A reimplementation of Fringe APIs on Fabric",
   "authors": [

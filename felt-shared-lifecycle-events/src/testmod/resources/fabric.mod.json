@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "felt-shared-lifecycle-events-v1-testmod",
+  "name": "Felt Lifecycle Events (v1) Test Mod",
+  "version": "1.0.0",
+  "environment": "*",
+  "license": "Apache-2.0",
+  "depends": {
+    "felt-shared-lifecycle-events": "*"
+  },
+  "entrypoints": {
+    "main": [
+      "io.github.feltmc.feltapi.test.event.lifecycle.ServerTickTests"
+    ],
+    "client": [
+      "io.github.feltmc.feltapi.test.event.lifecycle.client.ClientTickTests"
+    ]
+  }
+}
