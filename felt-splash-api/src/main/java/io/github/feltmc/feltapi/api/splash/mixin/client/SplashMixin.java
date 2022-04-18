@@ -1,4 +1,4 @@
-package io.github.feltmc.feltapi.api.splash.mixin;
+package io.github.feltmc.feltapi.api.splash.mixin.client;
 
 import io.github.feltmc.feltapi.api.splash.SplashAPI;
 import net.fabricmc.api.EnvType;
