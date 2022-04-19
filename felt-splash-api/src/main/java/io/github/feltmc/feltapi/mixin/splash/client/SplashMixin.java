@@ -1,6 +1,6 @@
-package io.github.feltmc.feltapi.api.splash.mixin.client;
+package io.github.feltmc.feltapi.mixin.splash.client;
 
-import io.github.feltmc.feltapi.api.splash.SplashAPI;
+import io.github.feltmc.feltapi.impl.splash.SplashImpl;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import org.spongepowered.asm.mixin.Mixin;
@@ -19,8 +19,8 @@ public class SplashMixin {
 
     @Inject(method="apply", at=@At("TAIL"))
     private void inject(CallbackInfo info) {
-        splashTexts.addAll(SplashAPI.splashesToAdd);
-        splashTexts.removeAll(SplashAPI.splashesToRemove);
+        splashTexts.addAll(SplashImpl.splashesToAdd);
+        splashTexts.removeAll(SplashImpl.splashesToRemove);
     }
 }
 
