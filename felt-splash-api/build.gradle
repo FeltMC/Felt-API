@@ -1,0 +1,2 @@
+archivesBaseName = "felt-splash-api"
+version = getSubprojectVersion(project)

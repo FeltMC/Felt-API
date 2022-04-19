@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "felt-splash-api",
+  "version": "${version}",
+  "name": "Felt Splash API",
+  "description": "A reimplementation of Fringe APIs on Fabric",
+  "authors": [
+    "FeltMC",
+    "PseudoDistant",
+    "Qubic (local furry)",
+    "Trinsdar",
+    "Unix-Supremacist",
+    "Jack (original splash api author)"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": "https://github.com/FeltMC/Felt-API"
+  },
+  "license": "LGPL",
+  "icon": "assets/felt_splash_api/icon.png",
+
+  "environment": "*",
+  "mixins": [
+    "splashapi.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "minecraft": "*"
+  },
+  "recommends": {
+    "feltfabric": "*"
+  }
+}
