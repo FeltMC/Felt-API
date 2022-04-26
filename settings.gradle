@@ -14,4 +14,5 @@ rootProject.name = "felt-api"
 include("felt-api-base")
 include("felt-ore-feature-api-v1")
 include("felt-splash-api")
+include("felt-tool-api")
 include("felt-shared-lifecycle-events")

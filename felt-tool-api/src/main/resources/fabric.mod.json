@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "felt-tool-api",
+  "version": "${version}",
+  "name": "Felt Tool API",
+  "description": "A reimplementation of Fringe APIs on Fabric",
+  "authors": [
+    "FeltMC",
+    "PseudoDistant",
+    "Qubic (local furry)",
+    "Trinsdar",
+    "Unix-Supremacist"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": "https://github.com/FeltMC/Felt-API"
+  },
+  "license": "LGPL",
+  "icon": "assets/felt-tool-api/icon.png",
+
+  "environment": "*",
+  "mixins": [
+    "toolapi.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "minecraft": "*"
+  },
+  "recommends": {
+    "feltfabric": "*"
+  }
+}
