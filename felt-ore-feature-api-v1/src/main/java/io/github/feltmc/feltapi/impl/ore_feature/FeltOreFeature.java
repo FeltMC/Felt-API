@@ -6,6 +6,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkSectionPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.ChunkSectionCache;
 import net.minecraft.world.Heightmap;
@@ -15,7 +16,6 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 
 import java.util.BitSet;
-import java.util.Random;
 import java.util.function.Function;
 
 public class FeltOreFeature extends Feature<FeltOreFeatureConfig> {

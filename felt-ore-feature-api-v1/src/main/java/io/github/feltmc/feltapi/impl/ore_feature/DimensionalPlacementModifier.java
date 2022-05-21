@@ -3,6 +3,7 @@ package io.github.feltmc.feltapi.impl.ore_feature;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
@@ -11,7 +12,6 @@ import net.minecraft.world.gen.placementmodifier.AbstractConditionalPlacementMod
 import net.minecraft.world.gen.placementmodifier.PlacementModifierType;
 
 import java.util.List;
-import java.util.Random;
 
 public class DimensionalPlacementModifier extends AbstractConditionalPlacementModifier {
     public static Codec<DimensionalPlacementModifier> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.list(World.CODEC).fieldOf("dimensions").forGetter(m -> m.dimensions)).apply(instance, DimensionalPlacementModifier::new));

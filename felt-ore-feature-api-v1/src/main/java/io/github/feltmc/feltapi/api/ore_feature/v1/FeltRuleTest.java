@@ -6,9 +6,9 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectLinkedOpenHashMap;
 import net.minecraft.block.BlockState;
 import net.minecraft.structure.rule.RuleTest;
 import net.minecraft.structure.rule.RuleTestType;
+import net.minecraft.util.math.random.Random;
 
 import java.util.Map;
-import java.util.Random;
 import java.util.function.BiFunction;
 
 public class FeltRuleTest {
