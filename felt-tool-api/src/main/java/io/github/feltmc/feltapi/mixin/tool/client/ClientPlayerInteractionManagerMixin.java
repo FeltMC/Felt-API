@@ -1,5 +1,6 @@
 package io.github.feltmc.feltapi.mixin.tool.client;
 
+import io.github.feltmc.feltapi.api.tool.extensions.DamageableItemExtension;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.network.ClientPlayerInteractionManager;
 import net.minecraft.client.world.ClientWorld;
@@ -19,6 +20,14 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 public class ClientPlayerInteractionManagerMixin {
     @ModifyVariable(method = "interactBlock", at = @At(value = "STORE"), ordinal = 1)
     private boolean modifyBL2(boolean bl2, ClientPlayerEntity player, ClientWorld world, Hand hand, BlockHitResult hitResult){
+        BlockPos blockPos = hitResult.getBlockPos();
+        ItemStack mainStack = player.getMainHandStack();
+        ItemStack offHandStack = player.getOffHandStack();
+        if (mainStack.getItem() instanceof DamageableItemExtension extension){
+            return bl2 && !extension.doesSneakBypassUse(mainStack, world, blockPos, player);
+        } else if (offHandStack.getItem() instanceof DamageableItemExtension extension){
+            return bl2 && !extension.doesSneakBypassUse(offHandStack, world, blockPos, player);
+        }
         return bl2;
     }
 
