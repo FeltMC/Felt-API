@@ -9,6 +9,7 @@
     "common.EnchantmentMixin",
     "common.HoeMixin",
     "common.ItemStackMixin",
+    "common.PacketByteBufMixin",
     "common.PlayerEntityMixin",
     "common.ServerPlayerInteractionManagerMixin",
     "common.ShovelMixin"
