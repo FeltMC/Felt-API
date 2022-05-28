@@ -15,12 +15,12 @@ import java.util.Random;
 public class EnchantmentHelperMixin {
 
     @Redirect(method = "calculateRequiredExperienceLevel", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/Item;getEnchantability()I"))
-    private static int felt_getModifiedExperience(Item instance, Random random, int slotIndex, int bookshelfCount, ItemStack stack){
+    private static int hookModifiedExperience(Item instance, Random random, int slotIndex, int bookshelfCount, ItemStack stack){
         return instance instanceof EnchantmentExtension extension ? extension.getItemEnchantability(stack) : instance.getEnchantability();
     }
 
     @Redirect(method = "generateEnchantments", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/Item;getEnchantability()I"))
-    private static int felt_getModifiedExperience2(Item instance, Random random, ItemStack stack, int level, boolean treasureAllowed){
+    private static int hookModifiedExperience2(Item instance, Random random, ItemStack stack, int level, boolean treasureAllowed){
         return instance instanceof EnchantmentExtension extension ? extension.getItemEnchantability(stack) : instance.getEnchantability();
     }
 }

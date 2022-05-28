@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Enchantment.class)
 public class EnchantmentMixin {
     @Inject(method = "isAcceptableItem", at = @At("HEAD"), cancellable = true)
-    public void felt_injectEnchantmentCheck(ItemStack stack, CallbackInfoReturnable<Boolean> callback){
+    public void injectEnchantmentCheck(ItemStack stack, CallbackInfoReturnable<Boolean> callback){
         if (stack.getItem() instanceof EnchantmentExtension extension){
             callback.setReturnValue(extension.canApplyAtEnchantingTable(stack, (Enchantment) (Object)this));
         }
