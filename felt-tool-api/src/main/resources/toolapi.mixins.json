@@ -9,10 +9,13 @@
     "common.EnchantmentMixin",
     "common.HoeMixin",
     "common.ItemStackMixin",
+    "common.PlayerEntityMixin",
+    "common.ServerPlayerInteractionManagerMixin",
     "common.ShovelMixin"
   ],
   "client": [
-    "client.MixinArmorFeatureRenderer"
+    "client.ArmorFeatureRendererMixin",
+    "client.ClientPlayerInteractionManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
