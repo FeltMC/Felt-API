@@ -1,10 +1,9 @@
-package io.github.feltmc.feltapi.api.tool.extensions;
+package io.github.feltmc.feltapi.api.item.extensions;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 
 import javax.annotation.Nullable;
-import java.sql.Ref;
 
 public interface ItemTagExtension {
     default NbtCompound getShareTag(ItemStack stack) {

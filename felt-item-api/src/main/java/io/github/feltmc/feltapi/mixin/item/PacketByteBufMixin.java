@@ -1,6 +1,6 @@
-package io.github.feltmc.feltapi.mixin.tool.common;
+package io.github.feltmc.feltapi.mixin.item;
 
-import io.github.feltmc.feltapi.api.tool.extensions.ItemTagExtension;
+import io.github.feltmc.feltapi.api.item.extensions.ItemTagExtension;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;

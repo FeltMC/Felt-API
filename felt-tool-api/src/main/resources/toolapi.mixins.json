@@ -9,7 +9,7 @@
     "common.EnchantmentMixin",
     "common.HoeMixin",
     "common.ItemStackMixin",
-    "common.PacketByteBufMixin",
+    "io.github.feltmc.feltapi.mixin.item.PacketByteBufMixin",
     "common.PlayerEntityMixin",
     "common.ServerPlayerInteractionManagerMixin",
     "common.ShovelMixin"
