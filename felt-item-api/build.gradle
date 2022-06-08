@@ -1,5 +1,2 @@
 archivesBaseName = "felt-item-api"
 version = getSubprojectVersion(project)
-
-dependencies {
-}
