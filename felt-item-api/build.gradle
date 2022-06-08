@@ -2,5 +2,4 @@ archivesBaseName = "felt-item-api"
 version = getSubprojectVersion(project)
 
 dependencies {
-    implementation(project(":felt-tool-api"))
 }

@@ -1,6 +1,6 @@
 package io.github.feltmc.feltapi.mixin.item;
 
-import io.github.feltmc.feltapi.api.tool.extensions.DamageableItemExtension;
+import io.github.feltmc.feltapi.api.item.extensions.DamageableItemExtension;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

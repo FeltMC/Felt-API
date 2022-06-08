@@ -1,7 +1,7 @@
 package io.github.feltmc.feltapi.mixin.item.client;
 
 import com.google.common.collect.Maps;
-import io.github.feltmc.feltapi.api.tool.extensions.ArmorExtension;
+import io.github.feltmc.feltapi.api.item.extensions.ArmorExtension;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
