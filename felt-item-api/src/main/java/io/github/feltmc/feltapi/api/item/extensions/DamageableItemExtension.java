@@ -1,7 +1,5 @@
-package io.github.feltmc.feltapi.api.tool.extensions;
+package io.github.feltmc.feltapi.api.item.extensions;
 
-import com.ibm.icu.impl.duration.impl.Utils;
-import io.github.feltmc.feltapi.mixin.tool.common.PlayerEntityMixin;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;

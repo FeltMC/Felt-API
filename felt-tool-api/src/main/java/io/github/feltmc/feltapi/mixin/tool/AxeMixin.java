@@ -1,4 +1,4 @@
-package io.github.feltmc.feltapi.mixin.tool.common;
+package io.github.feltmc.feltapi.mixin.tool;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.AxeItem;

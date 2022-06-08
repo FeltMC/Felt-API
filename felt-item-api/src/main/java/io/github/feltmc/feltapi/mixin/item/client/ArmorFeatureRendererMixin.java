@@ -1,7 +1,7 @@
-package io.github.feltmc.feltapi.mixin.tool.client;
+package io.github.feltmc.feltapi.mixin.item.client;
 
 import com.google.common.collect.Maps;
-import io.github.feltmc.feltapi.api.tool.extensions.ArmorTextureExtension;
+import io.github.feltmc.feltapi.api.tool.extensions.ArmorExtension;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
@@ -33,7 +33,7 @@ public abstract class ArmorFeatureRendererMixin<T extends LivingEntity, M extend
     @Redirect(method = "renderArmor", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/entity/feature/ArmorFeatureRenderer;renderArmorParts(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/item/ArmorItem;ZLnet/minecraft/client/render/entity/model/BipedEntityModel;ZFFFLjava/lang/String;)V"))
     private void redirectRenderArmorParts(ArmorFeatureRenderer<T,M,A> instance, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, ArmorItem item, boolean usesSecondLayer, A model, boolean legs, float red, float green, float blue, String overlay, MatrixStack matrices2, VertexConsumerProvider vertexConsumers2, T entity, EquipmentSlot armorSlot, int light2, A model2){
         ItemStack stack = entity.getEquippedStack(armorSlot);
-        if (stack.getItem() instanceof ArmorTextureExtension extension){
+        if (stack.getItem() instanceof ArmorExtension extension){
             String texture = extension.getArmorTexture(stack, entity, armorSlot, overlay);
             if (texture != null){
                 VertexConsumer vertexConsumer = ItemRenderer.getArmorGlintConsumer(vertexConsumers, RenderLayer.getArmorCutoutNoCull(ARMOR_TEXTURE_CACHE.computeIfAbsent(texture, Identifier::new)), false, usesSecondLayer);

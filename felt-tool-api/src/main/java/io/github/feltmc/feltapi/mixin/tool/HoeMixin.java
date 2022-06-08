@@ -1,4 +1,4 @@
-package io.github.feltmc.feltapi.mixin.tool.common;
+package io.github.feltmc.feltapi.mixin.tool;
 
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.block.Block;
