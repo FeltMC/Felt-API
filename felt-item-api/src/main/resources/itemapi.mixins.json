@@ -6,7 +6,9 @@
   "mixins": [
     "EnchantmentHelperMixin",
     "EnchantmentMixin",
+    "ExperienceOrbMixin",
     "ItemStackMixin",
+    "LivingEntityMixin",
     "PacketByteBufMixin",
     "PlayerEntityMixin",
     "PlayerInventoryMixin",

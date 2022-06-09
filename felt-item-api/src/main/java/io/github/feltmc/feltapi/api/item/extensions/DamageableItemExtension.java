@@ -57,10 +57,6 @@ public interface DamageableItemExtension {
         return false;
     }
 
-    default boolean isRepairable(ItemStack stack){
-        return false;
-    }
-
     default boolean isDamageable(ItemStack stack)
     {
         return ((Item)this).isDamageable();

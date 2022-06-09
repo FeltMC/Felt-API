@@ -1,5 +1,6 @@
 package io.github.feltmc.feltapi.api.item.extensions;
 
+import io.github.feltmc.feltapi.api.item.ToolAction;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -203,5 +204,10 @@ public interface FeltItem extends FabricItem, ItemTagExtension, ArmorExtension, 
     default FoodComponent getFoodComponenet(ItemStack stack, @Nullable LivingEntity entity)
     {
         return self().getFoodComponent();
+    }
+
+    default boolean canPerformAction(ItemStack stack, ToolAction toolAction)
+    {
+        return false;
     }
 }
