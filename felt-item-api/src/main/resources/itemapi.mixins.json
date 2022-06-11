@@ -14,11 +14,13 @@
     "PlayerInventoryMixin",
     "PlayerScreenHandlerAccessor",
     "PlayerScreenHandlerMixin",
+    "ServerPlayerEntityMixin",
     "ServerPlayerInteractionManagerMixin"
   ],
   "client": [
     "client.ArmorFeatureRendererMixin",
-    "client.ClientPlayerInteractionManagerMixin"
+    "client.ClientPlayerInteractionManagerMixin",
+    "client.InGameHudMixin"
   ],
   "injectors": {
     "defaultRequire": 1
