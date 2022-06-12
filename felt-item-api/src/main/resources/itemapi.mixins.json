@@ -10,6 +10,8 @@
     "ItemStackMixin",
     "LivingEntityMixin",
     "PacketByteBufMixin",
+    "PiglinBrainMixin",
+    "PiglinEntityMixin",
     "PlayerEntityMixin",
     "PlayerInventoryMixin",
     "PlayerScreenHandlerAccessor",
