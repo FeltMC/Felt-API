@@ -2,6 +2,7 @@ package io.github.feltmc.feltapi.mixin.item.client;
 
 import io.github.feltmc.feltapi.api.item.extensions.DamageableItemExtension;
 import io.github.feltmc.feltapi.api.item.extensions.FeltItem;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.network.ClientPlayerInteractionManager;
@@ -27,6 +28,8 @@ public class ClientPlayerInteractionManagerMixin {
 
     @Shadow @Final private ClientPlayNetworkHandler networkHandler;
 
+    @Shadow @Final private MinecraftClient client;
+
     @ModifyVariable(method = "interactBlock", at = @At(value = "STORE"), index = 8, print = true)
     private boolean modifyBL2(boolean value, ClientPlayerEntity player, ClientWorld world, Hand hand, BlockHitResult hitResult){
         BlockPos blockPos = hitResult.getBlockPos();
@@ -51,5 +54,12 @@ public class ClientPlayerInteractionManagerMixin {
             }
         }
 
+    }
+
+    @Inject(method = "breakBlock", at = @At("HEAD"), cancellable = true)
+    private void injectOnBlockStartBreak(BlockPos pos, CallbackInfoReturnable<Boolean> cir){
+        if (client.player.getMainHandStack().getItem() instanceof FeltItem item && item.onBlockStartBreak(client.player.getMainHandStack(), pos, client.player)){
+            cir.setReturnValue(false);
+        }
     }
 }
