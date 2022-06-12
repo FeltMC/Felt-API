@@ -7,6 +7,7 @@
     "EnchantmentHelperMixin",
     "EnchantmentMixin",
     "ExperienceOrbMixin",
+    "ItemEntityMixin",
     "ItemStackMixin",
     "LivingEntityMixin",
     "PacketByteBufMixin",

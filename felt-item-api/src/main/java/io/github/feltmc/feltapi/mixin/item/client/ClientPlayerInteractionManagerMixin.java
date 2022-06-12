@@ -30,7 +30,7 @@ public class ClientPlayerInteractionManagerMixin {
 
     @Shadow @Final private MinecraftClient client;
 
-    @ModifyVariable(method = "interactBlock", at = @At(value = "STORE"), index = 8, print = true)
+    @ModifyVariable(method = "interactBlock", at = @At(value = "STORE"), index = 8)
     private boolean modifyBL2(boolean value, ClientPlayerEntity player, ClientWorld world, Hand hand, BlockHitResult hitResult){
         BlockPos blockPos = hitResult.getBlockPos();
         ItemStack mainStack = player.getMainHandStack();
