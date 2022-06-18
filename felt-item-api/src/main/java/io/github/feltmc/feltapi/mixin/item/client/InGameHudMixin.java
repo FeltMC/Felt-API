@@ -1,6 +1,7 @@
 package io.github.feltmc.feltapi.mixin.item.client;
 
 import io.github.feltmc.feltapi.api.item.extensions.FeltItem;
+import io.github.feltmc.feltapi.api.item.extensions.MiscExtension;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.item.ItemStack;
@@ -21,7 +22,7 @@ public abstract class InGameHudMixin {
     //TODO itemstack.getHighlightTip(itemstack.getHoverName()).equals(lastToolHighlight.getHighlightTip(lastToolHighlight.getHoverName())) in tick, not possible till redirects do locals
     @Redirect(method = "renderHeldItemTooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/font/TextRenderer;getWidth(Lnet/minecraft/text/StringVisitable;)I"))
     private int injectRenderHeldItemTooltip(TextRenderer instance, StringVisitable text){
-        if (currentStack.getItem() instanceof FeltItem item){
+        if (currentStack.getItem() instanceof MiscExtension item){
             return this.getTextRenderer().getWidth(item.getHighlightTip(currentStack, (MutableText)text));
         }
         return this.getTextRenderer().getWidth(text);

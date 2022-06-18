@@ -2,6 +2,7 @@ package io.github.feltmc.feltapi.mixin.item.client;
 
 import io.github.feltmc.feltapi.api.item.extensions.DamageableItemExtension;
 import io.github.feltmc.feltapi.api.item.extensions.FeltItem;
+import io.github.feltmc.feltapi.api.item.extensions.ItemUseExtension;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -46,7 +47,7 @@ public class ClientPlayerInteractionManagerMixin {
     @Inject(method = "interactBlock", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isEmpty()Z", ordinal = 0, shift = At.Shift.BEFORE), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
     private void injectOnItemUseFirst(ClientPlayerEntity player, ClientWorld world, Hand hand, BlockHitResult hitResult, CallbackInfoReturnable<ActionResult> cir, BlockPos blockPos, ItemStack itemStack){
         ItemUsageContext useoncontext = new ItemUsageContext(player, hand, hitResult);
-        if (itemStack.getItem() instanceof FeltItem item){
+        if (itemStack.getItem() instanceof ItemUseExtension item){
             ActionResult result = item.onItemUseFirst(itemStack, useoncontext);
             if (result != ActionResult.PASS) {
                 this.networkHandler.sendPacket(new PlayerInteractBlockC2SPacket(hand, hitResult));
@@ -58,7 +59,7 @@ public class ClientPlayerInteractionManagerMixin {
 
     @Inject(method = "breakBlock", at = @At("HEAD"), cancellable = true)
     private void injectOnBlockStartBreak(BlockPos pos, CallbackInfoReturnable<Boolean> cir){
-        if (client.player.getMainHandStack().getItem() instanceof FeltItem item && item.onBlockStartBreak(client.player.getMainHandStack(), pos, client.player)){
+        if (client.player.getMainHandStack().getItem() instanceof ItemUseExtension item && item.onBlockStartBreak(client.player.getMainHandStack(), pos, client.player)){
             cir.setReturnValue(false);
         }
     }

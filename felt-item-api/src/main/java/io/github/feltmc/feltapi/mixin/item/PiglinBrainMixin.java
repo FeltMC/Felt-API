@@ -1,6 +1,7 @@
 package io.github.feltmc.feltapi.mixin.item;
 
 import io.github.feltmc.feltapi.api.item.extensions.FeltItem;
+import io.github.feltmc.feltapi.api.item.extensions.PiglinExtension;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.PiglinBrain;
 import net.minecraft.item.ArmorItem;
@@ -18,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class PiglinBrainMixin {
     @Inject(method = "acceptsForBarter", at = @At("HEAD"), cancellable = true)
     private static void injectAcceptsPiglinItem(ItemStack stack, CallbackInfoReturnable<Boolean> ci){
-        if (stack.getItem() instanceof FeltItem item){
+        if (stack.getItem() instanceof PiglinExtension item){
             ci.setReturnValue(item.isPiglinCurrency(stack));
         }
     }
@@ -29,7 +30,7 @@ public class PiglinBrainMixin {
     private static void injectIsWearingGold(LivingEntity entity, CallbackInfoReturnable<Boolean> cir){
         for(ItemStack itemstack : entity.getArmorItems()) {
             Item item = itemstack.getItem();
-            if (item instanceof FeltItem item1){
+            if (item instanceof PiglinExtension item1){
                 boolean bool = item1.makesPiglinsNeutral(itemstack, entity);
                 if (bool){
                     cir.setReturnValue(true);

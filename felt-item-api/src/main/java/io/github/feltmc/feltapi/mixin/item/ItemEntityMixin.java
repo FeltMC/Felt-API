@@ -1,7 +1,9 @@
 package io.github.feltmc.feltapi.mixin.item;
 
+import io.github.feltmc.feltapi.api.item.extensions.EntityExtension;
 import io.github.feltmc.feltapi.api.item.extensions.FeltItem;
 import net.minecraft.entity.ItemEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Debug;
@@ -22,7 +24,7 @@ public class ItemEntityMixin {
 
     @Inject(method = "<init>(Lnet/minecraft/world/World;DDDLnet/minecraft/item/ItemStack;DDD)V", at = @At("TAIL"))
     private void injectInit(World world, double x, double y, double z, ItemStack stack, double velocityX, double velocityY, double velocityZ, CallbackInfo ci){
-        this.lifespan = !stack.isEmpty() && stack.getItem() instanceof FeltItem feltItem ? feltItem.getEntityLifespan(stack, world) : 6000;
+        this.lifespan = !stack.isEmpty() && stack.getItem() instanceof EntityExtension feltItem ? feltItem.getEntityLifespan(stack, world) : 6000;
     }
 
     @ModifyConstant(method = "tick", constant = @Constant(intValue = 6000))

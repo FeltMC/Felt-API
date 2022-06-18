@@ -22,4 +22,8 @@ public interface ContainerItemExtension {
     {
         return self().hasRecipeRemainder();
     }
+
+    default boolean isRepairable(){
+        return false;
+    }
 }
