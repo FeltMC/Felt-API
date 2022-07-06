@@ -1,6 +1,7 @@
 package io.github.feltmc.feltapi.mixin.item;
 
 import io.github.feltmc.feltapi.api.item.extensions.DamageableItemExtension;
+import io.github.feltmc.feltapi.api.item.extensions.MiscExtension;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -61,6 +62,13 @@ public abstract class ItemStackMixin {
     private void injectGetMaxDamage(CallbackInfoReturnable<Integer> cir){
         if (getItem() instanceof DamageableItemExtension extension){
             cir.setReturnValue(extension.getMaxDamage((ItemStack) (Object) this));
+        }
+    }
+
+    @Inject(method = "getMaxCount", at = @At(value = "HEAD"), cancellable = true)
+    private void injectGetMaxStackSize(CallbackInfoReturnable<Integer> cir){
+        if (getItem() instanceof MiscExtension extension){
+            cir.setReturnValue(extension.getItemStackLimit((ItemStack) (Object) this));
         }
     }
 
