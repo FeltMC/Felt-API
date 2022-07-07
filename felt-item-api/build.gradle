@@ -1,2 +1,10 @@
 archivesBaseName = "felt-item-api"
 version = getSubprojectVersion(project)
+
+repositories {
+    maven { url = "https://mvn.devos.one/snapshots/" }
+}
+
+dependencies {
+    modImplementation("io.github.fabricators_of_create:Porting-Lib:1.1.310-beta+1.18.2-dev.ba26474"){ transitive(false) }
+}

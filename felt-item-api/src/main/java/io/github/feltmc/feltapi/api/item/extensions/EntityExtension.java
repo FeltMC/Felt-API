@@ -16,11 +16,6 @@ public interface EntityExtension {
         return (Item) this;
     }
 
-    default boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity)
-    {
-        return false;
-    }
-
     default int getEntityLifespan(ItemStack itemStack, World level)
     {
         return 6000;
@@ -35,11 +30,6 @@ public interface EntityExtension {
     default Entity createEntity(World level, Entity location, ItemStack stack)
     {
         return null;
-    }
-
-    default boolean onEntityItemUpdate(ItemStack stack, ItemEntity entity)
-    {
-        return false;
     }
 
     default void onItemEntityDestroyed(ItemEntity itemEntity, DamageSource damageSource)

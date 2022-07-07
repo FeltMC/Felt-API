@@ -1,6 +1,5 @@
 package io.github.feltmc.feltapi.api.item.extensions;
 
-import io.github.feltmc.feltapi.api.item.ToolAction;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -52,22 +51,6 @@ public interface MiscExtension {
         return true;
     }
 
-    default boolean onEntitySwing(ItemStack stack, LivingEntity entity)
-    {
-        return false;
-    }
-
-    default int getItemStackLimit(ItemStack stack)
-    {
-        return self().getMaxCount();
-    }
-
-
-    default boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged)
-    {
-        return !oldStack.equals(newStack); // !ItemStack.areItemStacksEqual(oldStack, newStack);
-    }
-
     default boolean shouldCauseBlockBreakReset(ItemStack oldStack, ItemStack newStack)
     {
         // Fix MC-176559 mending resets mining progress / breaking animation
@@ -105,11 +88,6 @@ public interface MiscExtension {
         return stack.getItem() == Blocks.CARVED_PUMPKIN.asItem();
     }
 
-    default boolean canWalkOnPowderedSnow(ItemStack stack, LivingEntity wearer)
-    {
-        return stack.isOf(Items.LEATHER_BOOTS);
-    }
-
     @Nonnull
     default Box getSweepHitBox(@Nonnull ItemStack stack, @Nonnull PlayerEntity player, @Nonnull Entity target)
     {
@@ -126,10 +104,5 @@ public interface MiscExtension {
     default FoodComponent getFoodComponenet(ItemStack stack, @Nullable LivingEntity entity)
     {
         return self().getFoodComponent();
-    }
-
-    default boolean canPerformAction(ItemStack stack, ToolAction toolAction)
-    {
-        return false;
     }
 }

@@ -21,10 +21,4 @@ public interface ArmorExtension {
     {
         return MobEntity.getPreferredEquipmentSlot(stack) == armorType;
     }
-
-    @Nullable
-    default EquipmentSlot getEquipmentSlot(ItemStack stack)
-    {
-        return null;
-    }
 }

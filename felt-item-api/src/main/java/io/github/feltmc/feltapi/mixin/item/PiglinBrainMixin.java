@@ -23,24 +23,4 @@ public class PiglinBrainMixin {
             ci.setReturnValue(item.isPiglinCurrency(stack));
         }
     }
-
-
-    // basically override to avoid iterating the armor list twice
-    @Inject(method = "wearsGoldArmor", at = @At("HEAD"), cancellable = true)
-    private static void injectIsWearingGold(LivingEntity entity, CallbackInfoReturnable<Boolean> cir){
-        for(ItemStack itemstack : entity.getArmorItems()) {
-            Item item = itemstack.getItem();
-            if (item instanceof PiglinExtension item1){
-                boolean bool = item1.makesPiglinsNeutral(itemstack, entity);
-                if (bool){
-                    cir.setReturnValue(true);
-                    return;
-                }
-            } else if (itemstack.getItem() instanceof ArmorItem armor && armor.getMaterial() == ArmorMaterials.GOLD){
-                cir.setReturnValue(true);
-                return;
-            }
-        }
-        cir.setReturnValue(false);
-    }
 }

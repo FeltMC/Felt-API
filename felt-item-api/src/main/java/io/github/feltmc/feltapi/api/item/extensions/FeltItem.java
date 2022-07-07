@@ -1,40 +1,41 @@
 package io.github.feltmc.feltapi.api.item.extensions;
 
-import io.github.feltmc.feltapi.api.item.ToolAction;
+import io.github.fabricators_of_create.porting_lib.extensions.ItemExtensions;
+import io.github.fabricators_of_create.porting_lib.item.CustomMaxCountItem;
+import io.github.fabricators_of_create.porting_lib.item.EquipmentItem;
+import io.github.fabricators_of_create.porting_lib.util.ToolActions;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.mob.EndermanEntity;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.mob.PiglinBrain;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.block.AbstractSkullBlock;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorItem;
-import net.minecraft.item.ArmorMaterials;
-import net.minecraft.item.FoodComponent;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.Items;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
-import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+public interface FeltItem extends FabricItem, ItemTagExtension, ArmorExtension, DamageableItemExtension, ContainerItemExtension, ElytraExtension, EntityExtension, ItemUseExtension, PiglinExtension, MiscExtension, CustomMaxCountItem, ItemExtensions, EquipmentItem {
 
-public interface FeltItem extends FabricItem, ItemTagExtension, ArmorExtension, DamageableItemExtension, ContainerItemExtension, ElytraExtension, EntityExtension, ItemUseExtension, PiglinExtension, MiscExtension {
+    @Nullable
+    @Override
+    default EquipmentSlot getEquipmentSlot(ItemStack stack) {
+        Item item = stack.getItem();
+        if (!stack.isOf(Items.CARVED_PUMPKIN) && (!(item instanceof BlockItem) || !(((BlockItem)item).getBlock() instanceof AbstractSkullBlock))) {
+            if (item instanceof ArmorItem) {
+                return ((ArmorItem)item).getSlotType();
+            } else if (stack.isOf(Items.ELYTRA)) {
+                return EquipmentSlot.CHEST;
+            } else {
+                return stack.canPerformAction(ToolActions.SHIELD_BLOCK) ? EquipmentSlot.OFFHAND : EquipmentSlot.MAINHAND;
+            }
+        } else {
+            return EquipmentSlot.HEAD;
+        }
+    }
 
+    @Override
+    default int getItemStackLimit(ItemStack stack)
+    {
+        return stack.getItem().getMaxCount();
+    }
 }

@@ -1,11 +1,9 @@
 package io.github.feltmc.feltapi.mixin.item;
 
-import io.github.feltmc.feltapi.api.item.ToolActions;
+import io.github.fabricators_of_create.porting_lib.util.ToolActions;
 import io.github.feltmc.feltapi.api.item.event.LivingEntityUsageTickCallback;
 import io.github.feltmc.feltapi.api.item.extensions.ArmorExtension;
-import io.github.feltmc.feltapi.api.item.extensions.FeltItem;
 import io.github.feltmc.feltapi.api.item.extensions.ItemUseExtension;
-import io.github.feltmc.feltapi.api.item.extensions.MiscExtension;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
@@ -39,20 +37,9 @@ public abstract class LivingEntityMixin {
 
     @Shadow public abstract void clearActiveItem();
 
-    @Inject(method = "getPreferredEquipmentSlot", at = @At("HEAD"), cancellable = true)
-    private static void injectGetEquipmentSlot(ItemStack stack, CallbackInfoReturnable<EquipmentSlot> callback){
-        if (stack.getItem() instanceof ArmorExtension extension) {
-            EquipmentSlot slot = extension.getEquipmentSlot(stack);
-            if (slot != null) callback.setReturnValue(slot);
-        }
-    }
-
     @Redirect(method = "getPreferredEquipmentSlot", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
     private static boolean redirectGetEquipmentSlot(ItemStack instance, Item item){
-        if (instance.getItem() instanceof MiscExtension feltItem) {
-            return feltItem.canPerformAction(instance, ToolActions.SHIELD_BLOCK);
-        }
-        return instance.isOf(item);
+        return instance.canPerformAction(ToolActions.SHIELD_BLOCK);
     }
 
     @Inject(method = "tickActiveItemStack", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;areItemsEqual(Lnet/minecraft/item/ItemStack;Lnet/minecraft/item/ItemStack;)Z", shift = At.Shift.BEFORE))

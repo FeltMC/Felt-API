@@ -43,24 +43,4 @@ public class ClientPlayerInteractionManagerMixin {
         }
         return value;
     }
-
-    @Inject(method = "interactBlock", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isEmpty()Z", ordinal = 0, shift = At.Shift.BEFORE), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
-    private void injectOnItemUseFirst(ClientPlayerEntity player, ClientWorld world, Hand hand, BlockHitResult hitResult, CallbackInfoReturnable<ActionResult> cir, BlockPos blockPos, ItemStack itemStack){
-        ItemUsageContext useoncontext = new ItemUsageContext(player, hand, hitResult);
-        if (itemStack.getItem() instanceof ItemUseExtension item){
-            ActionResult result = item.onItemUseFirst(itemStack, useoncontext);
-            if (result != ActionResult.PASS) {
-                this.networkHandler.sendPacket(new PlayerInteractBlockC2SPacket(hand, hitResult));
-                cir.setReturnValue(result);
-            }
-        }
-
-    }
-
-    @Inject(method = "breakBlock", at = @At("HEAD"), cancellable = true)
-    private void injectOnBlockStartBreak(BlockPos pos, CallbackInfoReturnable<Boolean> cir){
-        if (client.player.getMainHandStack().getItem() instanceof ItemUseExtension item && item.onBlockStartBreak(client.player.getMainHandStack(), pos, client.player)){
-            cir.setReturnValue(false);
-        }
-    }
 }

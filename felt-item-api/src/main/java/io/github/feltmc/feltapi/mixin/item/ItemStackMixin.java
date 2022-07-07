@@ -65,13 +65,6 @@ public abstract class ItemStackMixin {
         }
     }
 
-    @Inject(method = "getMaxCount", at = @At(value = "HEAD"), cancellable = true)
-    private void injectGetMaxStackSize(CallbackInfoReturnable<Integer> cir){
-        if (getItem() instanceof MiscExtension extension){
-            cir.setReturnValue(extension.getItemStackLimit((ItemStack) (Object) this));
-        }
-    }
-
     @Inject(method = "getDamage", at = @At(value = "HEAD"), cancellable = true)
     private void injectGetDamage(CallbackInfoReturnable<Integer> cir){
         if (getItem() instanceof DamageableItemExtension extension){

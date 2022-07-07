@@ -11,9 +11,4 @@ public interface PiglinExtension {
     {
         return stack.getItem() == PiglinBrain.BARTERING_ITEM;
     }
-
-    default boolean makesPiglinsNeutral(ItemStack stack, LivingEntity wearer)
-    {
-        return stack.getItem() instanceof ArmorItem armor && armor.getMaterial() == ArmorMaterials.GOLD;
-    }
 }

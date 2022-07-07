@@ -45,24 +45,4 @@ public class ServerPlayerInteractionManagerMixin {
         }
         return value;
     }
-
-    @Inject(method = "interactBlock", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isEmpty()Z", ordinal = 0, shift = At.Shift.BEFORE), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
-    private void injectOnItemUseFirst(ServerPlayerEntity player, World world, ItemStack stack, Hand hand, BlockHitResult hitResult, CallbackInfoReturnable<ActionResult> cir, BlockPos blockPos, BlockState blockState){
-        ItemUsageContext useoncontext = new ItemUsageContext(player, hand, hitResult);
-        if (stack.getItem() instanceof ItemUseExtension item){
-            ActionResult result = item.onItemUseFirst(stack, useoncontext);
-            if (result != ActionResult.PASS) {
-                cir.setReturnValue(result);
-            }
-        }
-
-    }
-
-    @Redirect(method = "tryBreakBlock", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayerEntity;isBlockBreakingRestricted(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/GameMode;)Z"))
-    private boolean injectOnBlockStartBreak(ServerPlayerEntity instance, World world, BlockPos pos, GameMode gameMode){
-        if (this.player.getMainHandStack().getItem() instanceof ItemUseExtension item && item.onBlockStartBreak(this.player.getMainHandStack(), pos, player)){
-            return true;
-        }
-        return this.player.isBlockBreakingRestricted(this.world, pos, this.gameMode);
-    }
 }

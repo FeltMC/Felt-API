@@ -8,15 +8,6 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 
 public interface ItemUseExtension {
-    default ActionResult onItemUseFirst(ItemStack stack, ItemUsageContext context)
-    {
-        return ActionResult.PASS;
-    }
-
-    default boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, PlayerEntity player)
-    {
-        return false;
-    }
 
     default void onUsingTick(ItemStack stack, LivingEntity player, int count) {
     }
