@@ -36,8 +36,11 @@ def getBranch() {
 	return branch.substring(branch.lastIndexOf("/") + 1)
 }
 
-allprojects {
+subprojects{
 	apply plugin: "fabric-loom"
+}
+
+allprojects {
 	apply plugin: "maven-publish"
 
 	repositories {
