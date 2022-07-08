@@ -1,5 +1,6 @@
 package io.github.feltmc.feltapi.mixin.item;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import io.github.feltmc.feltapi.api.item.extensions.IsDamageableItem;
 import io.github.feltmc.feltapi.api.item.extensions.ShareTagItem;
 import net.minecraft.item.Item;
@@ -18,12 +19,12 @@ public abstract class PacketByteBufMixin {
 
     @Shadow public abstract PacketByteBuf writeItemStack(ItemStack stack);
 
-    @Redirect(method = "writeItemStack", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/Item;isDamageable()Z"))
-    private boolean redirectIsDamageable(Item instance, ItemStack stack){
-        if (instance instanceof IsDamageableItem extension){
+    @ModifyExpressionValue(method = "writeItemStack", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/Item;isDamageable()Z"))
+    private boolean redirectIsDamageable(boolean old, ItemStack stack){
+        if (stack.getItem() instanceof IsDamageableItem extension){
             return extension.isDamageable(stack);
         }
-        return instance.isDamageable();
+        return old;
     }
 
     @Redirect(method = "writeItemStack", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getNbt()Lnet/minecraft/nbt/NbtCompound;"))

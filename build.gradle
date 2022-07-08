@@ -51,6 +51,7 @@ allprojects {
 				includeGroup "com.terraformersmc"
 			}
 		}
+		maven { url 'https://jitpack.io' }
 	}
 
 	sourceSets {

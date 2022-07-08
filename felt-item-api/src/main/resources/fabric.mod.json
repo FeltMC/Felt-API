@@ -18,6 +18,11 @@
   "icon": "assets/felt-tool-api/icon.png",
 
   "environment": "*",
+  "entrypoints": {
+    "preLaunch": [
+      "io.github.feltmc.feltapi.impl.item.ItemPrelaunch"
+    ]
+  },
   "mixins": [
     "itemapi.mixins.json"
   ],
