@@ -1,32 +1,17 @@
-package io.github.feltmc.feltapi.mixin.item;
+package io.github.feltmc.feltapi.mixin.item.portinglib;
 
 import io.github.fabricators_of_create.porting_lib.util.ToolActions;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Hand;
 import org.spongepowered.asm.mixin.Debug;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Debug(export = true)
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
-    @Shadow public abstract boolean isUsingItem();
-
-    @Shadow public abstract ItemStack getStackInHand(Hand hand);
-
-    @Shadow public abstract Hand getActiveHand();
-
-    @Shadow protected ItemStack activeItemStack;
-
-    @Shadow protected int itemUseTimeLeft;
-
-    @Shadow protected abstract void tickItemStackUsage(ItemStack stack);
-
-    @Shadow public abstract void clearActiveItem();
 
     @Redirect(method = "getPreferredEquipmentSlot", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z", ordinal = 1))
     private static boolean redirectGetEquipmentSlot(ItemStack instance, Item item){

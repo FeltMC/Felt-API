@@ -2,6 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "io.github.feltmc.feltapi.mixin.item",
+  "plugin": "io.github.feltmc.feltapi.mixin.item.MixinPlugin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "AnvilMenuMixin",
@@ -10,7 +11,6 @@
     "ItemEntityMixin",
     "ItemMixin",
     "ItemStackMixin",
-    "LivingEntityMixin",
     "PacketByteBufMixin",
     "PiglinBrainMixin",
     "PiglinEntityMixin",
@@ -18,7 +18,10 @@
     "PlayerScreenHandlerAccessor",
     "PlayerScreenHandlerMixin",
     "ServerPlayerEntityMixin",
-    "ServerPlayerInteractionManagerMixin"
+    "ServerPlayerInteractionManagerMixin",
+    "nonportinglib.ItemMixin",
+    "portinglib.ItemMixin",
+    "portinglib.LivingEntityMixin"
   ],
   "client": [
     "client.ClientPlayerInteractionManagerMixin",
