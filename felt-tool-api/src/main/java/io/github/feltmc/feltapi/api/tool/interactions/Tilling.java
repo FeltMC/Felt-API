@@ -1,13 +1,12 @@
 package io.github.feltmc.feltapi.api.tool.interactions;
 
-import io.github.feltmc.feltapi.mixin.tool.common.HoeMixin;
+import io.github.feltmc.feltapi.mixin.tool.HoeMixin;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import com.mojang.datafixers.util.Pair;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.function.Consumer;

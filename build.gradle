@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.11-SNAPSHOT' apply false
+	id 'fabric-loom' version '0.12-SNAPSHOT' apply false
 	id 'maven-publish'
 	id 'java'
 }
@@ -36,8 +36,11 @@ def getBranch() {
 	return branch.substring(branch.lastIndexOf("/") + 1)
 }
 
-allprojects {
+subprojects {
 	apply plugin: "fabric-loom"
+	apply plugin: "maven-publish"
+
+	group = rootProject.maven_group
 
 	repositories {
 		// Add repositories to retrieve artifacts from in here.
@@ -51,6 +54,7 @@ allprojects {
 				includeGroup "com.terraformersmc"
 			}
 		}
+		maven { url 'https://jitpack.io' }
 	}
 
 	sourceSets {
@@ -116,9 +120,9 @@ allprojects {
 // configure the maven publication
 	publishing {
 		publications {
-			/*mavenJava(MavenPublication) {
+			mavenJava(MavenPublication) {
 				from components.java
-			}*/
+			}
 		}
 
 		// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.

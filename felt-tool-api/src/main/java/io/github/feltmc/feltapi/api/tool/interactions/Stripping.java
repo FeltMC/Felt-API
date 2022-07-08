@@ -1,6 +1,6 @@
 package io.github.feltmc.feltapi.api.tool.interactions;
 
-import io.github.feltmc.feltapi.mixin.tool.common.AxeMixin;
+import io.github.feltmc.feltapi.mixin.tool.AxeMixin;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

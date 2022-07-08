@@ -1,0 +1,33 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "io.github.feltmc.feltapi.mixin.item",
+  "plugin": "io.github.feltmc.feltapi.mixin.item.MixinPlugin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "AnvilMenuMixin",
+    "EnchantmentHelperMixin",
+    "EnchantmentMixin",
+    "ItemEntityMixin",
+    "ItemMixin",
+    "ItemStackMixin",
+    "PacketByteBufMixin",
+    "PiglinBrainMixin",
+    "PiglinEntityMixin",
+    "PlayerInventoryMixin",
+    "PlayerScreenHandlerAccessor",
+    "PlayerScreenHandlerMixin",
+    "ServerPlayerEntityMixin",
+    "ServerPlayerInteractionManagerMixin",
+    "nonportinglib.ItemMixin",
+    "portinglib.ItemMixin",
+    "portinglib.LivingEntityMixin"
+  ],
+  "client": [
+    "client.ClientPlayerInteractionManagerMixin",
+    "client.InGameHudMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
