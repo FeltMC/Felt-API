@@ -38,6 +38,7 @@ def getBranch() {
 
 allprojects {
 	apply plugin: "fabric-loom"
+	apply plugin: "maven-publish"
 
 	repositories {
 		// Add repositories to retrieve artifacts from in here.
