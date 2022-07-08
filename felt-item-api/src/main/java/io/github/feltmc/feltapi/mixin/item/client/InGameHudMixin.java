@@ -1,6 +1,5 @@
 package io.github.feltmc.feltapi.mixin.item.client;
 
-import io.github.feltmc.feltapi.api.item.extensions.FeltItem;
 import io.github.feltmc.feltapi.api.item.extensions.MiscExtension;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.hud.InGameHud;

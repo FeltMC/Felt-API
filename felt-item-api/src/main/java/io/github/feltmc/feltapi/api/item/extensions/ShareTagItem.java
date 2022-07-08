@@ -5,7 +5,7 @@ import net.minecraft.nbt.NbtCompound;
 
 import javax.annotation.Nullable;
 
-public interface ItemTagExtension {
+public interface ShareTagItem {
     default NbtCompound getShareTag(ItemStack stack) {
         return stack.getNbt();
     }

@@ -3,14 +3,13 @@ package io.github.feltmc.feltapi.api.item.extensions;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public interface EntityExtension {
+public interface EntityCustomItem {
     private Item self()
     {
         return (Item) this;

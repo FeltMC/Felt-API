@@ -3,7 +3,7 @@ package io.github.feltmc.feltapi.api.item.extensions;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public interface ContainerItemExtension {
+public interface ContainerItem {
     private Item self()
     {
         return (Item) this;

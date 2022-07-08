@@ -3,7 +3,7 @@ package io.github.feltmc.feltapi.api.item.extensions;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 
-public interface ElytraExtension {
+public interface ElytraFlightItem {
     default boolean canElytraFly(ItemStack stack, LivingEntity entity)
     {
         return false;

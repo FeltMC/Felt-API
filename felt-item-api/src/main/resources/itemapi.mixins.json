@@ -7,7 +7,6 @@
     "AnvilMenuMixin",
     "EnchantmentHelperMixin",
     "EnchantmentMixin",
-    "ExperienceOrbMixin",
     "ItemEntityMixin",
     "ItemMixin",
     "ItemStackMixin",
@@ -15,7 +14,6 @@
     "PacketByteBufMixin",
     "PiglinBrainMixin",
     "PiglinEntityMixin",
-    "PlayerEntityMixin",
     "PlayerInventoryMixin",
     "PlayerScreenHandlerAccessor",
     "PlayerScreenHandlerMixin",
@@ -23,7 +21,6 @@
     "ServerPlayerInteractionManagerMixin"
   ],
   "client": [
-    "client.ArmorFeatureRendererMixin",
     "client.ClientPlayerInteractionManagerMixin",
     "client.InGameHudMixin"
   ],

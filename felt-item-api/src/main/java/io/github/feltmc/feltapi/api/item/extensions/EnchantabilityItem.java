@@ -1,25 +1,9 @@
 package io.github.feltmc.feltapi.api.item.extensions;
 
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.AxeItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.WorldView;
 
-public interface DamageableItemExtension {
-    default int getDamage(ItemStack stack)
-    {
-        return !stack.hasNbt() ? 0 : stack.getNbt().getInt("Damage");
-    }
-
-    default int getMaxDamage(ItemStack stack) {
-
-        return stack.getItem().getMaxDamage();
-    }
-
+public interface EnchantabilityItem {
     /**
      * ItemStack sensitive version of getEnchantability
      *
@@ -47,33 +31,5 @@ public interface DamageableItemExtension {
     default boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment)
     {
         return enchantment.type.isAcceptableItem(stack.getItem());
-    }
-
-    default boolean canDisableShield(ItemStack stack, ItemStack shield, LivingEntity entity, LivingEntity attacker) {
-        return this instanceof AxeItem;
-    }
-
-    default boolean doesSneakBypassUse(ItemStack stack, WorldView world, BlockPos pos, PlayerEntity player) {
-        return false;
-    }
-
-    default boolean isDamageable(ItemStack stack)
-    {
-        return ((Item)this).isDamageable();
-    }
-
-    default float getXpRepairRatio(ItemStack stack)
-    {
-        return 2f;
-    }
-
-    default boolean isDamaged(ItemStack stack)
-    {
-        return stack.getDamage() > 0;
-    }
-
-    default void setDamage(ItemStack stack, int damage)
-    {
-        stack.getOrCreateNbt().putInt("Damage", Math.max(0, damage));
     }
 }

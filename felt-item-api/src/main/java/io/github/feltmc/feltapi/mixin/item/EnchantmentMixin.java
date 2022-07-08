@@ -1,6 +1,6 @@
 package io.github.feltmc.feltapi.mixin.item;
 
-import io.github.feltmc.feltapi.api.item.extensions.DamageableItemExtension;
+import io.github.feltmc.feltapi.api.item.extensions.EnchantabilityItem;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class EnchantmentMixin {
     @Inject(method = "isAcceptableItem", at = @At("HEAD"), cancellable = true)
     public void injectEnchantmentCheck(ItemStack stack, CallbackInfoReturnable<Boolean> callback){
-        if (stack.getItem() instanceof DamageableItemExtension extension){
+        if (stack.getItem() instanceof EnchantabilityItem extension){
             callback.setReturnValue(extension.canApplyAtEnchantingTable(stack, (Enchantment) (Object)this));
         }
     }

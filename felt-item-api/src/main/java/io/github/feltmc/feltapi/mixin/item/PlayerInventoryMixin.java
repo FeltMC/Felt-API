@@ -1,6 +1,6 @@
 package io.github.feltmc.feltapi.mixin.item;
 
-import io.github.feltmc.feltapi.api.item.extensions.ArmorExtension;
+import io.github.feltmc.feltapi.api.item.extensions.ArmorTickItem;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
@@ -21,7 +21,7 @@ public class PlayerInventoryMixin {
     @Inject(method = "updateItems", at = @At("TAIL"))
     private void injectOnArmorTick(CallbackInfo c){
         armor.forEach(e -> {
-            if (e.getItem() instanceof ArmorExtension extension) extension.onArmorTick(e, player.world, player);
+            if (e.getItem() instanceof ArmorTickItem extension) extension.onArmorTick(e, player.world, player);
         });
     }
 

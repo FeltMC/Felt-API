@@ -1,7 +1,7 @@
 package io.github.feltmc.feltapi.mixin.item;
 
-import io.github.feltmc.feltapi.api.item.extensions.DamageableItemExtension;
-import io.github.feltmc.feltapi.api.item.extensions.ItemTagExtension;
+import io.github.feltmc.feltapi.api.item.extensions.IsDamageableItem;
+import io.github.feltmc.feltapi.api.item.extensions.ShareTagItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -20,7 +20,7 @@ public abstract class PacketByteBufMixin {
 
     @Redirect(method = "writeItemStack", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/Item;isDamageable()Z"))
     private boolean redirectIsDamageable(Item instance, ItemStack stack){
-        if (instance instanceof DamageableItemExtension extension){
+        if (instance instanceof IsDamageableItem extension){
             return extension.isDamageable(stack);
         }
         return instance.isDamageable();
@@ -28,7 +28,7 @@ public abstract class PacketByteBufMixin {
 
     @Redirect(method = "writeItemStack", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getNbt()Lnet/minecraft/nbt/NbtCompound;"))
     public NbtCompound redirectGetTag(ItemStack stack){
-        if (stack.getItem() instanceof ItemTagExtension extension){
+        if (stack.getItem() instanceof ShareTagItem extension){
             return extension.getShareTag(stack);
         }
         return stack.getNbt();
@@ -36,7 +36,7 @@ public abstract class PacketByteBufMixin {
 
     @Redirect(method = "readItemStack", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;setNbt(Lnet/minecraft/nbt/NbtCompound;)V"))
     public void redirectWriteTag(ItemStack instance, NbtCompound nbt){
-        if (instance.getItem() instanceof ItemTagExtension extension){
+        if (instance.getItem() instanceof ShareTagItem extension){
             extension.readShareTag(instance, nbt);
             return;
         }

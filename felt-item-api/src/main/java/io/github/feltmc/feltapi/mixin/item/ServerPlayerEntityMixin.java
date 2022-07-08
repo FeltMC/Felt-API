@@ -1,9 +1,7 @@
 package io.github.feltmc.feltapi.mixin.item;
 
 import com.mojang.authlib.GameProfile;
-import io.github.feltmc.feltapi.api.item.extensions.FeltItem;
 import io.github.feltmc.feltapi.api.item.extensions.MiscExtension;
-import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;

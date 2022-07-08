@@ -1,6 +1,6 @@
 package io.github.feltmc.feltapi.mixin.item;
 
-import io.github.feltmc.feltapi.api.item.extensions.DamageableItemExtension;
+import io.github.feltmc.feltapi.api.item.extensions.EnchantabilityItem;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -15,11 +15,11 @@ public class EnchantmentHelperMixin {
 
     @Redirect(method = "calculateRequiredExperienceLevel", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/Item;getEnchantability()I"))
     private static int hookModifiedExperience(Item instance, Random random, int slotIndex, int bookshelfCount, ItemStack stack){
-        return instance instanceof DamageableItemExtension extension ? extension.getEnchantability(stack) : instance.getEnchantability();
+        return instance instanceof EnchantabilityItem extension ? extension.getEnchantability(stack) : instance.getEnchantability();
     }
 
     @Redirect(method = "generateEnchantments", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/Item;getEnchantability()I"))
     private static int hookModifiedExperience2(Item instance, Random random, ItemStack stack, int level, boolean treasureAllowed){
-        return instance instanceof DamageableItemExtension extension ? extension.getEnchantability(stack) : instance.getEnchantability();
+        return instance instanceof EnchantabilityItem extension ? extension.getEnchantability(stack) : instance.getEnchantability();
     }
 }

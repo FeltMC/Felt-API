@@ -1,6 +1,6 @@
 package io.github.feltmc.feltapi.mixin.item;
 
-import io.github.feltmc.feltapi.api.item.extensions.ArmorExtension;
+import io.github.feltmc.feltapi.api.item.extensions.ArmorEquipItem;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.PlayerScreenHandler;
@@ -22,7 +22,7 @@ public class PlayerScreenHandlerMixin {
 
     @Inject(method = "canInsert", at = @At("HEAD"))
     private void injectCanEquip(ItemStack stack, CallbackInfoReturnable<Boolean> info){
-        if (stack.getItem() instanceof ArmorExtension extension){
+        if (stack.getItem() instanceof ArmorEquipItem extension){
             info.setReturnValue(extension.canEquip(stack, field_7834, ((PlayerScreenHandlerAccessor)field_7833).getOwner()));
         }
     }
