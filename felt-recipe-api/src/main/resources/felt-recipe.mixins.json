@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "com.gregtechintergalactical.sfr.mixin.fabric",
+  "compatibilityLevel": "JAVA_17",
+  "plugin": "io.github.feltmc.feltapi.mixin.recipe.RecipeMixinPlugin",
+  "client": [
+  ],
+  "mixins": [
+    "io.gregtechintergalactical.sfr.mixin.fabric.AbstractFurnaceBlockEntityMixin",
+    "io.gregtechintergalactical.sfr.mixin.fabric.SimpleCookingSerializerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,13 @@
+loom {
+    accessWidenerPath = file("src/main/resources/sfr.accesswidener")
+}
+
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+
+
+dependencies {
+    implementation(include("com.github.LlamaLad7:MixinExtras:0.0.12"))
+    annotationProcessor("com.github.LlamaLad7:MixinExtras:0.0.12")
+}
