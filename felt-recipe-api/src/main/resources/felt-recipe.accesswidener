@@ -1,3 +1,2 @@
 accessWidener   v2  named
-accessible class net/minecraft/world/item/crafting/SimpleCookingSerializer$CookieBaker
-accessible method net/minecraft/world/item/crafting/SimpleCookingSerializer$CookieBaker create (Lnet/minecraft/resources/ResourceLocation;Ljava/lang/String;Lnet/minecraft/world/item/crafting/Ingredient;Lnet/minecraft/world/item/ItemStack;FI)Lnet/minecraft/world/item/crafting/AbstractCookingRecipe;
+accessible class net/minecraft/recipe/CookingRecipeSerializer$RecipeFactory
