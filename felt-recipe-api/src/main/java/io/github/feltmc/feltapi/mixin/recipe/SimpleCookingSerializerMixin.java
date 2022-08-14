@@ -25,7 +25,7 @@ public class SimpleCookingSerializerMixin {
     @Inject(method = "read(Lnet/minecraft/util/Identifier;Lcom/google/gson/JsonObject;)Lnet/minecraft/recipe/AbstractCookingRecipe;", at = @At(value = "HEAD"), cancellable = true)
     private void injectStackSupport(Identifier recipeId, JsonObject json, CallbackInfoReturnable<AbstractCookingRecipe> cir){
         String string = JsonHelper.getString(json, "group", "");
-        JsonElement jsonElement = JsonHelper.hasArray(json, "ingredient") ? JsonHelper.asArray(json, "ingredient") : JsonHelper.asObject(json, "ingredient");
+        JsonElement jsonElement = JsonHelper.hasArray(json, "ingredient") ? JsonHelper.getArray(json, "ingredient") : JsonHelper.getObject(json, "ingredient");
         Ingredient ingredient = Ingredient.fromJson(jsonElement);
         JsonElement element = json.get("result");
         if (element instanceof JsonObject object){
