@@ -10,15 +10,10 @@ import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(HandledScreen.class)
 public class HandledScreenMixin implements HandledScreenExtension {
-
     @Shadow @Nullable protected Slot focusedSlot;
-
     @Shadow protected int x;
-
     @Shadow protected int y;
-
     @Shadow protected int backgroundWidth;
-
     @Shadow protected int backgroundHeight;
 
     @Override
