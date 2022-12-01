@@ -1,0 +1,2 @@
+archivesBaseName = "felt-screen-api"
+version = getSubprojectVersion(project)
