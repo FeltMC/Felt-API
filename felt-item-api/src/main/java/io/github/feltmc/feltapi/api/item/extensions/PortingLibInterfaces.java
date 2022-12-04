@@ -6,8 +6,10 @@ import io.github.fabricators_of_create.porting_lib.item.CustomMaxCountItem;
 import io.github.fabricators_of_create.porting_lib.item.EntitySwingListenerItem;
 import io.github.fabricators_of_create.porting_lib.item.EntityTickListenerItem;
 import io.github.fabricators_of_create.porting_lib.item.EquipmentItem;
+import io.github.fabricators_of_create.porting_lib.item.PiglinsNeutralItem;
 import io.github.fabricators_of_create.porting_lib.item.ReequipAnimationItem;
 import io.github.fabricators_of_create.porting_lib.item.UseFirstBehaviorItem;
+import io.github.fabricators_of_create.porting_lib.item.WalkOnSnowItem;
 import io.github.fabricators_of_create.porting_lib.util.ArmorTextureItem;
 import io.github.fabricators_of_create.porting_lib.util.ContinueUsingItem;
 import io.github.fabricators_of_create.porting_lib.util.DamageableItem;
@@ -34,7 +36,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public interface PortingLibInterfaces extends BlockUseBypassingItem, CustomMaxCountItem, EntitySwingListenerItem, ItemExtensions, EntityTickListenerItem, EquipmentItem, ReequipAnimationItem, UseFirstBehaviorItem, ArmorTextureItem, ContinueUsingItem, DamageableItem, ShieldBlockItem, UsingTickItem, XpRepairItem {
+public interface PortingLibInterfaces extends BlockUseBypassingItem, CustomMaxCountItem, EntitySwingListenerItem, ItemExtensions, EntityTickListenerItem, EquipmentItem, PiglinsNeutralItem, ReequipAnimationItem, UseFirstBehaviorItem, WalkOnSnowItem, ArmorTextureItem, ContinueUsingItem, DamageableItem, ShieldBlockItem, UsingTickItem, XpRepairItem {
     @Override
     default boolean shouldBypass(BlockState state, BlockPos pos, World level, PlayerEntity player, Hand hand){
         return false;

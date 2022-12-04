@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public interface FeltItem extends FabricItem, ArmorEquipItem, ArmorTickItem, ContainerItem, ElytraFlightItem, EnchantabilityItem, EntityCustomItem, IsDamageableItem, ItemGroupItem, MiscExtension, PiglinItem, ShareTagItem, SneakBypassUseItem, PortingLibInterfaces {
+public interface FeltItem extends FabricItem, ArmorEquipItem, ArmorTickItem, ContainerItem, ElytraFlightItem, EnchantabilityItem, EntityCustomItem, IsDamageableItem, ItemGroupItem, MiscExtension, PiglinCurrencyItem, ShareTagItem, SneakBypassUseItem, PortingLibInterfaces {
 
     @Nullable
     @Override
