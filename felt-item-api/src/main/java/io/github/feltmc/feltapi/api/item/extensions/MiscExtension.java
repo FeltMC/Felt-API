@@ -56,12 +56,6 @@ public interface MiscExtension {
         return displayName;
     }
 
-
-    default Collection<ItemGroup> getGroups()
-    {
-        return Collections.singletonList(self().getGroup());
-    }
-
     /**
      * Allow or forbid the specific book/item combination as an anvil enchant
      *

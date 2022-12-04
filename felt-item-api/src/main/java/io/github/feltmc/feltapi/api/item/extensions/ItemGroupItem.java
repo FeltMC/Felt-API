@@ -11,7 +11,7 @@ public interface ItemGroupItem {
      *
      * @return A list of all tabs that this item could possibly be one.
      */
-    default java.util.Collection<ItemGroup> getCreativeTabs()
+    default java.util.Collection<ItemGroup> getGroups()
     {
         return java.util.Collections.singletonList(((Item)this).getGroup());
     }

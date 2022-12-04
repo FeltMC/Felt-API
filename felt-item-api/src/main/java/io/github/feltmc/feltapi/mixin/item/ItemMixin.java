@@ -1,6 +1,7 @@
 package io.github.feltmc.feltapi.mixin.item;
 
 import io.github.feltmc.feltapi.api.item.extensions.IsDamageableItem;
+import io.github.feltmc.feltapi.api.item.extensions.ItemGroupItem;
 import io.github.feltmc.feltapi.api.item.extensions.MiscExtension;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -15,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class ItemMixin {
     @Inject(method = "isIn", at = @At("HEAD"), cancellable = true)
     private void injectGetGroups(ItemGroup group, CallbackInfoReturnable<Boolean> cir){
-        if(this instanceof MiscExtension extension){
+        if(this instanceof ItemGroupItem extension){
             if (extension.getGroups().stream().anyMatch(g -> g == group)) cir.setReturnValue(true);
         }
 

@@ -23,6 +23,7 @@
     "RepairItemRecipeMixin",
     "ServerPlayerEntityMixin",
     "ServerPlayerInteractionManagerMixin",
+    "TradeOfferMixin",
     "nonportinglib.ItemMixin",
     "portinglib.ItemMixin",
     "portinglib.LivingEntityMixin"
