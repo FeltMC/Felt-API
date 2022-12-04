@@ -35,14 +35,4 @@ public interface ContainerItem {
     {
         return self().hasRecipeRemainder();
     }
-
-
-    /**
-     * Called by CraftingManager to determine if an item is reparable.
-     *
-     * @return True if reparable
-     */
-    default boolean isRepairable(){
-        return false;
-    }
 }
