@@ -1,6 +1,6 @@
 package io.github.feltmc.feltapi.mixin.item;
 
-import io.github.feltmc.feltapi.api.item.extensions.PiglinCurrencyItem;
+import io.github.feltmc.feltapi.api.item.extensions.PiglinItem;
 import net.minecraft.entity.mob.PiglinBrain;
 import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Debug;
@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class PiglinBrainMixin {
     @Inject(method = "acceptsForBarter", at = @At("HEAD"), cancellable = true)
     private static void injectAcceptsPiglinItem(ItemStack stack, CallbackInfoReturnable<Boolean> ci){
-        if (stack.getItem() instanceof PiglinCurrencyItem item){
+        if (stack.getItem() instanceof PiglinItem item){
             ci.setReturnValue(item.isPiglinCurrency(stack));
         }
     }
