@@ -23,6 +23,6 @@ public abstract class PiglinBrainMixin {
         if (stack.getItem() instanceof PiglinCurrencyItem item){
             return item.isPiglinCurrency(stack);
         }
-        return original.call(barteringItem);
+        return original.call(stack, barteringItem);
     }
 }

@@ -6,8 +6,12 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "AnvilMenuMixin",
+    "CatEntityMixin",
     "EnchantmentHelperMixin",
     "EnchantmentMixin",
+    "EndermanEntityMixin",
+    "HorseEntityMixin",
+    "HungerManagerMixin",
     "ItemEntityMixin",
     "ItemMixin",
     "ItemStackMixin",
@@ -24,6 +28,7 @@
     "ServerPlayerEntityMixin",
     "ServerPlayerInteractionManagerMixin",
     "TradeOfferMixin",
+    "WolfEntityMixin",
     "nonportinglib.ItemMixin",
     "portinglib.ItemMixin",
     "portinglib.LivingEntityMixin"

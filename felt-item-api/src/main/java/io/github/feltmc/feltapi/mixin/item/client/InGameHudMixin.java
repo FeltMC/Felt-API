@@ -25,6 +25,6 @@ public abstract class InGameHudMixin {
         if (currentStack.getItem() instanceof MiscExtension item){
             return this.getTextRenderer().getWidth(item.getHighlightTip(currentStack, (MutableText)text));
         }
-        return operation.call(text);
+        return operation.call(instance, text);
     }
 }

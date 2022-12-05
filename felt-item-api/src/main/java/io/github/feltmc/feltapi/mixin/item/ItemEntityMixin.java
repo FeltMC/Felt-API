@@ -55,6 +55,6 @@ public abstract class ItemEntityMixin extends Entity {
             customItem.onItemEntityDestroyed(entity, source);
             return;
         }
-        original.call(entity);
+        original.call(instance, entity);
     }
 }

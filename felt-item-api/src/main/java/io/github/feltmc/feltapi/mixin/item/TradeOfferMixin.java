@@ -17,6 +17,6 @@ public class TradeOfferMixin {
         if (instance instanceof IsDamageableItem damageableItem){
             return damageableItem.isDamageable(given.copy());
         }
-        return operation.call();
+        return operation.call(instance);
     }
 }

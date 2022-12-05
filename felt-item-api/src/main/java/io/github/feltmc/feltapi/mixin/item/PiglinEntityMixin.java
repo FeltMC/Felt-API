@@ -17,6 +17,6 @@ public class PiglinEntityMixin {
         if (instance.getItem() instanceof PiglinCurrencyItem item1){
             return item1.isPiglinCurrency(instance);
         }
-        return operation.call(item);
+        return operation.call(instance, item);
     }
 }

@@ -32,7 +32,7 @@ public abstract class PacketByteBufMixin {
         if (stack.getItem() instanceof ShareTagItem extension){
             return extension.getShareTag(stack);
         }
-        return operation.call();
+        return operation.call(stack);
     }
 
     @WrapOperation(method = "readItemStack", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;setNbt(Lnet/minecraft/nbt/NbtCompound;)V"))
@@ -41,7 +41,7 @@ public abstract class PacketByteBufMixin {
             extension.readShareTag(instance, nbt);
             return;
         }
-        operation.call(nbt);
+        operation.call(instance, nbt);
     }
 
     //Todo figure this out, for fabricated forge api compat
