@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "felt-extra-transfer-api",
+  "version": "${version}",
+  "name": "Felt Extra Transfer API",
+  "description": "A reimplementation of Fringe APIs on Fabric",
+  "authors": [
+    "FeltMC",
+    "PseudoDistant",
+    "Trinsdar"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": "https://github.com/FeltMC/Felt-API"
+  },
+  "entrypoints": {
+    "main": [
+      "io.github.feltmc.feltapi.impl.ore_feature.FeltOreFeatureAPiInit"
+    ]
+  },
+  "license": "LGPL",
+  "icon": "assets/feltapi/icon.png",
+  "environment": "*",
+  "depends": {
+    "fabricloader": ">=0.13.3",
+    "fabric": "*",
+    "minecraft": "1.18.x",
+    "java": ">=17"
+  },
+  "recommends": {
+    "feltfabric": "*"
+  }
+}
