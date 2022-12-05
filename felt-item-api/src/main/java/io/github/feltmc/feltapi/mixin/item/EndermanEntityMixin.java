@@ -3,7 +3,6 @@ package io.github.feltmc.feltapi.mixin.item;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import io.github.feltmc.feltapi.api.item.extensions.EnderMaskItem;
-import io.github.feltmc.feltapi.api.item.extensions.MiscExtension;
 import net.minecraft.entity.mob.EndermanEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;

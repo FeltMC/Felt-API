@@ -1,8 +1,6 @@
 package io.github.feltmc.feltapi.mixin.item.client;
 
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import io.github.feltmc.feltapi.api.item.extensions.BlockBreakResetItem;
-import io.github.feltmc.feltapi.api.item.extensions.MiscExtension;
 import io.github.feltmc.feltapi.api.item.extensions.SneakBypassUseItem;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;

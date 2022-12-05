@@ -1,7 +1,6 @@
 package io.github.feltmc.feltapi.mixin.item;
 
 import io.github.feltmc.feltapi.api.item.extensions.HorseArmorTickItem;
-import io.github.feltmc.feltapi.api.item.extensions.MiscExtension;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.HorseBaseEntity;
 import net.minecraft.entity.passive.HorseEntity;

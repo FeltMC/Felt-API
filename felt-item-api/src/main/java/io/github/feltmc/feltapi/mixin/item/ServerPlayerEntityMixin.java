@@ -1,7 +1,7 @@
 package io.github.feltmc.feltapi.mixin.item;
 
 import com.mojang.authlib.GameProfile;
-import io.github.feltmc.feltapi.api.item.extensions.MiscExtension;
+import io.github.feltmc.feltapi.api.item.extensions.DroppedByPlayerItem;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -22,7 +22,7 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
     @Inject(method = "dropSelectedItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayerEntity;getInventory()Lnet/minecraft/entity/player/PlayerInventory;", shift = At.Shift.AFTER), cancellable = true)
     private void injectDropSelectedItem(boolean entireStack, CallbackInfoReturnable<Boolean> cir){
         ItemStack selected = this.getInventory().getMainHandStack();
-        if (selected.isEmpty() || (selected.getItem() instanceof MiscExtension item && !item.onDroppedByPlayer(selected,this))) {
+        if (selected.isEmpty() || (selected.getItem() instanceof DroppedByPlayerItem item && !item.onDroppedByPlayer(selected,this))) {
             cir.setReturnValue(false);
         }
     }

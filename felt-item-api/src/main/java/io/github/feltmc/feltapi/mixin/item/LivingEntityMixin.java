@@ -3,7 +3,6 @@ package io.github.feltmc.feltapi.mixin.item;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import io.github.feltmc.feltapi.api.item.extensions.ElytraFlightItem;
-import io.github.feltmc.feltapi.api.item.extensions.MiscExtension;
 import io.github.feltmc.feltapi.api.item.extensions.StackFoodItem;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
