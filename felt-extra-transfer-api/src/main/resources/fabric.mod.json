@@ -13,11 +13,6 @@
     "homepage": "",
     "sources": "https://github.com/FeltMC/Felt-API"
   },
-  "entrypoints": {
-    "main": [
-      "io.github.feltmc.feltapi.impl.ore_feature.FeltOreFeatureAPiInit"
-    ]
-  },
   "license": "LGPL",
   "icon": "assets/feltapi/icon.png",
   "environment": "*",
@@ -29,5 +24,13 @@
   },
   "recommends": {
     "feltfabric": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ],
+      "parent": "felt-api"
+    }
   }
 }
