@@ -30,7 +30,7 @@ public abstract class InGameHudMixin {
         return operation.call(instance, text);
     }
 
-    @WrapOperation(method = "tick()V", at = @At(value = "INVOKE", target = "Ljava/lang/Object;equals(Ljava/lang/Object;)Z", remap = false))
+    //@WrapOperation(method = "tick()V", at = @At(value = "INVOKE", target = "Ljava/lang/Object;equals(Ljava/lang/Object;)Z", remap = false))
     private boolean wrapEquals(Object name, Object compareName, Operation<Boolean> original){
         ItemStack stack = this.client.player.getInventory().getMainHandStack();
         if (stack.getItem() instanceof HighlightTipItem item1 && this.currentStack.getItem() instanceof HighlightTipItem item2){
