@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(InGameHud.class)
 public abstract class InGameHudMixin {
@@ -30,12 +31,12 @@ public abstract class InGameHudMixin {
         return operation.call(instance, text);
     }
 
-    @WrapOperation(method = "tick()V", at = @At(value = "INVOKE", target = "Ljava/lang/Object;equals(Ljava/lang/Object;)Z", remap = false))
-    private boolean wrapEquals(Object name, Object compareName, Operation<Boolean> original){
+    @Redirect(method = "tick()V", at = @At(value = "INVOKE", target = "Ljava/lang/Object;equals(Ljava/lang/Object;)Z", remap = false))
+    private boolean wrapEquals(Object name, Object compareName){
         ItemStack stack = this.client.player.getInventory().getMainHandStack();
         if (stack.getItem() instanceof HighlightTipItem item1 && this.currentStack.getItem() instanceof HighlightTipItem item2){
             return stack.getName().equals(this.currentStack.getName()) && item1.getHighlightTip(stack, stack.getName()).equals(item2.getHighlightTip(this.currentStack, this.currentStack.getName()));
         }
-        return original.call(name, compareName);
+        return name.equals(compareName);
     }
 }
