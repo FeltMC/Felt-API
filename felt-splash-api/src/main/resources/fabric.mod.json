@@ -7,7 +7,6 @@
   "authors": [
     "FeltMC",
     "PseudoDistant",
-    "Qubic (local furry)",
     "Trinsdar",
     "Unix-Supremacist",
     "Jack (original splash api author)"
@@ -17,7 +16,7 @@
     "sources": "https://github.com/FeltMC/Felt-API"
   },
   "license": "LGPL",
-  "icon": "assets/felt_splash_api/icon.png",
+  "icon": "assets/felt-api/icon.png",
 
   "environment": "*",
   "mixins": [
@@ -29,5 +28,13 @@
   },
   "recommends": {
     "feltfabric": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ],
+      "parent": "felt-api"
+    }
   }
 }

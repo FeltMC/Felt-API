@@ -9,10 +9,10 @@
     "issues": "https://github.com/FeltMC/Felt-API/issues",
     "sources": "https://github.com/FeltMC/Felt-API"
   },
+  "icon": "assets/feltapi/icon.png",
   "authors": [
     "FeltMC",
     "PseudoDistant",
-    "Qubic (local furry)",
     "Trinsdar"
   ],
   "entrypoints": {
@@ -26,5 +26,13 @@
   "depends": {
     "fabricloader": ">=0.4.0",
     "fabric-lifecycle-events-v1": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ],
+      "parent": "felt-api"
+    }
   }
 }
