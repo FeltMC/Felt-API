@@ -14,7 +14,7 @@
   },
   "accessWidener": "felt-recipe.accesswidener",
   "license": "LGPL 3.0",
-  "icon": "assets/examplemod/icon.png",
+  "icon": "assets/feltapi/icon.png",
   "environment": "*",
   "mixins": [
     "felt-recipe.mixins.json"

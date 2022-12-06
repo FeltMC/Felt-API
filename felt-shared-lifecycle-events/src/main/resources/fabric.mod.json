@@ -9,6 +9,7 @@
     "issues": "https://github.com/FeltMC/Felt-API/issues",
     "sources": "https://github.com/FeltMC/Felt-API"
   },
+  "icon": "assets/feltapi/icon.png",
   "authors": [
     "FeltMC",
     "PseudoDistant",

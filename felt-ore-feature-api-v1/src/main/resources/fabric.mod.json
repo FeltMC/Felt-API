@@ -19,7 +19,7 @@
     ]
   },
   "license": "LGPL",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/feltapi/icon.png",
 
   "environment": "*",
   "depends": {
