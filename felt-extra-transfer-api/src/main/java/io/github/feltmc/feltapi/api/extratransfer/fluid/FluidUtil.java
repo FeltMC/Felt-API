@@ -21,6 +21,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Iterator;
 
+@SuppressWarnings("UnstableApiUsage")
 public class FluidUtil {
 
     @Nonnull

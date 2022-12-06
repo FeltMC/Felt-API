@@ -4,6 +4,7 @@ import io.github.feltmc.feltapi.api.extratransfer.fluid.StoredFluid;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
 
+@SuppressWarnings("UnstableApiUsage")
 public class StoredFluidImpl implements StoredFluid{
 
     private FluidVariant variant;

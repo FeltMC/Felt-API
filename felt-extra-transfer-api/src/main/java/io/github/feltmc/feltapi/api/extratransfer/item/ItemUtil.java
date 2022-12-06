@@ -10,6 +10,7 @@ import net.minecraft.sound.SoundEvents;
 
 import javax.annotation.Nonnull;
 
+@SuppressWarnings("UnstableApiUsage")
 public class ItemUtil {
 
     public static ItemStack insertItemStacked(Storage<ItemVariant> inventory, ItemStack stack, boolean simulate){
