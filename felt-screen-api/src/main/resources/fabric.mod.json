@@ -32,6 +32,12 @@
     "loom:injected_interfaces": {
       "net/minecraft/class_437": ["io/github/feltmc/feltapi/api/screen/ScreenExtension"],
       "net/minecraft/class_465": ["io/github/feltmc/feltapi/api/screen/HandledScreenExtension"]
+    },
+    "modmenu": {
+      "badges": [
+        "library"
+      ],
+      "parent": "felt-api"
     }
   }
 }

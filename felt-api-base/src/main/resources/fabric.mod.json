@@ -36,5 +36,12 @@
   },
   "recommends": {
     "feltfabric": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ]
+    }
   }
 }

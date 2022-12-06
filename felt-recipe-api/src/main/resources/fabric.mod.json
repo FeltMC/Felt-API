@@ -21,5 +21,13 @@
   ],
   "depends": {
     "minecraft": ">=1.18.2"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ],
+      "parent": "felt-api"
+    }
   }
 }

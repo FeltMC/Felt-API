@@ -26,5 +26,13 @@
   "depends": {
     "fabricloader": ">=0.4.0",
     "fabric-lifecycle-events-v1": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ],
+      "parent": "felt-api"
+    }
   }
 }
