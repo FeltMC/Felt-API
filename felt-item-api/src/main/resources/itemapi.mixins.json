@@ -23,7 +23,6 @@
     "PlayerInventoryMixin",
     "PlayerScreenHandlerAccessor",
     "PlayerScreenHandlerMixin",
-    "RecipeMixin",
     "RepairItemRecipeMixin",
     "ServerPlayerEntityMixin",
     "ServerPlayerInteractionManagerMixin",

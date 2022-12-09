@@ -1,14 +1,11 @@
 package io.github.feltmc.feltapi.mixin.item;
 
-import io.github.feltmc.feltapi.api.item.extensions.ContainerItem;
 import io.github.feltmc.feltapi.api.item.extensions.RepairableItem;
 import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.RepairItemRecipe;
 import net.minecraft.recipe.SpecialCraftingRecipe;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -32,19 +29,5 @@ public abstract class RepairItemRecipeMixin extends SpecialCraftingRecipe {
                 cir.setReturnValue(false);
             }
         }
-    }
-
-    @Override
-    public DefaultedList<ItemStack> getRemainder(CraftingInventory inventory) {
-        DefaultedList<ItemStack> defaultedList = DefaultedList.ofSize(inventory.size(), ItemStack.EMPTY);
-
-        for(int i = 0; i < defaultedList.size(); ++i) {
-            Item item = inventory.getStack(i).getItem();
-            if (item.hasRecipeRemainder()) {
-                defaultedList.set(i, new ItemStack(item.getRecipeRemainder()));
-            }
-        }
-
-        return defaultedList;
     }
 }
