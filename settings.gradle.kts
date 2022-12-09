@@ -20,10 +20,7 @@ try {
             }
         }
     }
-} catch (e: java.io.IOException) {
-    println("Submodule setup failed:")
-    e.printStackTrace()
-} catch (e: NullPointerException) {
+} catch (e: Exception) {
     println("Submodule setup failed:")
     e.printStackTrace()
 }
