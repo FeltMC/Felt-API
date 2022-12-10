@@ -10,17 +10,6 @@ archivesBaseName = project.archives_base_name
 version = project.mod_version //+ "+" + (ENV.GITHUB_RUN_NUMBER ? "" : "local-") + getBranch()
 group = project.maven_group
 
-def getSubprojectVersion(project) {
-	// Get the version from the gradle.properties file
-	def version = project.properties["${project.name}-version"]
-
-	if (!version) {
-		throw new NullPointerException("Could not find version for " + project.name)
-	}
-
-	return version
-}
-
 def getBranch() {
 	def ENV = System.getenv()
 	if (ENV.GITHUB_REF) {
@@ -40,6 +29,7 @@ subprojects {
 	apply plugin: "fabric-loom"
 	apply plugin: "maven-publish"
 
+	version = project.module_version
 	group = rootProject.maven_group
 
 	repositories {
