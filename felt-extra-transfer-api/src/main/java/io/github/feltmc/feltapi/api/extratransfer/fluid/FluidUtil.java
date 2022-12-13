@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariantAttributes;
 import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
+import net.fabricmc.fabric.api.transfer.v1.item.PlayerInventoryStorage;
 import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
 import net.fabricmc.fabric.api.transfer.v1.storage.StorageView;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
@@ -132,9 +133,7 @@ public class FluidUtil {
 
                     // give it to the player or drop it at their feet
                     if (!remainder.isEmpty() && player != null && doFill) {
-                        if (!player.giveItemStack(remainder)){
-                            player.dropItem(remainder, true);
-                        }
+                        ItemUtil.giveItemToPlayer(player, remainder);
                     }
 
                     ItemStack containerCopy = container.copy();
@@ -253,5 +252,19 @@ public class FluidUtil {
             }
         }
         return StoredFluid.EMPTY;
+    }
+
+    public static long insertFluid(Storage<FluidVariant> storage, FluidVariant fluidVariant, long maxAmount, boolean simulate){
+        Transaction transaction = Transaction.openOuter();
+        long insert = storage.insert(fluidVariant, maxAmount, transaction);
+        if (!simulate) transaction.commit();
+        return insert;
+    }
+
+    public static long extractFluid(Storage<FluidVariant> storage, FluidVariant fluidVariant, long maxAmount, boolean simulate){
+        Transaction transaction = Transaction.openOuter();
+        long extract = storage.extract(fluidVariant, maxAmount, transaction);
+        if (!simulate) transaction.commit();
+        return extract;
     }
 }
