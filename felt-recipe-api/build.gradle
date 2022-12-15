@@ -1,5 +1,4 @@
 archivesBaseName = "felt-recipe-api"
-version = getSubprojectVersion(project)
 
 loom {
     accessWidenerPath = file("src/main/resources/felt-recipe.accesswidener")
