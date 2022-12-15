@@ -24,8 +24,6 @@
     "PlayerScreenHandlerAccessor",
     "PlayerScreenHandlerMixin",
     "RepairItemRecipeMixin",
-    "ServerPlayerEntityMixin",
-    "ServerPlayerInteractionManagerMixin",
     "TradeOfferMixin",
     "WolfEntityMixin",
     "nonportinglib.ItemMixin",
@@ -33,7 +31,6 @@
     "portinglib.LivingEntityMixin"
   ],
   "client": [
-    "client.ClientPlayerInteractionManagerMixin",
     "client.ClientPlayerMixin",
     "client.InGameHudMixin"
   ],
