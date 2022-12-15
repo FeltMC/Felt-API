@@ -1,2 +1,1 @@
 archivesBaseName = "felt-tool-api"
-version = getSubprojectVersion(project)
