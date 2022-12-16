@@ -22,5 +22,5 @@ try {
     }
 } catch (e: Exception) {
     println("Submodule setup failed:")
-    e.printStackTrace()
+    throw e
 }
