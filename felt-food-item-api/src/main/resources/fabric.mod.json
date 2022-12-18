@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "felt-food-item-api",
+  "version": "${version}",
+  "name": "Felt Food Item API",
+  "description": "A reimplementation of Fringe APIs on Fabric",
+  "authors": [
+    "FeltMC",
+    "PseudoDistant",
+    "Trinsdar",
+    "Unix-Supremacist"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": "https://github.com/FeltMC/Felt-API"
+  },
+  "license": "LGPL",
+  "icon": "assets/felt-api/icon.png",
+
+  "environment": "*",
+  "mixins": [
+    "food-item.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "minecraft": "*"
+  },
+  "recommends": {
+    "feltfabric": "*"
+  }
+}
