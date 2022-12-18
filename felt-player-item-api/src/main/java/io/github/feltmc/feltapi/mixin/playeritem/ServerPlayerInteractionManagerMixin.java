@@ -28,11 +28,10 @@ public class ServerPlayerInteractionManagerMixin {
         BlockPos blockPos = hitResult.getBlockPos();
         ItemStack mainStack = player.getMainHandStack();
         ItemStack offHandStack = player.getOffHandStack();
-        if (mainStack.getItem() instanceof SneakBypassUseItem extension){
+        if (mainStack.getItem() instanceof SneakBypassUseItem extension)
             return value && !extension.doesSneakBypassUse(mainStack, world, blockPos, player);
-        } else if (offHandStack.getItem() instanceof SneakBypassUseItem extension){
+        else if (offHandStack.getItem() instanceof SneakBypassUseItem extension)
             return value && !extension.doesSneakBypassUse(offHandStack, world, blockPos, player);
-        }
         return value;
     }
 }
