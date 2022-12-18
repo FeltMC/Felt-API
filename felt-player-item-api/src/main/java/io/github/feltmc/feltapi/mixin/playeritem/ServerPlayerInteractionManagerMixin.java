@@ -17,11 +17,6 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(ServerPlayerInteractionManager.class)
 public class ServerPlayerInteractionManagerMixin {
-    @Shadow
-    @Final
-    protected ServerPlayerEntity player;
-
-    @Shadow protected ServerWorld world;
 
     @ModifyVariable(method = "interactBlock", at = @At(value = "STORE"), ordinal = 1)
     private boolean modifyBL2(boolean value, ServerPlayerEntity player, World world, ItemStack stack, Hand hand, BlockHitResult hitResult){
