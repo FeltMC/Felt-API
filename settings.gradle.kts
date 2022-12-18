@@ -11,9 +11,9 @@ pluginManagement {
 
 rootProject.name = "felt-api"
 try {
-    val strings: List<String> = java.nio.file.Files.lines(java.nio.file.Paths.get("excluded-folders.txt")).toList()
-    val file = File(".")
-    for (f in file.listFiles()!!) {
+    val path = File(System.getProperty("user.dir"))
+    val strings: List<String> = java.nio.file.Files.lines(File(path,"excluded-folders.txt").toPath()).toList()
+    for (f in path.listFiles()!!) {
         if (f.isDirectory) {
             if (!strings.contains(f.name)) {
                 include(f.name)
@@ -22,5 +22,5 @@ try {
     }
 } catch (e: Exception) {
     println("Submodule setup failed:")
-    e.printStackTrace()
+    throw e
 }
