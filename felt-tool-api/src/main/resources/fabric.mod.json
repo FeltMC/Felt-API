@@ -7,7 +7,6 @@
   "authors": [
     "FeltMC",
     "PseudoDistant",
-    "Qubic (local furry)",
     "Trinsdar",
     "Unix-Supremacist"
   ],
@@ -16,7 +15,7 @@
     "sources": "https://github.com/FeltMC/Felt-API"
   },
   "license": "LGPL",
-  "icon": "assets/felt-tool-api/icon.png",
+  "icon": "assets/feltapi/icon.png",
 
   "environment": "*",
   "mixins": [
@@ -28,5 +27,13 @@
   },
   "recommends": {
     "feltfabric": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ],
+      "parent": "felt-api"
+    }
   }
 }

@@ -1,15 +1,14 @@
 {
   "schemaVersion": 1,
-  "id": "felt-splash-api",
+  "id": "felt-mixin-extras-init",
   "version": "${version}",
-  "name": "Felt Splash API",
+  "name": "Felt Mixin Extras Initializer",
   "description": "A reimplementation of Fringe APIs on Fabric",
   "authors": [
     "FeltMC",
     "PseudoDistant",
     "Trinsdar",
-    "Unix-Supremacist",
-    "Jack (original splash api author)"
+    "Unix-Supremacist"
   ],
   "contact": {
     "homepage": "",
@@ -17,24 +16,17 @@
   },
   "license": "LGPL",
   "icon": "assets/felt-api/icon.png",
-
   "environment": "*",
-  "mixins": [
-    "splashapi.mixins.json"
-  ],
+  "entrypoints": {
+    "preLaunch" : [
+      "io.github.feltmc.feltapi.impl.mixininit.FeltMixinExtrasBootstrap"
+    ]
+  },
   "depends": {
     "fabricloader": "*",
     "minecraft": "*"
   },
   "recommends": {
     "feltfabric": "*"
-  },
-  "custom": {
-    "modmenu": {
-      "badges": [
-        "library"
-      ],
-      "parent": "felt-api"
-    }
   }
 }
