@@ -4,11 +4,7 @@
   "package": "io.github.feltmc.feltapi.mixin.item",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "ItemEntityMixin",
-    "PlayerScreenHandlerAccessor"
-  ],
-  "client": [
-    "client.InGameHudMixin"
+    "ItemEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
