@@ -23,8 +23,7 @@ public class PlayerScreenHandlerMixin {
 
     @Inject(method = "canInsert", at = @At("HEAD"))
     private void injectCanEquip(ItemStack stack, CallbackInfoReturnable<Boolean> info){
-        if (stack.getItem() instanceof ArmorEquipItem extension){
-            info.setReturnValue(extension.canEquip(stack, field_7834, ((PlayerScreenHandlerAccessor)field_7833).getOwner()));
-        }
+        if (stack.getItem() instanceof ArmorEquipItem extension)
+            info.setReturnValue(extension.canEquip(stack, field_7834, ((PlayerScreenHandlerAccessor) field_7833).getOwner()));
     }
 }
