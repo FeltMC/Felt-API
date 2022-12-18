@@ -2,33 +2,12 @@
   "required": true,
   "minVersion": "0.8",
   "package": "io.github.feltmc.feltapi.mixin.item",
-  "plugin": "io.github.feltmc.feltapi.mixin.item.MixinPlugin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "AnvilScreenHandlerMixin",
-    "CatEntityMixin",
-    "EnchantmentHelperMixin",
-    "EnchantmentMixin",
-    "EndermanEntityMixin",
-    "HungerManagerMixin",
     "ItemEntityMixin",
-    "ItemMixin",
-    "ItemStackMixin",
-    "LivingEntityMixin",
-    "PacketByteBufMixin",
-    "PiglinBrainMixin",
-    "PiglinEntityMixin",
-    "PlayerEntityMixin",
-    "PlayerScreenHandlerAccessor",
-    "RepairItemRecipeMixin",
-    "TradeOfferMixin",
-    "WolfEntityMixin",
-    "nonportinglib.ItemMixin",
-    "portinglib.ItemMixin",
-    "portinglib.LivingEntityMixin"
+    "PlayerScreenHandlerAccessor"
   ],
   "client": [
-    "client.ClientPlayerMixin",
     "client.InGameHudMixin"
   ],
   "injectors": {
