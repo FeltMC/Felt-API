@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "felt-mixin-extras-init",
+  "version": "${version}",
+  "name": "Felt Mixin Extras Initializer",
+  "description": "A reimplementation of Fringe APIs on Fabric",
+  "authors": [
+    "FeltMC",
+    "PseudoDistant",
+    "Trinsdar",
+    "Unix-Supremacist"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": "https://github.com/FeltMC/Felt-API"
+  },
+  "license": "LGPL",
+  "icon": "assets/felt-api/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "preLaunch" : [
+      "io.github.feltmc.feltapi.impl.mixininit.FeltMixinExtrasBootstrap"
+    ]
+  },
+  "depends": {
+    "fabricloader": "*",
+    "minecraft": "*"
+  },
+  "recommends": {
+    "feltfabric": "*"
+  }
+}
