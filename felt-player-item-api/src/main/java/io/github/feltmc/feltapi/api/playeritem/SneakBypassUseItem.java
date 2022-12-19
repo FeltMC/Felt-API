@@ -15,7 +15,5 @@ public interface SneakBypassUseItem {
      * @param pos    Block position in level
      * @param player The Player that is wielding the item
      */
-    default boolean doesSneakBypassUse(ItemStack stack, WorldView world, BlockPos pos, PlayerEntity player) {
-        return false;
-    }
+    boolean doesSneakBypassUse(ItemStack stack, WorldView world, BlockPos pos, PlayerEntity player);
 }

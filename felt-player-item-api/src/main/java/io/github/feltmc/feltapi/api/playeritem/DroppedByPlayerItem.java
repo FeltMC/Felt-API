@@ -13,8 +13,5 @@ public interface DroppedByPlayerItem {
      * @param player The player that dropped the item
      * @param item   The item stack, before the item is removed.
      */
-    default boolean onDroppedByPlayer(ItemStack item, PlayerEntity player)
-    {
-        return true;
-    }
+    boolean onDroppedByPlayer(ItemStack item, PlayerEntity player);
 }
