@@ -91,11 +91,8 @@ public class FluidUtil {
                     remainder = ItemUtil.insertItemStacked(inventory, emptiedReal.getResult(), !doDrain);
 
                     // give it to the player or drop it at their feet
-                    if (!remainder.isEmpty() && player != null && doDrain) {
-                        if (!player.giveItemStack(remainder)){
-                            player.dropItem(remainder, true);
-                        }
-                    }
+                    if (!remainder.isEmpty() && player != null && doDrain)
+                        ItemUtil.giveItemToPlayer(player, remainder);
 
                     ItemStack containerCopy = container.copy();
                     containerCopy.decrement(1);
@@ -132,9 +129,8 @@ public class FluidUtil {
                     remainder = ItemUtil.insertItemStacked(inventory, filledReal.getResult(), !doFill);
 
                     // give it to the player or drop it at their feet
-                    if (!remainder.isEmpty() && player != null && doFill) {
+                    if (!remainder.isEmpty() && player != null && doFill)
                         ItemUtil.giveItemToPlayer(player, remainder);
-                    }
 
                     ItemStack containerCopy = container.copy();
                     containerCopy.decrement(1);

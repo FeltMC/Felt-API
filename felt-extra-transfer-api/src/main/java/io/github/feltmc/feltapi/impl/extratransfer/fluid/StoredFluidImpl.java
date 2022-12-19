@@ -21,9 +21,7 @@ public class StoredFluidImpl implements StoredFluid{
         transaction.addCloseCallback((t, r) -> {
             if (r.wasCommitted()) {
                 this.amount -= drained;
-                if (this.amount == 0) {
-                    this.variant = FluidVariant.blank();
-                }
+                if (this.amount == 0) this.variant = FluidVariant.blank();
             }
         });
         return drained;
