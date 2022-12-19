@@ -1,13 +1,12 @@
-package io.github.feltmc.feltapi.mixin.item;
+package io.github.feltmc.feltapi.mixin.entityitem;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import io.github.feltmc.feltapi.api.item.extensions.EntityCustomItem;
+import io.github.feltmc.feltapi.api.entityitem.EntityCustomItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Debug;

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "felt-item-api",
+  "id": "felt-entity-item-api",
   "version": "${version}",
-  "name": "Felt Item API",
+  "name": "Felt Entity Item API",
   "description": "A reimplementation of Fringe APIs on Fabric",
   "authors": [
     "FeltMC",
@@ -18,13 +18,8 @@
   "icon": "assets/felt-tool-api/icon.png",
 
   "environment": "*",
-  "entrypoints": {
-    "preLaunch": [
-      "io.github.feltmc.feltapi.impl.item.ItemPrelaunch"
-    ]
-  },
   "mixins": [
-    "itemapi.mixins.json"
+    "entity-item.mixins.json"
   ],
   "depends": {
     "fabricloader": "*",

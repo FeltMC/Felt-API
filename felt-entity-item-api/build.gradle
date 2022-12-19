@@ -1,0 +1,8 @@
+dependencies {
+    implementation(include("com.github.LlamaLad7:MixinExtras:0.1.1"))
+    annotationProcessor("com.github.LlamaLad7:MixinExtras:0.1.1")
+    afterEvaluate {
+        implementation project(path: ":felt-mixin-extras-init", configuration: "namedElements")
+        include project(":felt-mixin-extras-init")
+    }
+}
