@@ -2,10 +2,11 @@ package io.github.feltmc.feltapi.impl.ore_feature;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.FeaturePlacementContext;
 import net.minecraft.world.gen.placementmodifier.AbstractConditionalPlacementModifier;
@@ -16,7 +17,7 @@ import java.util.List;
 public class DimensionalPlacementModifier extends AbstractConditionalPlacementModifier {
     public static Codec<DimensionalPlacementModifier> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.list(World.CODEC).fieldOf("dimensions").forGetter(m -> m.dimensions)).apply(instance, DimensionalPlacementModifier::new));
 
-    public static final PlacementModifierType<DimensionalPlacementModifier> MODIFIER_TYPE = Registry.register(Registry.PLACEMENT_MODIFIER_TYPE, "felt-ore-feature-api-v1:dimensions", DimensionalPlacementModifier::codec);
+    public static final PlacementModifierType<DimensionalPlacementModifier> MODIFIER_TYPE = Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, "felt-ore-feature-api-v1:dimensions", DimensionalPlacementModifier::codec);
 
     public final List<RegistryKey<World>> dimensions;
 

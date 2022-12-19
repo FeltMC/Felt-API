@@ -3,11 +3,12 @@ package io.github.feltmc.feltapi.impl.ore_feature;
 import com.mojang.serialization.Codec;
 import io.github.feltmc.feltapi.api.ore_feature.v1.FeltRuleTest;
 import net.minecraft.block.BlockState;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkSectionPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.ChunkSectionCache;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.StructureWorldAccess;
@@ -19,7 +20,7 @@ import java.util.BitSet;
 import java.util.function.Function;
 
 public class FeltOreFeature extends Feature<FeltOreFeatureConfig> {
-    public static final FeltOreFeature ORE = Registry.register(Registry.FEATURE, "feltapi:ore", new FeltOreFeature());
+    public static final FeltOreFeature ORE = Registry.register(Registries.FEATURE, "feltapi:ore", new FeltOreFeature());
     public FeltOreFeature(Codec<FeltOreFeatureConfig> configCodec) {
         super(configCodec);
     }

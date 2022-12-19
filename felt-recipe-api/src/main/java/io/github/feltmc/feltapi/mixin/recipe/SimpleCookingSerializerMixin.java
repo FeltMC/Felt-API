@@ -7,6 +7,7 @@ import net.minecraft.recipe.AbstractCookingRecipe;
 import net.minecraft.recipe.CookingRecipeSerializer;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.ShapedRecipe;
+import net.minecraft.recipe.book.CookingRecipeCategory;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import org.spongepowered.asm.mixin.Final;
@@ -25,6 +26,7 @@ public class SimpleCookingSerializerMixin {
     @Inject(method = "read(Lnet/minecraft/util/Identifier;Lcom/google/gson/JsonObject;)Lnet/minecraft/recipe/AbstractCookingRecipe;", at = @At(value = "HEAD"), cancellable = true)
     private void injectStackSupport(Identifier recipeId, JsonObject json, CallbackInfoReturnable<AbstractCookingRecipe> cir){
         String string = JsonHelper.getString(json, "group", "");
+        CookingRecipeCategory cookingRecipeCategory = CookingRecipeCategory.CODEC.byId(JsonHelper.getString(json, "category", null), CookingRecipeCategory.MISC);
         JsonElement jsonElement = JsonHelper.hasArray(json, "ingredient") ? JsonHelper.getArray(json, "ingredient") : JsonHelper.getObject(json, "ingredient");
         Ingredient ingredient = Ingredient.fromJson(jsonElement);
         JsonElement element = json.get("result");
@@ -32,7 +34,7 @@ public class SimpleCookingSerializerMixin {
             ItemStack itemStack = ShapedRecipe.outputFromJson(object);
             float f = JsonHelper.getFloat(json, "experience", 0.0F);
             int i = JsonHelper.getInt(json, "cookingtime", this.cookingTime);
-            cir.setReturnValue(this.recipeFactory.create(recipeId, string, ingredient, itemStack, f, i));
+            cir.setReturnValue(this.recipeFactory.create(recipeId, string, cookingRecipeCategory, ingredient, itemStack, f, i));
         }
     }
 }
