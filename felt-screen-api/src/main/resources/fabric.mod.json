@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "id": "felt-screen-api",
+  "version": "${version}",
+  "name": "Felt Screen API",
+  "description": "A reimplementation of Fringe APIs on Fabric",
+  "authors": [
+    "FeltMC",
+    "PseudoDistant",
+    "Trinsdar",
+    "Unix-Supremacist"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": "https://github.com/FeltMC/Felt-API"
+  },
+  "license": "LGPL",
+  "icon": "assets/feltapi/icon.png",
+
+  "environment": "client",
+  "mixins": [
+    "screenapi.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "minecraft": "*"
+  },
+  "recommends": {
+    "feltfabric": "*"
+  },
+  "custom": {
+    "loom:injected_interfaces": {
+      "net/minecraft/class_437": ["io/github/feltmc/feltapi/api/screen/ScreenExtension"],
+      "net/minecraft/class_465": ["io/github/feltmc/feltapi/api/screen/HandledScreenExtension"]
+    },
+    "modmenu": {
+      "badges": [
+        "library"
+      ],
+      "parent": "felt-api"
+    }
+  }
+}

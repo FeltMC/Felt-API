@@ -10,17 +10,6 @@ archivesBaseName = project.archives_base_name
 version = project.mod_version //+ "+" + (ENV.GITHUB_RUN_NUMBER ? "" : "local-") + getBranch()
 group = project.maven_group
 
-def getSubprojectVersion(project) {
-	// Get the version from the gradle.properties file
-	def version = project.properties["${project.name}-version"]
-
-	if (!version) {
-		throw new NullPointerException("Could not find version for " + project.name)
-	}
-
-	return version
-}
-
 def getBranch() {
 	def ENV = System.getenv()
 	if (ENV.GITHUB_REF) {
@@ -36,8 +25,12 @@ def getBranch() {
 	return branch.substring(branch.lastIndexOf("/") + 1)
 }
 
-allprojects {
+subprojects {
 	apply plugin: "fabric-loom"
+	apply plugin: "maven-publish"
+
+	version = project.module_version
+	group = rootProject.maven_group
 
 	repositories {
 		// Add repositories to retrieve artifacts from in here.
@@ -51,6 +44,7 @@ allprojects {
 				includeGroup "com.terraformersmc"
 			}
 		}
+		maven { url 'https://jitpack.io' }
 	}
 
 	sourceSets {
@@ -116,17 +110,31 @@ allprojects {
 // configure the maven publication
 	publishing {
 		publications {
-			/*mavenJava(MavenPublication) {
-				from components.java
-			}*/
+			mavenJava(MavenPublication) {
+				artifact(remapJar) {
+					builtBy(remapJar)
+				}
+
+				artifact(remapSourcesJar) {
+					builtBy remapSourcesJar
+				}
+			}
 		}
 
-		// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-		repositories {
-			// Add repositories to publish to here.
-			// Notice: This block does NOT have the same function as the block in the top level.
-			// The repositories here will be used for publishing your artifact, not for
-			// retrieving dependencies.
+		setupRepositories(repositories)
+	}
+}
+
+void setupRepositories(RepositoryHandler repositories) {
+	//repositories.mavenLocal() // uncomment for testing
+	def ENV = System.getenv()
+	repositories.maven {
+		url "https://repo.repsy.io/mvn/distant/feltmc"
+		if (ENV.GITHUB_ACTION) {
+			credentials {
+				username ENV.MAVEN_USERNAME
+				password ENV.MAVEN_PASSWORD
+			}
 		}
 	}
 }

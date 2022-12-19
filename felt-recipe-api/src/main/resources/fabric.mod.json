@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "felt-recipe-api",
+  "version": "${version}",
+  "name": "Felt Recipe Api",
+  "description": "Library that adds support to vanilla furnaces for outputs with stacksize > 1, \n will also add support for stacked crafting recipes in the future",
+  "authors": [
+    "Trinsdar"
+  ],
+  "contact": {
+    "homepage": "https://feltmc.guthub.io",
+    "issues": "https://github.com/FeltMC/Felt-API/issues",
+    "sources": "https://github.com/FeltMC/Felt-API"
+  },
+  "accessWidener": "felt-recipe.accesswidener",
+  "license": "LGPL 3.0",
+  "icon": "assets/feltapi/icon.png",
+  "environment": "*",
+  "mixins": [
+    "felt-recipe.mixins.json"
+  ],
+  "depends": {
+    "minecraft": ">=1.18.2"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ],
+      "parent": "felt-api"
+    }
+  }
+}

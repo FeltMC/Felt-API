@@ -1,6 +1,6 @@
 package io.github.feltmc.feltapi.api.tool.interactions;
 
-import io.github.feltmc.feltapi.mixin.tool.common.ShovelMixin;
+import io.github.feltmc.feltapi.mixin.tool.ShovelMixin;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CampfireBlock;
