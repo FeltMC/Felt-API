@@ -2,7 +2,7 @@ package io.github.feltmc.feltapi.mixin.armor;
 
 import io.github.feltmc.feltapi.api.armor.HorseArmorTickItem;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.passive.HorseBaseEntity;
+import net.minecraft.entity.passive.AbstractHorseEntity;
 import net.minecraft.entity.passive.HorseEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.BlockSoundGroup;
@@ -14,10 +14,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(HorseEntity.class)
-public abstract class HorseEntityMixin extends HorseBaseEntity {
+public abstract class HorseEntityMixin extends AbstractHorseEntity {
     @Shadow public abstract boolean isHorseArmor(ItemStack item);
 
-    protected HorseEntityMixin(EntityType<? extends HorseBaseEntity> entityType, World world) {
+    protected HorseEntityMixin(EntityType<? extends AbstractHorseEntity> entityType, World world) {
         super(entityType, world);
     }
 
