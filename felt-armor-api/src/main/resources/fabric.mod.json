@@ -15,8 +15,7 @@
     "sources": "https://github.com/FeltMC/Felt-API"
   },
   "license": "LGPL",
-  "icon": "assets/felt-api/icon.png",
-
+  "icon": "assets/felt-armor-api/icon.png",
   "environment": "*",
   "mixins": [
     "armorapi.mixins.json"
@@ -25,7 +24,12 @@
     "fabricloader": "*",
     "minecraft": "*"
   },
-  "recommends": {
-    "feltfabric": "*"
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ],
+      "parent": "felt-api"
+    }
   }
 }

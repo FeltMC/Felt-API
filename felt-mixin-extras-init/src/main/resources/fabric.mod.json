@@ -15,7 +15,7 @@
     "sources": "https://github.com/FeltMC/Felt-API"
   },
   "license": "LGPL",
-  "icon": "assets/felt-api/icon.png",
+  "icon": "assets/felt-mixin-extras-init/icon.png",
   "environment": "*",
   "entrypoints": {
     "preLaunch" : [
@@ -26,7 +26,12 @@
     "fabricloader": "*",
     "minecraft": "*"
   },
-  "recommends": {
-    "feltfabric": "*"
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ],
+      "parent": "felt-api"
+    }
   }
 }
