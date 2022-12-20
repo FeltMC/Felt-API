@@ -19,17 +19,13 @@
     ]
   },
   "license": "LGPL",
-  "icon": "assets/feltapi/icon.png",
-
+  "icon": "assets/felt-ore-feature-api/icon.png",
   "environment": "*",
   "depends": {
     "fabricloader": ">=0.13.3",
     "fabric": "*",
     "minecraft": "1.18.x",
     "java": ">=17"
-  },
-  "recommends": {
-    "feltfabric": "*"
   },
   "custom": {
     "modmenu": {
