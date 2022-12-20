@@ -44,6 +44,10 @@ subprojects {
 				includeGroup "com.terraformersmc"
 			}
 		}
+		maven {
+			name = "parchment"
+			url = uri("https://maven.parchmentmc.org")
+		}
 		maven { url 'https://jitpack.io' }
 	}
 
