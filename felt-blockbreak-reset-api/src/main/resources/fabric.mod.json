@@ -15,7 +15,7 @@
     "sources": "https://github.com/FeltMC/Felt-API"
   },
   "license": "LGPL",
-  "icon": "assets/felt-api/icon.png",
+  "icon": "assets/felt-blockbreak-reset-api/icon.png",
 
   "environment": "*",
   "mixins": [

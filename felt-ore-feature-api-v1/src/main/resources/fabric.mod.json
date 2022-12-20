@@ -19,8 +19,7 @@
     ]
   },
   "license": "LGPL",
-  "icon": "assets/feltapi/icon.png",
-
+  "icon": "assets/felt-ore-feature-api/icon.png",
   "environment": "*",
   "depends": {
     "fabricloader": ">=0.13.3",

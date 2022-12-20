@@ -17,7 +17,7 @@
   },
 
   "license": "LGPL",
-  "icon": "assets/feltapi/icon.png",
+  "icon": "assets/felt-api-base/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
