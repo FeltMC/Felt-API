@@ -78,7 +78,7 @@ subprojects {
 	dependencies {
 		// To change the versions see the gradle.properties file
 		minecraft "com.mojang:minecraft:${project.minecraft_version}"
-		if(project.mojmap){
+		if(project.mojmap.toBoolean()){
 			mappings loom.layered() {
 				officialMojangMappings()
 				parchment("org.parchmentmc.data:parchment-${project.minecraft_version}:${project.parchment_version}@zip")
