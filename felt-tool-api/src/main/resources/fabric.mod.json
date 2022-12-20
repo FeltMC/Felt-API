@@ -16,7 +16,6 @@
   },
   "license": "LGPL",
   "icon": "assets/felt-tool-api/icon.png",
-
   "environment": "*",
   "mixins": [
     "toolapi.mixins.json"
@@ -24,9 +23,6 @@
   "depends": {
     "fabricloader": "*",
     "minecraft": "*"
-  },
-  "recommends": {
-    "feltfabric": "*"
   },
   "custom": {
     "modmenu": {

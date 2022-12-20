@@ -26,9 +26,6 @@
     "fabricloader": "*",
     "minecraft": "*"
   },
-  "recommends": {
-    "feltfabric": "*"
-  },
   "custom": {
     "modmenu": {
       "badges": [

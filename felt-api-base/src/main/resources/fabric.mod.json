@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "felt-api",
+  "id": "felt-api-base",
   "version": "${version}",
 
   "name": "Felt API",
@@ -34,14 +34,12 @@
     "minecraft": "1.18.x",
     "java": ">=17"
   },
-  "recommends": {
-    "feltfabric": "*"
-  },
   "custom": {
     "modmenu": {
       "badges": [
         "library"
-      ]
+      ],
+      "parent": "felt-api"
     }
   }
 }

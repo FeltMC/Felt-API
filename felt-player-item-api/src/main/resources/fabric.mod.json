@@ -24,7 +24,12 @@
     "fabricloader": "*",
     "minecraft": "*"
   },
-  "recommends": {
-    "feltfabric": "*"
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ],
+      "parent": "felt-api"
+    }
   }
 }
