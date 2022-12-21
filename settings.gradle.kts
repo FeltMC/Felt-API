@@ -15,7 +15,7 @@ pluginManagement {
 
 rootProject.name = "felt-api"
 try {
-    val path = File(System.getProperty("user.dir"))
+    val path = rootDir
     val strings: List<String> = java.nio.file.Files.lines(File(path,"excluded-folders.txt").toPath()).toList()
     for (f in path.listFiles()!!) {
         if (f.isDirectory) {
