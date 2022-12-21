@@ -31,6 +31,9 @@ subprojects {
 
 	version = project.module_version
 	group = rootProject.maven_group
+	if (project.hasProperty("archive_base_name")){
+		archivesBaseName = project.archive_base_name
+	}
 
 	repositories {
 		// Add repositories to retrieve artifacts from in here.
