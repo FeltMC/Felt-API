@@ -126,6 +126,9 @@ subprojects {
 	publishing {
 		publications {
 			mavenJava(MavenPublication) {
+				if (project.hasProperty("archive_base_name")){
+					artifactId = project.archive_base_name
+				}
 				artifact(remapJar) {
 					builtBy(remapJar)
 				}
