@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "felt-armor-api",
+  "version": "${version}",
+  "name": "Felt Armor API",
+  "description": "A reimplementation of Fringe APIs on Fabric",
+  "authors": [
+    "FeltMC",
+    "PseudoDistant",
+    "Trinsdar",
+    "Unix-Supremacist"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": "https://github.com/FeltMC/Felt-API"
+  },
+  "license": "LGPL",
+  "icon": "assets/felt-armor-api/icon.png",
+  "environment": "*",
+  "mixins": [
+    "armorapi.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "minecraft": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ],
+      "parent": "felt-api"
+    }
+  }
+}
