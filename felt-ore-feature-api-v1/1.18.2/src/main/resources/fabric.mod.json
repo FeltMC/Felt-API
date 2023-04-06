@@ -1,37 +1,30 @@
 {
   "schemaVersion": 1,
-  "id": "felt-api-base",
+  "id": "felt-ore-feature-api-v1",
   "version": "${version}",
-
-  "name": "Felt API",
+  "name": "Felt Ore Feature API (v1)",
   "description": "A reimplementation of Fringe APIs on Fabric",
   "authors": [
     "FeltMC",
     "PseudoDistant",
-    "Trinsdar",
-    "Unix-Supremacist"
+    "Trinsdar"
   ],
   "contact": {
     "homepage": "",
     "sources": "https://github.com/FeltMC/Felt-API"
   },
-
-  "license": "LGPL",
-  "icon": "assets/felt-api-base/icon.png",
-  "environment": "*",
   "entrypoints": {
     "main": [
-      "io.github.feltmc.feltapi.FeltAPI"
+      "io.github.feltmc.feltapi.impl.ore_feature.FeltOreFeatureAPiInit"
     ]
   },
-  "mixins": [
-    "modid.mixins.json"
-  ],
-
+  "license": "LGPL",
+  "icon": "assets/felt-ore-feature-api/icon.png",
+  "environment": "*",
   "depends": {
     "fabricloader": ">=0.13.3",
-    "fabric": "*",
-    "minecraft": "1.18.x",
+    "fabric-biome-api-v1": "*",
+    "minecraft": "1.18.2",
     "java": ">=17"
   },
   "custom": {
