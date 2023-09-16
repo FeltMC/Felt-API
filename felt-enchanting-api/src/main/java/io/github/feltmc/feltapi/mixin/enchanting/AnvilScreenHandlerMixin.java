@@ -14,7 +14,6 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import java.util.Map;
 
-@Debug(export = true)
 @Mixin(AnvilScreenHandler.class)
 public class AnvilScreenHandlerMixin {
     @Inject(method = "updateResult", at = @At(value = "INVOKE", target = "Lnet/minecraft/screen/Property;set(I)V", ordinal = 5), locals = LocalCapture.CAPTURE_FAILHARD)
@@ -23,7 +22,7 @@ public class AnvilScreenHandlerMixin {
             if (itemStack3.isOf(Items.ENCHANTED_BOOK) &&
                     !EnchantedBookItem.getEnchantmentNbt(itemStack3).isEmpty() &&
                     !item.isBookEnchantable(itemStack2, itemStack3)) {
-                itemStack2 = ItemStack.EMPTY;
+                itemStack2 .setCount(0);
             }
         }
 
