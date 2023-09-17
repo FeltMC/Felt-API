@@ -1,12 +1,10 @@
-subprojects {
-    loom {
-        accessWidenerPath = file("src/main/resources/felt-recipe.accesswidener")
-    }
+loom {
+    accessWidenerPath = file("src/main/resources/felt-recipe.accesswidener")
+}
 
 
-    dependencies {
-        implementation(include("com.github.LlamaLad7:MixinExtras:0.1.1"))
-        annotationProcessor("com.github.LlamaLad7:MixinExtras:0.1.1")
-    }
+dependencies {
+    implementation(include("com.github.LlamaLad7:MixinExtras:0.1.1"))
+    annotationProcessor("com.github.LlamaLad7:MixinExtras:0.1.1")
 }
 
