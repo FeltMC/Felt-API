@@ -1,4 +1,4 @@
-package io.github.feltmc.feltapi.api.weapon;
+package io.github.feltmc.feltapi.api.mobitem;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;

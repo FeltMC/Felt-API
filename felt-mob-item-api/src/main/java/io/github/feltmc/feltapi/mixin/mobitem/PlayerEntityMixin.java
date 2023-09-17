@@ -1,8 +1,8 @@
-package io.github.feltmc.feltapi.mixin.weapon;
+package io.github.feltmc.feltapi.mixin.mobitem;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import io.github.feltmc.feltapi.api.weapon.SweepHitBoxItem;
+import io.github.feltmc.feltapi.api.mobitem.SweepHitBoxItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
