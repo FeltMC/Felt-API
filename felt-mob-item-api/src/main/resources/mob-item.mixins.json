@@ -9,6 +9,7 @@
   "mixins": [
     "EndermanEntityMixin",
     "PiglinBrainMixin",
-    "PiglinEntityMixin"
+    "PiglinEntityMixin",
+    "PlayerEntityMixin"
   ]
 }
