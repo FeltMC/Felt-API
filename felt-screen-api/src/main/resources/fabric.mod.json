@@ -15,8 +15,7 @@
     "sources": "https://github.com/FeltMC/Felt-API"
   },
   "license": "LGPL",
-  "icon": "assets/feltapi/icon.png",
-
+  "icon": "assets/felt-screen-api/icon.png",
   "environment": "client",
   "mixins": [
     "screenapi.mixins.json"
@@ -24,9 +23,6 @@
   "depends": {
     "fabricloader": "*",
     "minecraft": "*"
-  },
-  "recommends": {
-    "feltfabric": "*"
   },
   "custom": {
     "loom:injected_interfaces": {
