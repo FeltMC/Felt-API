@@ -6,7 +6,7 @@
   "mixins": [
   ],
   "client": [
-    "SplashMixin"
+    "net.github.feltmc.feltapi.mixin.splash.client.SplashMixin"
   ],
   "injectors": {
     "defaultRequire": 1

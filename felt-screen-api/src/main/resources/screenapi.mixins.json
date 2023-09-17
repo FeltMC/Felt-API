@@ -9,7 +9,7 @@
     "defaultRequire": 1
   },
   "client": [
-    "HandledScreenMixin",
-    "ScreenMixin"
+    "net.github.feltmc.feltapi.mixin.screen.HandledScreenMixin",
+    "net.github.feltmc.feltapi.mixin.screen.ScreenMixin"
   ]
 }

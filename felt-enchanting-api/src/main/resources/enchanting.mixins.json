@@ -7,8 +7,8 @@
     "defaultRequire": 1
   },
   "mixins": [
-    "AnvilScreenHandlerMixin",
-    "EnchantmentHelperMixin",
-    "EnchantmentMixin"
+    "net.github.feltmc.feltapi.mixin.enchanting.AnvilScreenHandlerMixin",
+    "net.github.feltmc.feltapi.mixin.enchanting.EnchantmentHelperMixin",
+    "net.github.feltmc.feltapi.mixin.enchanting.EnchantmentMixin"
   ]
 }

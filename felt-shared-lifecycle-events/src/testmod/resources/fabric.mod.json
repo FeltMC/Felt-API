@@ -10,10 +10,10 @@
   },
   "entrypoints": {
     "main": [
-      "io.github.feltmc.feltapi.test.event.lifecycle.ServerTickTests"
+      "net.github.feltmc.feltapi.test.event.lifecycle.ServerTickTests"
     ],
     "client": [
-      "io.github.feltmc.feltapi.test.event.lifecycle.client.ClientTickTests"
+      "net.github.feltmc.feltapi.test.event.lifecycle.client.ClientTickTests"
     ]
   }
 }

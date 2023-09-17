@@ -21,7 +21,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "io.github.feltmc.feltapi.FeltAPI"
+      "net.feltmc.feltapi.FeltAPI"
     ]
   },
   "mixins": [

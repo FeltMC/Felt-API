@@ -7,7 +7,7 @@
   "license": "LGPL",
   "entrypoints": {
     "main": [
-      "io.github.feltmc.feltapi.test.base.FeltApiBaseTestInit"
+      "net.github.feltmc.feltapi.test.base.FeltApiBaseTestInit"
     ]
   }
 }

@@ -7,9 +7,9 @@
     "defaultRequire": 1
   },
   "mixins": [
-    "HorseEntityMixin",
-    "PlayerInventoryMixin",
-    "PlayerScreenHandlerAccessor",
-    "PlayerScreenHandlerMixin"
+    "net.github.feltmc.feltapi.mixin.armor.HorseEntityMixin",
+    "net.github.feltmc.feltapi.mixin.armor.PlayerInventoryMixin",
+    "net.github.feltmc.feltapi.mixin.armor.PlayerScreenHandlerAccessor",
+    "net.github.feltmc.feltapi.mixin.armor.PlayerScreenHandlerMixin"
   ]
 }

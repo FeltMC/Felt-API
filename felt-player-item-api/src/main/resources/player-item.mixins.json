@@ -4,11 +4,11 @@
   "package": "io.github.feltmc.feltapi.mixin.playeritem",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "ServerPlayerEntityMixin",
-    "ServerPlayerInteractionManagerMixin"
+    "net.github.feltmc.feltapi.mixin.playeritem.ServerPlayerEntityMixin",
+    "net.github.feltmc.feltapi.mixin.playeritem.ServerPlayerInteractionManagerMixin"
   ],
   "client": [
-    "client.ClientPlayerInteractionManagerMixin"
+    "net.github.feltmc.feltapi.mixin.playeritem.client.ClientPlayerInteractionManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

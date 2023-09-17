@@ -19,7 +19,7 @@
   "environment": "*",
   "entrypoints": {
     "preLaunch" : [
-      "io.github.feltmc.feltapi.impl.mixininit.FeltMixinExtrasBootstrap"
+      "net.feltmc.feltapi.impl.mixininit.FeltMixinExtrasBootstrap"
     ]
   },
   "depends": {

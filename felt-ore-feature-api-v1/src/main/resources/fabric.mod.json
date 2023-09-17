@@ -15,7 +15,7 @@
   },
   "entrypoints": {
     "main": [
-      "io.github.feltmc.feltapi.impl.ore_feature.FeltOreFeatureAPiInit"
+      "net.feltmc.feltapi.impl.ore_feature.FeltOreFeatureAPiInit"
     ]
   },
   "license": "LGPL",

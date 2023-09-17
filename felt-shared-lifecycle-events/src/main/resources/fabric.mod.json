@@ -17,10 +17,10 @@
   ],
   "entrypoints": {
     "main": [
-      "io.github.feltmc.feltapi.impl.event.lifecycle.LifecycleEventsImpl"
+      "net.feltmc.feltapi.impl.event.lifecycle.LifecycleEventsImpl"
     ],
     "client": [
-      "io.github.feltmc.feltapi.impl.event.lifecycle.ClientLifecycleEventsImpl"
+      "net.feltmc.feltapi.impl.event.lifecycle.ClientLifecycleEventsImpl"
     ]
   },
   "depends": {
