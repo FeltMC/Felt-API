@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "felt-player-item-api",
+  "version": "${version}",
+  "name": "Felt Player Item API",
+  "description": "A reimplementation of Fringe APIs on Fabric",
+  "authors": [
+    "FeltMC",
+    "PseudoDistant",
+    "Trinsdar",
+    "Unix-Supremacist"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": "https://github.com/FeltMC/Felt-API"
+  },
+  "license": "LGPL",
+  "icon": "assets/felt-player-item-api/icon.png",
+  "environment": "*",
+  "mixins": [
+    "player-item.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "minecraft": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "library"
+      ],
+      "parent": "felt-api"
+    }
+  }
+}

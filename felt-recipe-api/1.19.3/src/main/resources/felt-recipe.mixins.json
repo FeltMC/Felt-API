@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "io.github.feltmc.feltapi.mixin.recipe",
+  "compatibilityLevel": "JAVA_17",
+  "plugin": "io.github.feltmc.feltapi.mixin.recipe.RecipeMixinPlugin",
+  "client": [
+  ],
+  "mixins": [
+    "AbstractFurnaceBlockEntityMixin",
+    "SimpleCookingSerializerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

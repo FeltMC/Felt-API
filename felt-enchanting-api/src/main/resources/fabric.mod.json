@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "felt-enchanting-api",
+  "version": "${version}",
+  "name": "Felt Enchanting API",
+  "description": "A reimplementation of Fringe APIs on Fabric",
+  "authors": [
+    "FeltMC",
+    "PseudoDistant",
+    "Trinsdar",
+    "Unix-Supremacist"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": "https://github.com/FeltMC/Felt-API"
+  },
+  "license": "LGPL",
+  "icon": "assets/felt-api/icon.png",
+  "environment": "*",
+  "mixins": [
+    "enchanting.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "minecraft": "*"
+  },
+  "recommends": {
+    "feltfabric": "*"
+  }
+}
