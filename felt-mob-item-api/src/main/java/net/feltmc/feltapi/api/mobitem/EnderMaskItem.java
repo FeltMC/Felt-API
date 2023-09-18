@@ -1,4 +1,4 @@
-package io.github.feltmc.feltapi.api.mobitem;
+package net.feltmc.feltapi.api.mobitem;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.mob.EndermanEntity;

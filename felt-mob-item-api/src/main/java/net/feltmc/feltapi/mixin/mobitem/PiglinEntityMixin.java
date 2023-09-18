@@ -1,8 +1,8 @@
-package io.github.feltmc.feltapi.mixin.mobitem;
+package net.feltmc.feltapi.mixin.mobitem;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import io.github.feltmc.feltapi.api.mobitem.PiglinCurrencyItem;
+import net.feltmc.feltapi.api.mobitem.PiglinCurrencyItem;
 import net.minecraft.entity.mob.PiglinEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

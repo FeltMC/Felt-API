@@ -7,9 +7,9 @@
     "defaultRequire": 1
   },
   "mixins": [
-    "EndermanEntityMixin",
-    "PiglinBrainMixin",
-    "PiglinEntityMixin",
-    "PlayerEntityMixin"
+    "net.github.feltmc.feltapi.mixin.mobitem.EndermanEntityMixin",
+    "net.github.feltmc.feltapi.mixin.mobitem.PiglinBrainMixin",
+    "net.github.feltmc.feltapi.mixin.mobitem.PiglinEntityMixin",
+    "net.github.feltmc.feltapi.mixin.mobitem.PlayerEntityMixin"
   ]
 }
