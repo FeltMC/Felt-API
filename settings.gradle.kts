@@ -26,12 +26,18 @@ try {
                     for (s in subStrings){
                         val subproject = File(f, s)
                         if(subproject.exists()){
-                            include(f.name + ":" + s)
-                            project(":" + f.name + ":" + s).projectDir = subproject
+                            val src = File(subproject, "src")
+                            if (src.exists()){
+                                include(f.name + ":" + s)
+                                project(":" + f.name + ":" + s).projectDir = subproject
+                            }
                         }
                     }
                 } else {
-                    include(f.name)
+                    val src = File(f, "src")
+                    if (src.exists()) {
+                        include(f.name)
+                    }
                 }
             }
         }
