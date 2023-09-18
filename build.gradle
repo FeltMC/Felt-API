@@ -95,6 +95,9 @@ subprojects {
 		// Fabric API. This is technically optional, but you probably want it anyway.
 		modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}+${project.minecraft_version}"
 		modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
+		if (project.mixin_extras.toBoolean()){
+			include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:0.2.0-rc.2")))
+		}
 	}
 
 	processResources {
