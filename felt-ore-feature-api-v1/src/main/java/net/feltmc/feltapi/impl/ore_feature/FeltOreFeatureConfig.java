@@ -5,12 +5,12 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.feltmc.feltapi.api.ore_feature.v1.FeltRuleTest;
 import net.minecraft.block.BlockState;
 import net.minecraft.structure.rule.RuleTest;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.FeatureConfig;
 
 import java.util.List;
-import java.util.Random;
 import java.util.function.BiFunction;
 
 public class FeltOreFeatureConfig implements FeatureConfig {

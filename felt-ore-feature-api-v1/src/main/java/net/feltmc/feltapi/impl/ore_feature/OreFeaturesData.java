@@ -38,7 +38,7 @@ public class OreFeaturesData {
     public static <FC extends FeatureConfig, F extends Feature<FC>> RegistryEntry<ConfiguredFeature<FC, ?>> register(String domain, String id, ConfiguredFeature<FC, F> cf) {
         Identifier realId = new Identifier(domain, id);
         Preconditions.checkState(!BuiltinRegistries.CONFIGURED_FEATURE.getIds().contains(realId), "Duplicate ID: %s", id);
-        return BuiltinRegistries.method_40360(BuiltinRegistries.CONFIGURED_FEATURE, realId.toString(), cf);
+        return BuiltinRegistries.addCasted(BuiltinRegistries.CONFIGURED_FEATURE, realId.toString(), cf);
     }
 
     public static <FC extends FeatureConfig> RegistryEntry<PlacedFeature> createPlacedFeature(String domain, String id, RegistryEntry<ConfiguredFeature<FC, ?>> feature, List<PlacementModifier> placementModifiers) {

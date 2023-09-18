@@ -4,6 +4,7 @@ import net.feltmc.feltapi.impl.ore_feature.OreFeaturesData;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.minecraft.block.BlockState;
 import net.minecraft.structure.rule.RuleTest;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.YOffset;
@@ -12,7 +13,6 @@ import net.minecraft.world.gen.placementmodifier.HeightRangePlacementModifier;
 import net.minecraft.world.gen.placementmodifier.PlacementModifier;
 
 import java.util.List;
-import java.util.Random;
 import java.util.function.BiFunction;
 import java.util.function.Predicate;
 
