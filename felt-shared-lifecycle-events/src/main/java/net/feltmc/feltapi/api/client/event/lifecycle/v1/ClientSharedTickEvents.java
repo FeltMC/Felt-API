@@ -20,8 +20,8 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.world.ClientWorld;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientLevel;
 
 @Environment(EnvType.CLIENT)
 public final class ClientSharedTickEvents {
@@ -48,11 +48,11 @@ public final class ClientSharedTickEvents {
 
 	@FunctionalInterface
 	public interface Tick {
-		void onTick(MinecraftClient client, boolean start);
+		void onTick(Minecraft client, boolean start);
 	}
 
 	@FunctionalInterface
 	public interface WorldTick {
-		void onWorldTick(ClientWorld world, boolean start);
+		void onWorldTick(ClientLevel world, boolean start);
 	}
 }

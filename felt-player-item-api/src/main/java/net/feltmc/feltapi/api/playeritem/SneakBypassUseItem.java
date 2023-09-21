@@ -1,9 +1,9 @@
 package net.feltmc.feltapi.api.playeritem;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.WorldView;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.LevelReader;
 
 public interface SneakBypassUseItem {
     /**
@@ -15,5 +15,5 @@ public interface SneakBypassUseItem {
      * @param pos    Block position in level
      * @param player The Player that is wielding the item
      */
-    boolean doesSneakBypassUse(ItemStack stack, WorldView world, BlockPos pos, PlayerEntity player);
+    boolean doesSneakBypassUse(ItemStack stack, LevelReader world, BlockPos pos, Player player);
 }

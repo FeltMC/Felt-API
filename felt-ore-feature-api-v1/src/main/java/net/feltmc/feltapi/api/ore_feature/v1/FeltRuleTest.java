@@ -3,13 +3,12 @@ package net.feltmc.feltapi.api.ore_feature.v1;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.objects.Object2ObjectLinkedOpenHashMap;
-import net.minecraft.block.BlockState;
-import net.minecraft.structure.rule.RuleTest;
-import net.minecraft.structure.rule.RuleTestType;
-
 import java.util.Map;
 import java.util.Random;
 import java.util.function.BiFunction;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
+import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTestType;
 
 public class FeltRuleTest {
     public static final Codec<FeltRuleTest> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.STRING.fieldOf("domain").forGetter(config -> {
@@ -54,6 +53,6 @@ public class FeltRuleTest {
     }
 
     protected RuleTestType<?> getType() {
-        return RuleTestType.BLOCKSTATE_MATCH;
+        return RuleTestType.BLOCKSTATE_TEST;
     }
 }

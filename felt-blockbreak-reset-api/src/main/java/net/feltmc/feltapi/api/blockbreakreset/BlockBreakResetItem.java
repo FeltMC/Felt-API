@@ -1,11 +1,10 @@
 package net.feltmc.feltapi.api.blockbreakreset;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.item.ItemStack;
 
 public interface BlockBreakResetItem {
     /**
@@ -20,23 +19,23 @@ public interface BlockBreakResetItem {
     default boolean shouldCauseBlockBreakReset(ItemStack oldStack, ItemStack newStack)
     {
         // Fix MC-176559 mending resets mining progress / breaking animation
-        if (!newStack.isOf(oldStack.getItem()))
+        if (!newStack.is(oldStack.getItem()))
             return true;
 
-        if (!newStack.isDamageable() || !oldStack.isDamageable())
-            return !ItemStack.areNbtEqual(newStack, oldStack);
+        if (!newStack.isDamageableItem() || !oldStack.isDamageableItem())
+            return !ItemStack.tagMatches(newStack, oldStack);
 
-        NbtCompound newTag = newStack.getNbt();
-        NbtCompound oldTag = oldStack.getNbt();
+        CompoundTag newTag = newStack.getTag();
+        CompoundTag oldTag = oldStack.getTag();
 
         if (newTag == null || oldTag == null)
             return !(newTag == null && oldTag == null);
 
-        Set<String> newKeys = new HashSet<>(newTag.getKeys());
-        Set<String> oldKeys = new HashSet<>(oldTag.getKeys());
+        Set<String> newKeys = new HashSet<>(newTag.getAllKeys());
+        Set<String> oldKeys = new HashSet<>(oldTag.getAllKeys());
 
-        newKeys.remove(ItemStack.DAMAGE_KEY);
-        oldKeys.remove(ItemStack.DAMAGE_KEY);
+        newKeys.remove(ItemStack.TAG_DAMAGE);
+        oldKeys.remove(ItemStack.TAG_DAMAGE);
 
         if (!newKeys.equals(oldKeys))
             return true;

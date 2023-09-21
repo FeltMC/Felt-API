@@ -1,11 +1,11 @@
 package net.feltmc.feltapi.api.mobitem;
 
-import net.minecraft.entity.mob.PiglinBrain;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.monster.piglin.PiglinAi;
+import net.minecraft.world.item.ItemStack;
 
 public interface PiglinCurrencyItem {
     default boolean isPiglinCurrency(ItemStack stack)
     {
-        return stack.getItem() == PiglinBrain.BARTERING_ITEM;
+        return stack.getItem() == PiglinAi.BARTERING_ITEM;
     }
 }

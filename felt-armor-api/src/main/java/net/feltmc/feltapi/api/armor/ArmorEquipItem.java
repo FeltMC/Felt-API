@@ -1,9 +1,9 @@
 package net.feltmc.feltapi.api.armor;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.item.ItemStack;
 
 public interface ArmorEquipItem {
 
@@ -18,6 +18,6 @@ public interface ArmorEquipItem {
      */
     default boolean canEquip(ItemStack stack, EquipmentSlot armorType, Entity entity)
     {
-        return MobEntity.getPreferredEquipmentSlot(stack) == armorType;
+        return Mob.getEquipmentSlotForItem(stack) == armorType;
     }
 }

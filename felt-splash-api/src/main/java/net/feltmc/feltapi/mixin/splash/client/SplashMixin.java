@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.List;
 
 @Environment(EnvType.CLIENT)
-@Mixin(net.minecraft.client.resource.SplashTextResourceSupplier.class)
+@Mixin(net.minecraft.client.resources.SplashManager.class)
 public class SplashMixin {
     @Shadow
     private List<String> splashTexts;

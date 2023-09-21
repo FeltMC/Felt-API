@@ -2,6 +2,11 @@ package net.feltmc.feltapi.api.extratransfer.fluid;
 
 import com.google.common.base.Preconditions;
 import net.feltmc.feltapi.api.extratransfer.item.ItemUtil;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.fabricmc.fabric.api.transfer.v1.context.ContainerItemContext;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
@@ -11,11 +16,6 @@ import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
 import net.fabricmc.fabric.api.transfer.v1.storage.StorageView;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.Hand;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 public class FluidUtil {
 
     @NotNull
-    public static FluidActionResult tryFillContainer(@NotNull ItemStack container, Storage<FluidVariant> fluidSource, long maxAmount, @Nullable PlayerEntity player, boolean doFill) {
+    public static FluidActionResult tryFillContainer(@NotNull ItemStack container, Storage<FluidVariant> fluidSource, long maxAmount, @Nullable Player player, boolean doFill) {
         ItemStack containerCopy = ItemUtil.copyStackWithSize(container, 1); // do not modify the input
         ContainerItemContext context = ContainerItemContext.withInitial(containerCopy);
         Storage<FluidVariant> containerFluidStorage = context.find(FluidStorage.ITEM);
@@ -34,7 +34,7 @@ public class FluidUtil {
             if (transfer.isResourceBlank()) return FluidActionResult.FAILURE;
             if (doFill && player != null) {
                 SoundEvent soundevent = FluidVariantAttributes.getEmptySound(transfer.getResource());
-                player.world.playSound(null, player.getX(), player.getY() + 0.5, player.getZ(), soundevent, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                player.level.playSound(null, player.getX(), player.getY() + 0.5, player.getZ(), soundevent, SoundSource.BLOCKS, 1.0F, 1.0F);
             }
 
             ItemStack resultContainer = context.getItemVariant().toStack();
@@ -43,7 +43,7 @@ public class FluidUtil {
         return FluidActionResult.FAILURE;
     }
     @NotNull
-    public static FluidActionResult tryEmptyContainer(@NotNull ItemStack container, Storage<FluidVariant> fluidDestination, long maxAmount, @Nullable PlayerEntity player, boolean doDrain) {
+    public static FluidActionResult tryEmptyContainer(@NotNull ItemStack container, Storage<FluidVariant> fluidDestination, long maxAmount, @Nullable Player player, boolean doDrain) {
         ItemStack containerCopy = ItemUtil.copyStackWithSize(container, 1); // do not modify the input
         ContainerItemContext context = ContainerItemContext.withInitial(containerCopy);
         Storage<FluidVariant> containerFluidStorage = context.find(FluidStorage.ITEM);
@@ -54,7 +54,7 @@ public class FluidUtil {
             if (doDrain && player != null)
             {
                 SoundEvent soundevent = FluidVariantAttributes.getFillSound(transfer.getResource());
-                player.world.playSound(null, player.getX(), player.getY() + 0.5, player.getZ(), soundevent, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                player.level.playSound(null, player.getX(), player.getY() + 0.5, player.getZ(), soundevent, SoundSource.BLOCKS, 1.0F, 1.0F);
             }
 
             ItemStack resultContainer = context.getItemVariant().toStack();
@@ -64,12 +64,12 @@ public class FluidUtil {
     }
 
     @NotNull
-    public static FluidActionResult tryEmptyContainerAndStow(@NotNull ItemStack container, Storage<FluidVariant> fluidDestination, Storage<ItemVariant> inventory, long maxAmount, @Nullable PlayerEntity player, boolean doDrain) {
+    public static FluidActionResult tryEmptyContainerAndStow(@NotNull ItemStack container, Storage<FluidVariant> fluidDestination, Storage<ItemVariant> inventory, long maxAmount, @Nullable Player player, boolean doDrain) {
         if (container.isEmpty()) {
             return FluidActionResult.FAILURE;
         }
 
-        if (player != null && player.getAbilities().creativeMode) {
+        if (player != null && player.getAbilities().instabuild) {
             FluidActionResult emptiedReal = tryEmptyContainer(container, fluidDestination, maxAmount, player, doDrain);
             if (emptiedReal.isSuccess()) {
                 return new FluidActionResult(container); // creative mode: item does not change
@@ -93,7 +93,7 @@ public class FluidUtil {
                         ItemUtil.giveItemToPlayer(player, remainder);
 
                     ItemStack containerCopy = container.copy();
-                    containerCopy.decrement(1);
+                    containerCopy.shrink(1);
                     return new FluidActionResult(containerCopy);
                 }
             }
@@ -102,12 +102,12 @@ public class FluidUtil {
     }
 
     @NotNull
-    public static FluidActionResult tryFillContainerAndStow(@NotNull ItemStack container, Storage<FluidVariant> fluidSource, Storage<ItemVariant> inventory, long maxAmount, @Nullable PlayerEntity player, boolean doFill) {
+    public static FluidActionResult tryFillContainerAndStow(@NotNull ItemStack container, Storage<FluidVariant> fluidSource, Storage<ItemVariant> inventory, long maxAmount, @Nullable Player player, boolean doFill) {
         if (container.isEmpty()) {
             return FluidActionResult.FAILURE;
         }
 
-        if (player != null && player.getAbilities().creativeMode) {
+        if (player != null && player.getAbilities().instabuild) {
             FluidActionResult filledReal = tryFillContainer(container, fluidSource, maxAmount, player, doFill);
             if (filledReal.isSuccess()) {
                 return new FluidActionResult(container); // creative mode: item does not change
@@ -131,7 +131,7 @@ public class FluidUtil {
                         ItemUtil.giveItemToPlayer(player, remainder);
 
                     ItemStack containerCopy = container.copy();
-                    containerCopy.decrement(1);
+                    containerCopy.shrink(1);
                     return new FluidActionResult(containerCopy);
                 }
             }
@@ -140,11 +140,11 @@ public class FluidUtil {
     }
 
 
-    public static boolean interactWithFluidHandler(@NotNull PlayerEntity player, @NotNull Hand hand, @NotNull Storage<FluidVariant> handler) {
+    public static boolean interactWithFluidHandler(@NotNull Player player, @NotNull InteractionHand hand, @NotNull Storage<FluidVariant> handler) {
         Preconditions.checkNotNull(player);
         Preconditions.checkNotNull(hand);
         Preconditions.checkNotNull(handler);
-        ItemStack heldItem = player.getStackInHand(hand);
+        ItemStack heldItem = player.getItemInHand(hand);
         if (!heldItem.isEmpty()) {
             //FluidActionResult fluidActionResult = tryFillContainerAndStow(heldItem, handler, playerInventory, Integer.MAX_VALUE, player, true);
             FluidActionResult fluidActionResult = tryFillContainer(heldItem, handler, Long.MAX_VALUE, player, true);
@@ -154,7 +154,7 @@ public class FluidUtil {
             }
 
             if (fluidActionResult.isSuccess()) {
-                player.setStackInHand(hand, fluidActionResult.getResult());
+                player.setItemInHand(hand, fluidActionResult.getResult());
                 return true;
             }
             return false;

@@ -6,15 +6,14 @@ import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.biome.v1.ModificationPhase;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.gen.GenerationStep;
-
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.levelgen.GenerationStep;
 import java.util.function.BiConsumer;
 
 public class FeltOreFeatureAPiInit implements ModInitializer {
     @Override
     public void onInitialize() {
-        BiomeModifications.create(new Identifier("felt-ore-feature-api-v1", "ore_features")).add(ModificationPhase.ADDITIONS, BiomeSelectors.all(), oreModifier());
+        BiomeModifications.create(new ResourceLocation("felt-ore-feature-api-v1", "ore_features")).add(ModificationPhase.ADDITIONS, BiomeSelectors.all(), oreModifier());
     }
 
     private static BiConsumer<BiomeSelectionContext, BiomeModificationContext> oreModifier() {
@@ -22,7 +21,7 @@ public class FeltOreFeatureAPiInit implements ModInitializer {
             OreFeaturesData.FEATURE_MAP.forEach((s, m) -> {
                 boolean hasType = (m.filtered().test(biomeSelectionContext));
                 if (hasType){
-                    biomeModificationContext.getGenerationSettings().addFeature(GenerationStep.Feature.UNDERGROUND_ORES, m.placedFeature().getKey().get());
+                    biomeModificationContext.getGenerationSettings().addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, m.placedFeature().unwrapKey().get());
                 }
             });
         };

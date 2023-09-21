@@ -1,48 +1,48 @@
 package net.feltmc.feltapi.api.tool.interactions;
 
 import net.feltmc.feltapi.mixin.tool.ShovelMixin;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.CampfireBlock;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldEvents;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CampfireBlock;
+import net.minecraft.world.level.block.LevelEvent;
+import net.minecraft.world.level.block.state.BlockState;
 
 public interface Pathing {
-    public default ActionResult path(ItemUsageContext context){
-        World world = context.getWorld();
-        BlockPos blockPos = context.getBlockPos();
+    public default InteractionResult path(UseOnContext context){
+        Level world = context.getLevel();
+        BlockPos blockPos = context.getClickedPos();
         BlockState blockState = world.getBlockState(blockPos);
-        if (context.getSide() != Direction.DOWN) {
+        if (context.getClickedFace() != Direction.DOWN) {
             BlockState blockState2 = getPathedState(context);
             BlockState blockState3 = null;
-            if (blockState2 != null && world.getBlockState(blockPos.up()).isAir()) {
-                world.playSound(context.getPlayer(), blockPos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0f, 1.0f);
+            if (blockState2 != null && world.getBlockState(blockPos.above()).isAir()) {
+                world.playSound(context.getPlayer(), blockPos, SoundEvents.SHOVEL_FLATTEN, SoundSource.BLOCKS, 1.0f, 1.0f);
                 blockState3 = blockState2;
-            } else if (blockState.getBlock() instanceof CampfireBlock && blockState.get(CampfireBlock.LIT).booleanValue()) {
-                if (!world.isClient()) world.syncWorldEvent(null, WorldEvents.FIRE_EXTINGUISHED, blockPos, 0);
-                CampfireBlock.extinguish(context.getPlayer(), world, blockPos, blockState);
-                blockState3 = (BlockState)blockState.with(CampfireBlock.LIT, false);
+            } else if (blockState.getBlock() instanceof CampfireBlock && blockState.getValue(CampfireBlock.LIT).booleanValue()) {
+                if (!world.isClientSide()) world.levelEvent(null, LevelEvent.SOUND_EXTINGUISH_FIRE, blockPos, 0);
+                CampfireBlock.dowse(context.getPlayer(), world, blockPos, blockState);
+                blockState3 = (BlockState)blockState.setValue(CampfireBlock.LIT, false);
             }
             if (blockState3 != null) {
-                if (!world.isClient) {
-                    world.setBlockState(blockPos, blockState3, Block.NOTIFY_ALL | Block.REDRAW_ON_MAIN_THREAD);
-                    if (context.getPlayer() != null) context.getStack().damage(1, context.getPlayer(), p -> p.sendToolBreakStatus(context.getHand()));
+                if (!world.isClientSide) {
+                    world.setBlock(blockPos, blockState3, Block.UPDATE_ALL | Block.UPDATE_IMMEDIATE);
+                    if (context.getPlayer() != null) context.getItemInHand().hurtAndBreak(1, context.getPlayer(), p -> p.broadcastBreakEvent(context.getHand()));
                 }
-                return ActionResult.success(world.isClient);
+                return InteractionResult.sidedSuccess(world.isClientSide);
             }
-            return ActionResult.PASS;
+            return InteractionResult.PASS;
         }
-        return ActionResult.PASS;
+        return InteractionResult.PASS;
     }
 
-    public default BlockState getPathedState(ItemUsageContext context){
-        BlockState blockState = context.getWorld().getBlockState(context.getBlockPos());
+    public default BlockState getPathedState(UseOnContext context){
+        BlockState blockState = context.getLevel().getBlockState(context.getClickedPos());
         return ShovelMixin.getPathed().get(blockState.getBlock());
     }
 }

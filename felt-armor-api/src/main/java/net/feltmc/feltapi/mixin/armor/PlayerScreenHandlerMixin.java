@@ -1,9 +1,9 @@
 package net.feltmc.feltapi.mixin.armor;
 
 import net.feltmc.feltapi.api.armor.ArmorEquipItem;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.screen.PlayerScreenHandler;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.inventory.InventoryMenu;
+import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Debug;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,7 +18,7 @@ public class PlayerScreenHandlerMixin {
 
     @Shadow @Final private EquipmentSlot field_7834;
 
-    @Shadow @Final private PlayerScreenHandler field_7833;
+    @Shadow @Final private InventoryMenu field_7833;
 
     @Inject(method = "canInsert", at = @At("HEAD"))
     private void injectCanEquip(ItemStack stack, CallbackInfoReturnable<Boolean> info){

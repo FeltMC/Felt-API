@@ -2,25 +2,24 @@ package net.feltmc.feltapi.impl.ore_feature;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.FeaturePlacementContext;
-import net.minecraft.world.gen.placementmodifier.AbstractConditionalPlacementModifier;
-import net.minecraft.world.gen.placementmodifier.PlacementModifierType;
-
 import java.util.List;
 import java.util.Random;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.levelgen.placement.PlacementContext;
+import net.minecraft.world.level.levelgen.placement.PlacementFilter;
+import net.minecraft.world.level.levelgen.placement.PlacementModifierType;
 
-public class DimensionalPlacementModifier extends AbstractConditionalPlacementModifier {
-    public static Codec<DimensionalPlacementModifier> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.list(World.CODEC).fieldOf("dimensions").forGetter(m -> m.dimensions)).apply(instance, DimensionalPlacementModifier::new));
+public class DimensionalPlacementModifier extends PlacementFilter {
+    public static Codec<DimensionalPlacementModifier> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.list(Level.RESOURCE_KEY_CODEC).fieldOf("dimensions").forGetter(m -> m.dimensions)).apply(instance, DimensionalPlacementModifier::new));
 
-    public static final PlacementModifierType<DimensionalPlacementModifier> MODIFIER_TYPE = Registry.register(Registry.PLACEMENT_MODIFIER_TYPE, "felt-ore-feature-api-v1:dimensions", DimensionalPlacementModifier::codec);
+    public static final PlacementModifierType<DimensionalPlacementModifier> MODIFIER_TYPE = Registry.register(Registry.PLACEMENT_MODIFIERS, "felt-ore-feature-api-v1:dimensions", DimensionalPlacementModifier::codec);
 
-    public final List<RegistryKey<World>> dimensions;
+    public final List<ResourceKey<Level>> dimensions;
 
-    public DimensionalPlacementModifier(List<RegistryKey<World>> dimensions) {
+    public DimensionalPlacementModifier(List<ResourceKey<Level>> dimensions) {
         this.dimensions = dimensions;
     }
 
@@ -29,12 +28,12 @@ public class DimensionalPlacementModifier extends AbstractConditionalPlacementMo
     }
 
     @Override
-    protected boolean shouldPlace(FeaturePlacementContext context, Random random, BlockPos pos) {
-        return dimensions.isEmpty() || dimensions.contains(context.getWorld().toServerWorld().getRegistryKey());
+    protected boolean shouldPlace(PlacementContext context, Random random, BlockPos pos) {
+        return dimensions.isEmpty() || dimensions.contains(context.getLevel().getLevel().dimension());
     }
 
     @Override
-    public PlacementModifierType<?> getType() {
+    public PlacementModifierType<?> type() {
         return MODIFIER_TYPE;
     }
 }

@@ -5,13 +5,13 @@ import net.fabricmc.fabric.api.transfer.v1.item.PlayerInventoryStorage;
 import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
 import net.fabricmc.fabric.api.transfer.v1.storage.StorageView;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 
 @SuppressWarnings("UnstableApiUsage")
 public class ItemUtil {
 
-    public static void giveItemToPlayer(PlayerEntity player, ItemStack stack){
+    public static void giveItemToPlayer(Player player, ItemStack stack){
         Transaction transaction = Transaction.openOuter();
         PlayerInventoryStorage.of(player).offerOrDrop(ItemVariant.of(stack), stack.getCount(), transaction);
         transaction.commit();
@@ -55,13 +55,13 @@ public class ItemUtil {
         for (StorageView<ItemVariant> view : storage.iterable(tx)) {
             if (!view.isResourceBlank()) {
                 ItemVariant var = view.getResource();
-                long amount = Math.min(var.getItem().getMaxCount(), Math.min(maxAmount, view.getAmount()));
+                long amount = Math.min(var.getItem().getMaxStackSize(), Math.min(maxAmount, view.getAmount()));
                 long extracted = view.extract(var, amount, tx);
                 maxAmount -= extracted;
                 if (stack.isEmpty()) {
                     stack = var.toStack((int) extracted);
                 } else if (var.matches(stack)) {
-                    stack.increment((int) extracted);
+                    stack.grow((int) extracted);
                 }
                 if (maxAmount == 0)
                     break;

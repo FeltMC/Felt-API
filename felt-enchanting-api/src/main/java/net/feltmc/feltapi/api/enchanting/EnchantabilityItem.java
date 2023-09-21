@@ -1,7 +1,7 @@
 package net.feltmc.feltapi.api.enchanting;
 
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
 
 public interface EnchantabilityItem {
     /**
@@ -12,7 +12,7 @@ public interface EnchantabilityItem {
      */
     default int getEnchantability(ItemStack stack)
     {
-        return stack.getItem().getEnchantability();
+        return stack.getItem().getEnchantmentValue();
     }
 
     /**
@@ -20,7 +20,7 @@ public interface EnchantabilityItem {
      * applies specifically to enchanting an item in the enchanting table and is
      * called when retrieving the list of possible enchantments for an item.
      * Enchantments may additionally (or exclusively) be doing their own checks in
-     * {@link Enchantment#isAcceptableItem(ItemStack)};
+     * {@link Enchantment#canEnchant(ItemStack)};
      * check the individual implementation for reference. By default this will check
      * if the enchantment type is valid for this item type.
      *
@@ -30,6 +30,6 @@ public interface EnchantabilityItem {
      */
     default boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment)
     {
-        return enchantment.type.isAcceptableItem(stack.getItem());
+        return enchantment.category.canEnchant(stack.getItem());
     }
 }

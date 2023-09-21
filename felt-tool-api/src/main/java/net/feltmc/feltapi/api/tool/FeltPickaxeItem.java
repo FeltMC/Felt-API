@@ -1,28 +1,28 @@
 package net.feltmc.feltapi.api.tool;
 
 import net.feltmc.feltapi.api.tool.interactions.Torching;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.item.PickaxeItem;
-import net.minecraft.item.ToolMaterial;
-import net.minecraft.util.ActionResult;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.context.UseOnContext;
 
 public class FeltPickaxeItem extends PickaxeItem implements Torching {
     boolean torchingEnabled;
-    public FeltPickaxeItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
+    public FeltPickaxeItem(Tier material, int attackDamage, float attackSpeed, Properties settings) {
         this(material, attackDamage, attackSpeed, settings, false);
     }
 
-    public FeltPickaxeItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings, boolean torching) {
+    public FeltPickaxeItem(Tier material, int attackDamage, float attackSpeed, Properties settings, boolean torching) {
         super(material, attackDamage, attackSpeed, settings);
         torchingEnabled = torching;
     }
 
     @Override
-    public ActionResult useOnBlock(ItemUsageContext context) {
+    public InteractionResult useOn(UseOnContext context) {
         if (torchingEnabled){
             return torch(context);
         } else {
-            return ActionResult.PASS;
+            return InteractionResult.PASS;
         }
     }
 }

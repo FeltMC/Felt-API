@@ -1,18 +1,18 @@
 package net.feltmc.feltapi.api.tool;
 
 import net.feltmc.feltapi.api.tool.interactions.Tilling;
-import net.minecraft.item.HoeItem;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.item.ToolMaterial;
-import net.minecraft.util.ActionResult;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.HoeItem;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.context.UseOnContext;
 
 public class FeltHoeItem extends HoeItem implements Tilling {
-    public FeltHoeItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
+    public FeltHoeItem(Tier material, int attackDamage, float attackSpeed, Properties settings) {
         super(material, attackDamage, attackSpeed, settings);
     }
 
     @Override
-    public ActionResult useOnBlock(ItemUsageContext context) {
+    public InteractionResult useOn(UseOnContext context) {
         return till(context);
     }
 }

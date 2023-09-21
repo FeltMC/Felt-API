@@ -3,17 +3,16 @@ package net.feltmc.feltapi.impl.ore_feature;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.feltmc.feltapi.api.ore_feature.v1.FeltRuleTest;
-import net.minecraft.block.BlockState;
-import net.minecraft.structure.rule.RuleTest;
-import net.minecraft.util.registry.RegistryKey;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.FeatureConfig;
-
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
+import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import java.util.List;
 import java.util.Random;
 import java.util.function.BiFunction;
 
-public class FeltOreFeatureConfig implements FeatureConfig {
+public class FeltOreFeatureConfig implements FeatureConfiguration {
     public static final Codec<FeltOreFeatureConfig> CODEC = RecordCodecBuilder.create((instance) -> {
         return instance.group(Codec.STRING.fieldOf("domain").forGetter(config -> {
             return config.domain;
@@ -60,7 +59,7 @@ public class FeltOreFeatureConfig implements FeatureConfig {
         this(domain, id, new FeltRuleTest(domain, id, test, state), size, 0.0F);
     }
 
-    public List<RegistryKey<World>> getDimensions(){
+    public List<ResourceKey<Level>> getDimensions(){
         return OreFeaturesData.FEATURE_MAP.get(domain + ":" + id).dimensions();
     }
 
