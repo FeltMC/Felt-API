@@ -8,8 +8,6 @@ import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 
-import javax.annotation.Nonnull;
-
 @SuppressWarnings("UnstableApiUsage")
 public class ItemUtil {
 

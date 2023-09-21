@@ -16,15 +16,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Hand;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 @SuppressWarnings("UnstableApiUsage")
 public class FluidUtil {
 
-    @Nonnull
-    public static FluidActionResult tryFillContainer(@Nonnull ItemStack container, Storage<FluidVariant> fluidSource, long maxAmount, @Nullable PlayerEntity player, boolean doFill) {
+    @NotNull
+    public static FluidActionResult tryFillContainer(@NotNull ItemStack container, Storage<FluidVariant> fluidSource, long maxAmount, @Nullable PlayerEntity player, boolean doFill) {
         ItemStack containerCopy = ItemUtil.copyStackWithSize(container, 1); // do not modify the input
         ContainerItemContext context = ContainerItemContext.withInitial(containerCopy);
         Storage<FluidVariant> containerFluidStorage = context.find(FluidStorage.ITEM);
@@ -42,8 +42,8 @@ public class FluidUtil {
         }
         return FluidActionResult.FAILURE;
     }
-    @Nonnull
-    public static FluidActionResult tryEmptyContainer(@Nonnull ItemStack container, Storage<FluidVariant> fluidDestination, long maxAmount, @Nullable PlayerEntity player, boolean doDrain) {
+    @NotNull
+    public static FluidActionResult tryEmptyContainer(@NotNull ItemStack container, Storage<FluidVariant> fluidDestination, long maxAmount, @Nullable PlayerEntity player, boolean doDrain) {
         ItemStack containerCopy = ItemUtil.copyStackWithSize(container, 1); // do not modify the input
         ContainerItemContext context = ContainerItemContext.withInitial(containerCopy);
         Storage<FluidVariant> containerFluidStorage = context.find(FluidStorage.ITEM);
@@ -63,8 +63,8 @@ public class FluidUtil {
         return FluidActionResult.FAILURE;
     }
 
-    @Nonnull
-    public static FluidActionResult tryEmptyContainerAndStow(@Nonnull ItemStack container, Storage<FluidVariant> fluidDestination, Storage<ItemVariant> inventory, long maxAmount, @Nullable PlayerEntity player, boolean doDrain) {
+    @NotNull
+    public static FluidActionResult tryEmptyContainerAndStow(@NotNull ItemStack container, Storage<FluidVariant> fluidDestination, Storage<ItemVariant> inventory, long maxAmount, @Nullable PlayerEntity player, boolean doDrain) {
         if (container.isEmpty()) {
             return FluidActionResult.FAILURE;
         }
@@ -101,8 +101,8 @@ public class FluidUtil {
         return FluidActionResult.FAILURE;
     }
 
-    @Nonnull
-    public static FluidActionResult tryFillContainerAndStow(@Nonnull ItemStack container, Storage<FluidVariant> fluidSource, Storage<ItemVariant> inventory, long maxAmount, @Nullable PlayerEntity player, boolean doFill) {
+    @NotNull
+    public static FluidActionResult tryFillContainerAndStow(@NotNull ItemStack container, Storage<FluidVariant> fluidSource, Storage<ItemVariant> inventory, long maxAmount, @Nullable PlayerEntity player, boolean doFill) {
         if (container.isEmpty()) {
             return FluidActionResult.FAILURE;
         }
@@ -140,7 +140,7 @@ public class FluidUtil {
     }
 
 
-    public static boolean interactWithFluidHandler(@Nonnull PlayerEntity player, @Nonnull Hand hand, @Nonnull Storage<FluidVariant> handler) {
+    public static boolean interactWithFluidHandler(@NotNull PlayerEntity player, @NotNull Hand hand, @NotNull Storage<FluidVariant> handler) {
         Preconditions.checkNotNull(player);
         Preconditions.checkNotNull(hand);
         Preconditions.checkNotNull(handler);
@@ -210,7 +210,7 @@ public class FluidUtil {
         }
     }
 
-    @Nonnull
+    @NotNull
     public static StoredFluid tryFluidTransfer(Storage<FluidVariant> fluidDestination, Storage<FluidVariant> fluidSource, long maxAmount, boolean doTransfer) {
         StoredFluid drainable = simulateExtractAnyFluid(fluidSource, maxAmount);
         if (!drainable.isResourceBlank()) {
@@ -219,7 +219,7 @@ public class FluidUtil {
         return StoredFluid.EMPTY;
     }
 
-    @Nonnull
+    @NotNull
     public static StoredFluid tryFluidTransfer(Storage<FluidVariant> fluidDestination, Storage<FluidVariant> fluidSource, FluidVariant resource, long maxAmount, boolean doTransfer) {
         long drainable = fluidSource.simulateExtract(resource, maxAmount, null);
         if (drainable > 0) {
@@ -228,7 +228,7 @@ public class FluidUtil {
         return StoredFluid.EMPTY;
     }
 
-    @Nonnull
+    @NotNull
     private static StoredFluid tryFluidTransfer_Internal(Storage<FluidVariant> fluidDestination, Storage<FluidVariant> fluidSource, FluidVariant drainable, long amount, boolean doTransfer) {
         long fillableAmount = fluidDestination.simulateInsert(drainable, amount, null);
         if (fillableAmount > 0) {
