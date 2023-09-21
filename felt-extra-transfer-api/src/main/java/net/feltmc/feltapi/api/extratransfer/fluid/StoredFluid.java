@@ -1,6 +1,6 @@
-package io.github.feltmc.feltapi.api.extratransfer.fluid;
+package net.feltmc.feltapi.api.extratransfer.fluid;
 
-import io.github.feltmc.feltapi.impl.extratransfer.fluid.StoredFluidImpl;
+import net.feltmc.feltapi.impl.extratransfer.fluid.StoredFluidImpl;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.storage.StorageView;
 

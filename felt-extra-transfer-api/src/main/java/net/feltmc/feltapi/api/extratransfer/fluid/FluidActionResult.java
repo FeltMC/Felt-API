@@ -1,4 +1,4 @@
-package io.github.feltmc.feltapi.api.extratransfer.fluid;
+package net.feltmc.feltapi.api.extratransfer.fluid;
 
 import net.minecraft.item.ItemStack;
 

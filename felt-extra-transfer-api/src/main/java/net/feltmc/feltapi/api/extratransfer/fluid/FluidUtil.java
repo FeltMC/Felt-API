@@ -1,13 +1,12 @@
-package io.github.feltmc.feltapi.api.extratransfer.fluid;
+package net.feltmc.feltapi.api.extratransfer.fluid;
 
 import com.google.common.base.Preconditions;
-import io.github.feltmc.feltapi.api.extratransfer.item.ItemUtil;
+import net.feltmc.feltapi.api.extratransfer.item.ItemUtil;
 import net.fabricmc.fabric.api.transfer.v1.context.ContainerItemContext;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariantAttributes;
 import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
-import net.fabricmc.fabric.api.transfer.v1.item.PlayerInventoryStorage;
 import net.fabricmc.fabric.api.transfer.v1.storage.Storage;
 import net.fabricmc.fabric.api.transfer.v1.storage.StorageView;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
@@ -20,7 +19,6 @@ import net.minecraft.util.Hand;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.Iterator;
 
 @SuppressWarnings("UnstableApiUsage")
 public class FluidUtil {
