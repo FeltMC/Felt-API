@@ -23,7 +23,7 @@ public interface BlockBreakResetItem {
             return true;
 
         if (!newStack.isDamageableItem() || !oldStack.isDamageableItem())
-            return !ItemStack.tagMatches(newStack, oldStack);
+            return !ItemStack.isSameItemSameTags(newStack, oldStack);
 
         CompoundTag newTag = newStack.getTag();
         CompoundTag oldTag = oldStack.getTag();

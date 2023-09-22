@@ -18,8 +18,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class ServerPlayerEntityMixin extends Player {
 
 
-    public ServerPlayerEntityMixin(Level level, BlockPos pos, float yRot, GameProfile gameProfile, @Nullable ProfilePublicKey profilePublicKey) {
-        super(level, pos, yRot, gameProfile, profilePublicKey);
+    public ServerPlayerEntityMixin(Level level, BlockPos pos, float yRot, GameProfile gameProfile) {
+        super(level, pos, yRot, gameProfile);
     }
 
     @Inject(method = "drop(Z)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerPlayer;getInventory()Lnet/minecraft/world/entity/player/Inventory;", shift = At.Shift.AFTER), cancellable = true)

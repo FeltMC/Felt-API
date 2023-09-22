@@ -1,5 +1,5 @@
 archivesBaseName = "felt-api-base"
 
 dependencies {
-    testmodImplementation project(path: ':felt-ore-feature-api-v1', configuration: 'namedElements')
+    //testmodImplementation project(path: ':felt-ore-feature-api-v1', configuration: 'namedElements')
 }

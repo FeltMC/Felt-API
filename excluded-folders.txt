@@ -12,3 +12,4 @@ classes
 bin
 .classpath
 .project
+felt-ore-feature-api-v1

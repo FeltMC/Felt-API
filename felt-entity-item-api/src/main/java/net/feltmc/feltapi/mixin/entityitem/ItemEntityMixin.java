@@ -43,7 +43,7 @@ public abstract class ItemEntityMixin extends Entity {
 
     @ModifyConstant(method = "makeFakeItem", constant = @Constant(intValue = 5999))
     private int redirectSetDespawnImmediately(int constant){
-        if (getItem().getItem() instanceof EntityCustomItem customItem) return customItem.getEntityLifespan(getItem(), this.level) - 1;
+        if (getItem().getItem() instanceof EntityCustomItem customItem) return customItem.getEntityLifespan(getItem(), this.level()) - 1;
         return constant;
     }
 

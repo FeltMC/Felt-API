@@ -1,6 +1,7 @@
 package net.feltmc.feltapi.api.extratransfer.fluid;
 
 import com.google.common.base.Preconditions;
+import net.fabricmc.fabric.api.transfer.v1.storage.StorageUtil;
 import net.feltmc.feltapi.api.extratransfer.item.ItemUtil;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
@@ -26,7 +27,7 @@ public class FluidUtil {
     @NotNull
     public static FluidActionResult tryFillContainer(@NotNull ItemStack container, Storage<FluidVariant> fluidSource, long maxAmount, @Nullable Player player, boolean doFill) {
         ItemStack containerCopy = ItemUtil.copyStackWithSize(container, 1); // do not modify the input
-        ContainerItemContext context = ContainerItemContext.withInitial(containerCopy);
+        ContainerItemContext context = ContainerItemContext.withConstant(containerCopy);
         Storage<FluidVariant> containerFluidStorage = context.find(FluidStorage.ITEM);
         if (containerFluidStorage != null){
             // We are acting on a COPY of the stack, so performing changes is acceptable even if we are simulating.
@@ -34,7 +35,7 @@ public class FluidUtil {
             if (transfer.isResourceBlank()) return FluidActionResult.FAILURE;
             if (doFill && player != null) {
                 SoundEvent soundevent = FluidVariantAttributes.getEmptySound(transfer.getResource());
-                player.level.playSound(null, player.getX(), player.getY() + 0.5, player.getZ(), soundevent, SoundSource.BLOCKS, 1.0F, 1.0F);
+                player.level().playSound(null, player.getX(), player.getY() + 0.5, player.getZ(), soundevent, SoundSource.BLOCKS, 1.0F, 1.0F);
             }
 
             ItemStack resultContainer = context.getItemVariant().toStack();
@@ -45,7 +46,7 @@ public class FluidUtil {
     @NotNull
     public static FluidActionResult tryEmptyContainer(@NotNull ItemStack container, Storage<FluidVariant> fluidDestination, long maxAmount, @Nullable Player player, boolean doDrain) {
         ItemStack containerCopy = ItemUtil.copyStackWithSize(container, 1); // do not modify the input
-        ContainerItemContext context = ContainerItemContext.withInitial(containerCopy);
+        ContainerItemContext context = ContainerItemContext.withConstant(containerCopy);
         Storage<FluidVariant> containerFluidStorage = context.find(FluidStorage.ITEM);
         if (containerFluidStorage != null){
             // We are acting on a COPY of the stack, so performing changes is acceptable even if we are simulating.
@@ -54,7 +55,7 @@ public class FluidUtil {
             if (doDrain && player != null)
             {
                 SoundEvent soundevent = FluidVariantAttributes.getFillSound(transfer.getResource());
-                player.level.playSound(null, player.getX(), player.getY() + 0.5, player.getZ(), soundevent, SoundSource.BLOCKS, 1.0F, 1.0F);
+                player.level().playSound(null, player.getX(), player.getY() + 0.5, player.getZ(), soundevent, SoundSource.BLOCKS, 1.0F, 1.0F);
             }
 
             ItemStack resultContainer = context.getItemVariant().toStack();
@@ -221,7 +222,7 @@ public class FluidUtil {
 
     @NotNull
     public static StoredFluid tryFluidTransfer(Storage<FluidVariant> fluidDestination, Storage<FluidVariant> fluidSource, FluidVariant resource, long maxAmount, boolean doTransfer) {
-        long drainable = fluidSource.simulateExtract(resource, maxAmount, null);
+        long drainable = StorageUtil.simulateExtract(fluidSource, resource, maxAmount, null);
         if (drainable > 0) {
             return tryFluidTransfer_Internal(fluidDestination, fluidSource, resource, maxAmount, doTransfer);
         }
@@ -230,7 +231,7 @@ public class FluidUtil {
 
     @NotNull
     private static StoredFluid tryFluidTransfer_Internal(Storage<FluidVariant> fluidDestination, Storage<FluidVariant> fluidSource, FluidVariant drainable, long amount, boolean doTransfer) {
-        long fillableAmount = fluidDestination.simulateInsert(drainable, amount, null);
+        long fillableAmount = StorageUtil.simulateInsert(fluidDestination, drainable, amount, null);
         if (fillableAmount > 0) {
             if (doTransfer) {
                 Transaction transaction = Transaction.openOuter();
