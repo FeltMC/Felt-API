@@ -1,10 +1,10 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "io.github.feltmc.feltapi.mixin.blockbreakreset",
+  "package": "net.feltmc.feltapi.mixin.blockbreakreset",
   "compatibilityLevel": "JAVA_17",
   "client": [
-    "net.github.feltmc.feltapi.mixin.blockbreakreset.client.ClientPlayerInteractionManagerMixin"
+    "client.ClientPlayerInteractionManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

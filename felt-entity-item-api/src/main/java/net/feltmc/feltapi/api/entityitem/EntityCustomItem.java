@@ -1,10 +1,10 @@
 package net.feltmc.feltapi.api.entityitem;
 
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
 public interface EntityCustomItem {
     private Item self()
@@ -20,7 +20,7 @@ public interface EntityCustomItem {
      * @param level     The level the entity is in
      * @return The normal lifespan in ticks.
      */
-    default int getEntityLifespan(ItemStack itemStack, World level)
+    default int getEntityLifespan(ItemStack itemStack, Level level)
     {
         return 6000;
     }
@@ -33,6 +33,6 @@ public interface EntityCustomItem {
      */
     default void onItemEntityDestroyed(ItemEntity itemEntity, DamageSource damageSource)
     {
-        self().onItemEntityDestroyed(itemEntity);
+        self().onDestroyed(itemEntity);
     }
 }

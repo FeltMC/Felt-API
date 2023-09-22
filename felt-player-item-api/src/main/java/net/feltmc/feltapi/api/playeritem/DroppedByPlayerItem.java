@@ -1,7 +1,7 @@
 package net.feltmc.feltapi.api.playeritem;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 
 public interface DroppedByPlayerItem {
 
@@ -13,5 +13,5 @@ public interface DroppedByPlayerItem {
      * @param player The player that dropped the item
      * @param item   The item stack, before the item is removed.
      */
-    boolean onDroppedByPlayer(ItemStack item, PlayerEntity player);
+    boolean onDroppedByPlayer(ItemStack item, Player player);
 }

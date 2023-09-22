@@ -1,2 +1,2 @@
 accessWidener   v2  named
-accessible class net/minecraft/recipe/CookingRecipeSerializer$RecipeFactory
+accessible class net/minecraft/world/item/crafting/SimpleCookingSerializer$CookieBaker

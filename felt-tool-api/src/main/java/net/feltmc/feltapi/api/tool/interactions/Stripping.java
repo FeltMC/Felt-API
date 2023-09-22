@@ -1,60 +1,59 @@
 package net.feltmc.feltapi.api.tool.interactions;
 
 import net.feltmc.feltapi.mixin.tool.AxeMixin;
-import net.minecraft.advancement.criterion.Criteria;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Oxidizable;
-import net.minecraft.block.PillarBlock;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.HoneycombItem;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldEvents;
-
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.HoneycombItem;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.LevelEvent;
+import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.WeatheringCopper;
+import net.minecraft.world.level.block.state.BlockState;
 import java.util.Optional;
 
 public interface Stripping {
-    public default ActionResult strip(ItemUsageContext context){
-        World world = context.getWorld();
-        BlockPos blockPos = context.getBlockPos();
-        PlayerEntity playerEntity = context.getPlayer();
+    public default InteractionResult strip(UseOnContext context){
+        Level world = context.getLevel();
+        BlockPos blockPos = context.getClickedPos();
+        Player playerEntity = context.getPlayer();
         BlockState blockState = world.getBlockState(blockPos);
         Optional<BlockState> strippedState = this.getStrippedState(blockState);
-        Optional<BlockState> waxedBlocks = Optional.ofNullable((Block) HoneycombItem.WAXED_TO_UNWAXED_BLOCKS.get().get(blockState.getBlock())).map(block -> block.getStateWithProperties(blockState));
+        Optional<BlockState> waxedBlocks = Optional.ofNullable((Block) HoneycombItem.WAX_OFF_BY_BLOCK.get().get(blockState.getBlock())).map(block -> block.withPropertiesOf(blockState));
         if (strippedState.isPresent()) {
-            return doBlockstate(context, world, playerEntity, strippedState, SoundEvents.ITEM_AXE_STRIP);
-        } else if (Oxidizable.getDecreasedOxidationState(blockState).isPresent()) {
-            world.syncWorldEvent(playerEntity, WorldEvents.BLOCK_SCRAPED, blockPos, 0);
-            return doBlockstate(context, world, playerEntity, strippedState, SoundEvents.ITEM_AXE_SCRAPE);
+            return doBlockstate(context, world, playerEntity, strippedState, SoundEvents.AXE_STRIP);
+        } else if (WeatheringCopper.getPrevious(blockState).isPresent()) {
+            world.levelEvent(playerEntity, LevelEvent.PARTICLES_SCRAPE, blockPos, 0);
+            return doBlockstate(context, world, playerEntity, strippedState, SoundEvents.AXE_SCRAPE);
         } else if (waxedBlocks.isPresent()) {
-            world.syncWorldEvent(playerEntity, WorldEvents.WAX_REMOVED, blockPos, 0);
-            return doBlockstate(context, world, playerEntity, strippedState, SoundEvents.ITEM_AXE_WAX_OFF);
+            world.levelEvent(playerEntity, LevelEvent.PARTICLES_WAX_OFF, blockPos, 0);
+            return doBlockstate(context, world, playerEntity, strippedState, SoundEvents.AXE_WAX_OFF);
         }
-        return ActionResult.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
-    public default boolean canStrip(ItemUsageContext context){
-        BlockState blockState = context.getWorld().getBlockState(context.getBlockPos());
-        Optional<BlockState> waxedBlocks = Optional.ofNullable((Block) HoneycombItem.WAXED_TO_UNWAXED_BLOCKS.get().get(blockState.getBlock())).map(block -> block.getStateWithProperties(blockState));
-        return this.getStrippedState(blockState).isPresent() || Oxidizable.getDecreasedOxidationState(blockState).isPresent() || waxedBlocks.isPresent();
+    public default boolean canStrip(UseOnContext context){
+        BlockState blockState = context.getLevel().getBlockState(context.getClickedPos());
+        Optional<BlockState> waxedBlocks = Optional.ofNullable((Block) HoneycombItem.WAX_OFF_BY_BLOCK.get().get(blockState.getBlock())).map(block -> block.withPropertiesOf(blockState));
+        return this.getStrippedState(blockState).isPresent() || WeatheringCopper.getPrevious(blockState).isPresent() || waxedBlocks.isPresent();
     }
 
-    public default ActionResult doBlockstate(ItemUsageContext context, World world, PlayerEntity playerEntity, Optional<BlockState> blockState, SoundEvent sound){
-        world.playSound(playerEntity, context.getBlockPos(), sound, SoundCategory.BLOCKS, 1.0f, 1.0f);
-        if (playerEntity instanceof ServerPlayerEntity) Criteria.ITEM_USED_ON_BLOCK.trigger((ServerPlayerEntity)playerEntity, context.getBlockPos(), context.getStack());
-        world.setBlockState(context.getBlockPos(), (BlockState)blockState.get(), Block.NOTIFY_ALL | Block.REDRAW_ON_MAIN_THREAD);
-        if (playerEntity != null) context.getStack().damage(1, playerEntity, p -> p.sendToolBreakStatus(context.getHand()));
-        return ActionResult.success(world.isClient);
+    public default InteractionResult doBlockstate(UseOnContext context, Level world, Player playerEntity, Optional<BlockState> blockState, SoundEvent sound){
+        world.playSound(playerEntity, context.getClickedPos(), sound, SoundSource.BLOCKS, 1.0f, 1.0f);
+        if (playerEntity instanceof ServerPlayer) CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger((ServerPlayer)playerEntity, context.getClickedPos(), context.getItemInHand());
+        world.setBlock(context.getClickedPos(), (BlockState)blockState.get(), Block.UPDATE_ALL | Block.UPDATE_IMMEDIATE);
+        if (playerEntity != null) context.getItemInHand().hurtAndBreak(1, playerEntity, p -> p.broadcastBreakEvent(context.getHand()));
+        return InteractionResult.sidedSuccess(world.isClientSide);
     }
 
     public default Optional<BlockState> getStrippedState(BlockState state) {
-        return Optional.ofNullable(AxeMixin.getStripped().get(state.getBlock())).map(block -> (BlockState)block.getDefaultState().with(PillarBlock.AXIS, state.get(PillarBlock.AXIS)));
+        return Optional.ofNullable(AxeMixin.getStripped().get(state.getBlock())).map(block -> (BlockState)block.defaultBlockState().setValue(RotatedPillarBlock.AXIS, state.getValue(RotatedPillarBlock.AXIS)));
     }
 }

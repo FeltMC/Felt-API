@@ -17,8 +17,7 @@
 package net.feltmc.feltapi.api.event.lifecycle.v1;
 
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.world.ServerWorld;
-
+import net.minecraft.server.level.ServerLevel;
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 
@@ -53,6 +52,6 @@ public final class ServerSharedTickEvents {
 
 	@FunctionalInterface
 	public interface WorldTick {
-		void onWorldTick(ServerWorld world, boolean start);
+		void onWorldTick(ServerLevel world, boolean start);
 	}
 }

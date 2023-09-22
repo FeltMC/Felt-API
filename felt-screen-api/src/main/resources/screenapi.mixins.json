@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "io.github.feltmc.feltapi.mixin.screen",
+  "package": "net.feltmc.feltapi.mixin.screen",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
   ],
@@ -9,7 +9,7 @@
     "defaultRequire": 1
   },
   "client": [
-    "net.github.feltmc.feltapi.mixin.screen.HandledScreenMixin",
-    "net.github.feltmc.feltapi.mixin.screen.ScreenMixin"
+    "HandledScreenMixin",
+    "ScreenMixin"
   ]
 }

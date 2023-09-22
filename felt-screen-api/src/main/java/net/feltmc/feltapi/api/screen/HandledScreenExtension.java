@@ -1,6 +1,6 @@
 package net.feltmc.feltapi.api.screen;
 
-import net.minecraft.screen.slot.Slot;
+import net.minecraft.world.inventory.Slot;
 
 public interface HandledScreenExtension {
     default int getGuiLeft(){

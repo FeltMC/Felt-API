@@ -1,12 +1,12 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "io.github.feltmc.feltapi.mixin.tool",
+  "package": "net.feltmc.feltapi.mixin.tool",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "net.github.feltmc.feltapi.mixin.tool.AxeMixin",
-    "net.github.feltmc.feltapi.mixin.tool.ShovelMixin",
-    "net.github.feltmc.feltapi.mixin.tool.HoeMixin"
+    "AxeMixin",
+    "ShovelMixin",
+    "HoeMixin"
   ],
   "injectors": {
     "defaultRequire": 1

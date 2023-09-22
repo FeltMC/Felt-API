@@ -1,62 +1,62 @@
 package net.feltmc.feltapi.api.tool.interactions;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.item.Items;
-import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.shapes.CollisionContext;
 
 public interface Torching {
-    public default ActionResult torch(ItemUsageContext context){
-        PlayerEntity player = context.getPlayer();
-        ItemPlacementContext itemPlacementContext = new ItemPlacementContext(context);
-        World world = context.getWorld();
-        BlockPos pos = itemPlacementContext.getBlockPos();
+    public default InteractionResult torch(UseOnContext context){
+        Player player = context.getPlayer();
+        BlockPlaceContext itemPlacementContext = new BlockPlaceContext(context);
+        Level world = context.getLevel();
+        BlockPos pos = itemPlacementContext.getClickedPos();
         BlockState state = getTorchedState(itemPlacementContext);
         if (canTorch(context)){
-            if (context.getWorld().setBlockState(itemPlacementContext.getBlockPos(), state, 11)) {
-                BlockSoundGroup blockSoundGroup = state.getSoundGroup();
-                world.playSound(player, pos, blockSoundGroup.getPlaceSound(), SoundCategory.BLOCKS, (blockSoundGroup.getVolume() + 1.0F) / 2.0F, blockSoundGroup.getPitch() * 0.8F);
-                if (player == null || !player.getAbilities().creativeMode) {
+            if (context.getLevel().setBlock(itemPlacementContext.getClickedPos(), state, 11)) {
+                SoundType blockSoundGroup = state.getSoundType();
+                world.playSound(player, pos, blockSoundGroup.getPlaceSound(), SoundSource.BLOCKS, (blockSoundGroup.getVolume() + 1.0F) / 2.0F, blockSoundGroup.getPitch() * 0.8F);
+                if (player == null || !player.getAbilities().instabuild) {
                     removeTorch(itemPlacementContext);
                 }
             }
         }
-        return ActionResult.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
-    public default BlockState getTorchedState(ItemPlacementContext context) {
+    public default BlockState getTorchedState(BlockPlaceContext context) {
         BlockState state = null;
-        World world = context.getWorld();
-        BlockPos pos = context.getBlockPos();
-        Direction[] directions = context.getPlacementDirections();
+        Level world = context.getLevel();
+        BlockPos pos = context.getClickedPos();
+        Direction[] directions = context.getNearestLookingDirections();
 
         for (int i = 0; i < directions.length; i++) {
             Direction direction = directions[i];
             if (direction != Direction.UP) {
-                BlockState face = direction == Direction.DOWN ? Blocks.TORCH.getPlacementState(context): Blocks.WALL_TORCH.getPlacementState(context);
-                if (face != null && face.canPlaceAt(world, pos)) {
+                BlockState face = direction == Direction.DOWN ? Blocks.TORCH.getStateForPlacement(context): Blocks.WALL_TORCH.getStateForPlacement(context);
+                if (face != null && face.canSurvive(world, pos)) {
                     state = face;
                     break;
                 }
             }
         }
-        return state != null && world.canPlace(state, pos, ShapeContext.absent()) ? state : null;
+        return state != null && world.isUnobstructed(state, pos, CollisionContext.empty()) ? state : null;
     }
 
-    public default boolean canTorch(ItemUsageContext context){
-        PlayerEntity player = context.getPlayer();
-        if (getTorchedState(new ItemPlacementContext(context)) != null){
-            for (int i = 0; i < player.getInventory().size(); i++) {
-                if (player.getInventory().getStack(i).getItem() == Items.TORCH) {
+    public default boolean canTorch(UseOnContext context){
+        Player player = context.getPlayer();
+        if (getTorchedState(new BlockPlaceContext(context)) != null){
+            for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+                if (player.getInventory().getItem(i).getItem() == Items.TORCH) {
                     return true;
                 }
             }
@@ -64,11 +64,11 @@ public interface Torching {
         return false;
     }
 
-    public default void removeTorch(ItemPlacementContext context){
-        PlayerEntity player = context.getPlayer();
-        for (int i = 0; i < player.getInventory().size(); i++) {
-            if (player.getInventory().getStack(i).getItem() == Items.TORCH) {
-                player.getInventory().getStack(i).decrement(1);
+    public default void removeTorch(BlockPlaceContext context){
+        Player player = context.getPlayer();
+        for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+            if (player.getInventory().getItem(i).getItem() == Items.TORCH) {
+                player.getInventory().getItem(i).shrink(1);
                 break;
             }
         }

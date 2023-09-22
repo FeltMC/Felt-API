@@ -1,44 +1,44 @@
 package net.feltmc.feltapi.mixin.screen;
 
 import net.feltmc.feltapi.api.screen.HandledScreenExtension;
-import net.minecraft.client.gui.screen.ingame.HandledScreen;
-import net.minecraft.screen.slot.Slot;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.world.inventory.Slot;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 
-@Mixin(HandledScreen.class)
+@Mixin(AbstractContainerScreen.class)
 public class HandledScreenMixin implements HandledScreenExtension {
-    @Shadow @Nullable protected Slot focusedSlot;
-    @Shadow protected int x;
-    @Shadow protected int y;
-    @Shadow protected int backgroundWidth;
-    @Shadow protected int backgroundHeight;
+    @Shadow @Nullable protected Slot hoveredSlot;
+    @Shadow protected int leftPos;
+    @Shadow protected int topPos;
+    @Shadow protected int imageWidth;
+    @Shadow protected int imageHeight;
 
     @Override
     public int getGuiLeft() {
-        return this.x;
+        return this.leftPos;
     }
 
     @Override
     public int getGuiTop() {
-        return this.y;
+        return this.topPos;
     }
 
     @Override
     public int getXSize() {
-        return this.backgroundWidth;
+        return this.imageWidth;
     }
 
     @Override
     public int getYSize() {
-        return this.backgroundHeight;
+        return this.imageHeight;
     }
 
     @Override
     public Slot getSlotUnderMouse() {
-        return this.focusedSlot;
+        return this.hoveredSlot;
     }
 
     @Unique
