@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(MultiPlayerGameMode.class)
 public class ClientPlayerInteractionManagerMixin {
-    @ModifyVariable(method = "interactBlock", at = @At(value = "STORE"), index = 8)
+    @ModifyVariable(method = "useItemOn", at = @At(value = "STORE"), index = 8)
     private boolean modifyBL2(boolean value, LocalPlayer player, ClientLevel world, InteractionHand hand, BlockHitResult hitResult){
         BlockPos blockPos = hitResult.getBlockPos();
         ItemStack mainStack = player.getMainHandItem();

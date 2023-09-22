@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Debug(export = true)
-@Mixin(targets = "net.minecraft.screen.PlayerScreenHandler$1")
+@Mixin(targets = "net.minecraft.world.inventory.InventoryMenu$1")
 public class PlayerScreenHandlerMixin {
 
     @Shadow @Final private EquipmentSlot field_7834;

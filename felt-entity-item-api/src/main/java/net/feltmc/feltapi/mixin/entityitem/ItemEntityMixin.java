@@ -25,13 +25,13 @@ public abstract class ItemEntityMixin extends Entity {
     }
 
     @Shadow
-    public abstract ItemStack getStack();
+    public abstract ItemStack getItem();
 
     //todo event support and finish lifespan references
     @Unique
     public int lifespan = 6000;
 
-    @Inject(method = "<init>(Lnet/minecraft/world/World;DDDLnet/minecraft/item/ItemStack;DDD)V", at = @At("TAIL"))
+    @Inject(method = "<init>(Lnet/minecraft/world/level/Level;DDDLnet/minecraft/world/item/ItemStack;DDD)V", at = @At("TAIL"))
     private void injectInit(Level world, double x, double y, double z, ItemStack stack, double velocityX, double velocityY, double velocityZ, CallbackInfo ci){
         this.lifespan = !stack.isEmpty() && stack.getItem() instanceof EntityCustomItem feltItem ? feltItem.getEntityLifespan(stack, world) : 6000;
     }
@@ -41,13 +41,13 @@ public abstract class ItemEntityMixin extends Entity {
         return this.lifespan;
     }
 
-    @ModifyConstant(method = "setDespawnImmediately", constant = @Constant(intValue = 5999))
+    @ModifyConstant(method = "makeFakeItem", constant = @Constant(intValue = 5999))
     private int redirectSetDespawnImmediately(int constant){
-        if (getStack().getItem() instanceof EntityCustomItem customItem) return customItem.getEntityLifespan(getStack(), this.level) - 1;
+        if (getItem().getItem() instanceof EntityCustomItem customItem) return customItem.getEntityLifespan(getItem(), this.level) - 1;
         return constant;
     }
 
-    @WrapOperation(method = "damage",at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;onItemEntityDestroyed(Lnet/minecraft/entity/ItemEntity;)V"))
+    @WrapOperation(method = "hurt",at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;onDestroyed(Lnet/minecraft/world/entity/item/ItemEntity;)V"))
     private void wrapOnItemEntityDestroyed(ItemStack instance, ItemEntity entity, Operation<Void> original, DamageSource source, float amount){
         if (instance.getItem() instanceof EntityCustomItem customItem){
             customItem.onItemEntityDestroyed(entity, source);

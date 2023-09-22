@@ -13,5 +13,5 @@ import net.minecraft.world.level.block.Block;
 
 @Mixin(HoeItem.class)
 public interface HoeMixin {
-    @Accessor("TILLING_ACTIONS") static Map<Block, Pair<Predicate<UseOnContext>, Consumer<UseOnContext>>> getTilled() { throw new AssertionError(); }
+    @Accessor("TILLABLES") static Map<Block, Pair<Predicate<UseOnContext>, Consumer<UseOnContext>>> getTilled() { throw new AssertionError(); }
 }

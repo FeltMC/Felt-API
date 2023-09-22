@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(EnderMan.class)
 public class EndermanEntityMixin {
 
-    @WrapOperation(method = "isPlayerStaring", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
+    @WrapOperation(method = "isLookingAtMe", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z"))
     private boolean wrapIsStaring(ItemStack instance, Item pumpkin, Operation<Boolean> original, Player player){
         if (instance.getItem() instanceof EnderMaskItem extension){
             return extension.isEnderMask(instance, player, (EnderMan)(Object)this);

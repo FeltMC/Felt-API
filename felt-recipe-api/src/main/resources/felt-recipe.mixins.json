@@ -1,13 +1,13 @@
 {
   "required": true,
-  "package": "io.github.feltmc.feltapi.mixin.recipe",
+  "package": "net.feltmc.feltapi.mixin.recipe",
   "compatibilityLevel": "JAVA_17",
   "plugin": "net.feltmc.feltapi.mixin.recipe.RecipeMixinPlugin",
   "client": [
   ],
   "mixins": [
-    "net.github.feltmc.feltapi.mixin.recipe.AbstractFurnaceBlockEntityMixin",
-    "net.github.feltmc.feltapi.mixin.recipe.SimpleCookingSerializerMixin"
+    "AbstractFurnaceBlockEntityMixin",
+    "SimpleCookingSerializerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

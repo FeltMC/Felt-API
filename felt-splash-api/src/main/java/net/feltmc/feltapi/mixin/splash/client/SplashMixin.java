@@ -15,12 +15,12 @@ import java.util.List;
 @Mixin(net.minecraft.client.resources.SplashManager.class)
 public class SplashMixin {
     @Shadow
-    private List<String> splashTexts;
+    private List<String> splashes;
 
     @Inject(method="apply", at=@At("TAIL"))
     private void inject(CallbackInfo info) {
-        splashTexts.addAll(SplashImpl.splashesToAdd);
-        splashTexts.removeAll(SplashImpl.splashesToRemove);
+        splashes.addAll(SplashImpl.splashesToAdd);
+        splashes.removeAll(SplashImpl.splashesToRemove);
     }
 }
 

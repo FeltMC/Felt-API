@@ -10,5 +10,5 @@ import net.minecraft.world.level.block.state.BlockState;
 
 @Mixin(ShovelItem.class)
 public interface ShovelMixin {
-    @Accessor("PATH_STATES") static Map<Block, BlockState> getPathed() { throw new AssertionError(); }
+    @Accessor("FLATTENABLES") static Map<Block, BlockState> getPathed() { throw new AssertionError(); }
 }

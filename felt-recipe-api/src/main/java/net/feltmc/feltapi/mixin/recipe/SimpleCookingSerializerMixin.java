@@ -18,11 +18,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(SimpleCookingSerializer.class)
 public class SimpleCookingSerializerMixin {
-    @Shadow @Final private SimpleCookingSerializer.CookieBaker<AbstractCookingRecipe> recipeFactory;
+    @Shadow @Final private SimpleCookingSerializer.CookieBaker<AbstractCookingRecipe> factory;
 
-    @Shadow @Final private int cookingTime;
+    @Shadow @Final private int defaultCookingTime;
 
-    @Inject(method = "read(Lnet/minecraft/util/Identifier;Lcom/google/gson/JsonObject;)Lnet/minecraft/recipe/AbstractCookingRecipe;", at = @At(value = "HEAD"), cancellable = true)
+    @Inject(method = "fromJson(Lnet/minecraft/resources/ResourceLocation;Lcom/google/gson/JsonObject;)Lnet/minecraft/world/item/crafting/AbstractCookingRecipe;", at = @At(value = "HEAD"), cancellable = true)
     private void injectStackSupport(ResourceLocation recipeId, JsonObject json, CallbackInfoReturnable<AbstractCookingRecipe> cir){
         String string = GsonHelper.getAsString(json, "group", "");
         JsonElement jsonElement = GsonHelper.isArrayNode(json, "ingredient") ? GsonHelper.getAsJsonArray(json, "ingredient") : GsonHelper.getAsJsonObject(json, "ingredient");
@@ -31,8 +31,8 @@ public class SimpleCookingSerializerMixin {
         if (element instanceof JsonObject object){
             ItemStack itemStack = ShapedRecipe.itemStackFromJson(object);
             float f = GsonHelper.getAsFloat(json, "experience", 0.0F);
-            int i = GsonHelper.getAsInt(json, "cookingtime", this.cookingTime);
-            cir.setReturnValue(this.recipeFactory.create(recipeId, string, ingredient, itemStack, f, i));
+            int i = GsonHelper.getAsInt(json, "cookingtime", this.defaultCookingTime);
+            cir.setReturnValue(this.factory.create(recipeId, string, ingredient, itemStack, f, i));
         }
     }
 }

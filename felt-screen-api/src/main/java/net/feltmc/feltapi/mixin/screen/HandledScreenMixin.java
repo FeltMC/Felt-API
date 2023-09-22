@@ -10,35 +10,35 @@ import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(AbstractContainerScreen.class)
 public class HandledScreenMixin implements HandledScreenExtension {
-    @Shadow @Nullable protected Slot focusedSlot;
-    @Shadow protected int x;
-    @Shadow protected int y;
-    @Shadow protected int backgroundWidth;
-    @Shadow protected int backgroundHeight;
+    @Shadow @Nullable protected Slot hoveredSlot;
+    @Shadow protected int leftPos;
+    @Shadow protected int topPos;
+    @Shadow protected int imageWidth;
+    @Shadow protected int imageHeight;
 
     @Override
     public int getGuiLeft() {
-        return this.x;
+        return this.leftPos;
     }
 
     @Override
     public int getGuiTop() {
-        return this.y;
+        return this.topPos;
     }
 
     @Override
     public int getXSize() {
-        return this.backgroundWidth;
+        return this.imageWidth;
     }
 
     @Override
     public int getYSize() {
-        return this.backgroundHeight;
+        return this.imageHeight;
     }
 
     @Override
     public Slot getSlotUnderMouse() {
-        return this.focusedSlot;
+        return this.hoveredSlot;
     }
 
     @Unique

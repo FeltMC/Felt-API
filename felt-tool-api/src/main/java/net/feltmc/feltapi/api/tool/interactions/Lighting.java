@@ -1,7 +1,6 @@
 package net.feltmc.feltapi.api.tool.interactions;
 
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.block.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;

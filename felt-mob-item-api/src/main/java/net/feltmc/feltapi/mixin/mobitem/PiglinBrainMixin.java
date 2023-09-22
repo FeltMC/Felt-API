@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(PiglinAi.class)
 public abstract class PiglinBrainMixin {
 
-    @WrapOperation(method = "acceptsForBarter", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
+    @WrapOperation(method = "isBarterCurrency", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z"))
     private static boolean injectAcceptsPiglinItem(ItemStack stack, Item barteringItem, Operation<Boolean> original){
         if (stack.getItem() instanceof PiglinCurrencyItem item){
             return item.isPiglinCurrency(stack);

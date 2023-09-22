@@ -12,17 +12,17 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(AbstractFurnaceBlockEntity.class)
 public class AbstractFurnaceBlockEntityMixin {
-    @Redirect(method = "craftRecipe", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;increment(I)V"))
+    @Redirect(method = "burn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;grow(I)V"))
     private static void injectAmount(ItemStack instance, int increment, Recipe<?> recipe, NonNullList<ItemStack> nonNullList, int i){
         instance.grow(recipe.getResultItem().getCount());
     }
 
-    @ModifyReturnValue(method = "canAcceptRecipeOutput", at = @At(value = "RETURN", ordinal = 5))
+    @ModifyReturnValue(method = "canBurn", at = @At(value = "RETURN", ordinal = 5))
     private static boolean canFit(boolean original, @Nullable Recipe<?> recipe, NonNullList<ItemStack> nonNullList, int i){
         return nonNullList.get(2).getCount() + recipe.getResultItem().getCount() <= nonNullList.get(2).getMaxStackSize();
     }
 
-    @ModifyReturnValue(method = "canAcceptRecipeOutput", at = @At(value = "RETURN", ordinal = 4))
+    @ModifyReturnValue(method = "canBurn", at = @At(value = "RETURN", ordinal = 4))
     private static boolean canFit2(boolean original, @Nullable Recipe<?> recipe, NonNullList<ItemStack> nonNullList, int i){
         return nonNullList.get(2).getCount() + recipe.getResultItem().getCount() <= i;
     }

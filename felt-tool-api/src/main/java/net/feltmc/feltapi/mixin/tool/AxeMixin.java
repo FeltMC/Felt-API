@@ -9,5 +9,5 @@ import net.minecraft.world.level.block.Block;
 
 @Mixin(AxeItem.class)
 public interface AxeMixin {
-    @Accessor("STRIPPED_BLOCKS") static Map<Block, Block> getStripped() { throw new AssertionError(); }
+    @Accessor("STRIPPABLES") static Map<Block, Block> getStripped() { throw new AssertionError(); }
 }

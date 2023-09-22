@@ -9,10 +9,10 @@ import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(Screen.class)
 public class ScreenMixin implements ScreenExtension {
-    @Shadow @Nullable protected Minecraft client;
+    @Shadow @Nullable protected Minecraft minecraft;
 
     @Override
     public Minecraft getMinecraft() {
-        return this.client;
+        return this.minecraft;
     }
 }

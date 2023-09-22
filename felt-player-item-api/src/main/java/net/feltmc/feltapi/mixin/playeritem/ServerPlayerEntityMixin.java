@@ -19,7 +19,7 @@ public abstract class ServerPlayerEntityMixin extends Player {
         super(world, pos, yaw, profile);
     }
 
-    @Inject(method = "dropSelectedItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayerEntity;getInventory()Lnet/minecraft/entity/player/PlayerInventory;", shift = At.Shift.AFTER), cancellable = true)
+    @Inject(method = "drop(Z)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerPlayer;getInventory()Lnet/minecraft/world/entity/player/Inventory;", shift = At.Shift.AFTER), cancellable = true)
     private void injectDropSelectedItem(boolean entireStack, CallbackInfoReturnable<Boolean> cir){
         ItemStack selected = this.getInventory().getSelected();
         if (selected.isEmpty() || (selected.getItem() instanceof DroppedByPlayerItem item && !item.onDroppedByPlayer(selected,this))) {

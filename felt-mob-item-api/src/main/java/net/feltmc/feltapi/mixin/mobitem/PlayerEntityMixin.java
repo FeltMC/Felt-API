@@ -22,7 +22,7 @@ public abstract class PlayerEntityMixin extends LivingEntity{
         super(entityType, world);
     }
 
-    @WrapOperation(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getNonSpectatingEntities(Ljava/lang/Class;Lnet/minecraft/util/math/Box;)Ljava/util/List;"))
+    @WrapOperation(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/EntityGetter;getEntitiesOfClass(Ljava/lang/Class;Lnet/minecraft/world/phys/AABB;)Ljava/util/List;"))
     private List<LivingEntity> wrapGetEntitiesInBox(Level instance, Class<LivingEntity> clazz, AABB originalBox, Operation<List<LivingEntity>> original, Entity target){
         if (this.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof SweepHitBoxItem extension){
             return instance.getEntitiesOfClass(clazz, extension.getSweepHitBox(this.getItemInHand(InteractionHand.MAIN_HAND), (Player)(Object)this, target));
