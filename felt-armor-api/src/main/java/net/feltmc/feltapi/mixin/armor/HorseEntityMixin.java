@@ -21,7 +21,7 @@ public abstract class HorseEntityMixin extends AbstractHorse {
         super(entityType, world);
     }
 
-    @Inject(method = "playWalkSound", at = @At("TAIL"))
+    @Inject(method = "playGallopSound", at = @At("TAIL"))
     private void injectPlayWalkSound(SoundType group, CallbackInfo ci){
         ItemStack stack = this.inventory.getItem(1);
         if (isArmor(stack) && stack.getItem() instanceof HorseArmorTickItem extension) extension.onHorseArmorTick(stack, this.level, this);

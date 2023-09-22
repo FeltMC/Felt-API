@@ -19,7 +19,7 @@ public class PlayerInventoryMixin {
 
     @Shadow @Final public Player player;
 
-    @Inject(method = "updateItems", at = @At("TAIL"))
+    @Inject(method = "tick", at = @At("TAIL"))
     private void injectOnArmorTick(CallbackInfo c){
         armor.forEach(e -> {
             if (e.getItem() instanceof ArmorTickItem extension) extension.onArmorTick(e, player.level, player);
