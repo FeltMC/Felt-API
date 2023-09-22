@@ -52,7 +52,7 @@ public class ItemUtil {
     public static ItemStack extractAnyItem(Storage<ItemVariant> storage, long maxAmount, Transaction tx) {
         ItemStack stack = ItemStack.EMPTY;
         if (!storage.supportsExtraction()) return stack;
-        for (StorageView<ItemVariant> view : storage.iterable(tx)) {
+        for (StorageView<ItemVariant> view : storage) {
             if (!view.isResourceBlank()) {
                 ItemVariant var = view.getResource();
                 long amount = Math.min(var.getItem().getMaxStackSize(), Math.min(maxAmount, view.getAmount()));

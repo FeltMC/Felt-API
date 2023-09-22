@@ -169,7 +169,7 @@ public class FluidUtil {
     public static StoredFluid extractAnyFluid(Storage<FluidVariant> storage, long maxAmount, TransactionContext tx) {
         StoredFluid fluid = StoredFluid.EMPTY;
         if (!storage.supportsExtraction()) return fluid;
-        for (StorageView<FluidVariant> view : storage.iterable(tx)) {
+        for (StorageView<FluidVariant> view : storage) {
             if (!view.isResourceBlank()) {
                 FluidVariant var = view.getResource();
                 long amount = Math.min(maxAmount, view.getAmount());
