@@ -3,13 +3,12 @@ package net.feltmc.feltapi.api.ore_feature.v1;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.objects.Object2ObjectLinkedOpenHashMap;
-import net.minecraft.block.BlockState;
-import net.minecraft.structure.rule.RuleTest;
-import net.minecraft.structure.rule.RuleTestType;
-import net.minecraft.util.math.random.Random;
-
 import java.util.Map;
 import java.util.function.BiFunction;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
+import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTestType;
 
 public class FeltRuleTest {
     public static final Codec<FeltRuleTest> CODEC = RecordCodecBuilder.create(instance -> instance.group(Codec.STRING.fieldOf("domain").forGetter(config -> {
@@ -18,8 +17,8 @@ public class FeltRuleTest {
         return config.id;
     })).apply(instance, FeltRuleTest::new));
     private final String domain, id;
-    private static final Map<String, BiFunction<BlockState, Random, BlockState>> FUNCTION_MAP = new Object2ObjectLinkedOpenHashMap<>();
-    private final BiFunction<BlockState, Random, BlockState> blockState;
+    private static final Map<String, BiFunction<BlockState, RandomSource, BlockState>> FUNCTION_MAP = new Object2ObjectLinkedOpenHashMap<>();
+    private final BiFunction<BlockState, RandomSource, BlockState> blockState;
 
     private FeltRuleTest(String domain, String id){
         this.domain = domain;
@@ -27,7 +26,7 @@ public class FeltRuleTest {
         this.blockState = FUNCTION_MAP.get(domain + ":" + id);
     }
 
-    public FeltRuleTest(String domain, String id, BiFunction<BlockState, Random, BlockState> blockState) {
+    public FeltRuleTest(String domain, String id, BiFunction<BlockState, RandomSource, BlockState> blockState) {
         this.blockState = blockState;
         this.domain = domain;
         this.id = id;
@@ -48,12 +47,12 @@ public class FeltRuleTest {
         });
     }
 
-    public BlockState test(BlockState state, Random random) {
+    public BlockState test(BlockState state, RandomSource random) {
         if (blockState == null) return null;
         return this.blockState.apply(state, random);
     }
 
     protected RuleTestType<?> getType() {
-        return RuleTestType.BLOCKSTATE_MATCH;
+        return RuleTestType.BLOCKSTATE_TEST;
     }
 }
