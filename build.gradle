@@ -84,7 +84,7 @@ subprojects {
 		if(project.mojmap.toBoolean()){
 			mappings loom.layered() {
 				officialMojangMappings()
-				parchment("org.parchmentmc.data:parchment-${project.minecraft_version}:${project.parchment_version}@zip")
+				//parchment("org.parchmentmc.data:parchment-${project.minecraft_version}:${project.parchment_version}@zip")
 			}
 		} else {
 			mappings "net.fabricmc:yarn:${project.minecraft_version}+${project.yarn_mappings}:v2"
