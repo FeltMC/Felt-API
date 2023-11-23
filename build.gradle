@@ -29,7 +29,7 @@ subprojects {
 	apply plugin: "fabric-loom"
 	apply plugin: "maven-publish"
 
-	version = "${project.module_version}-${project.minecraft_version}"
+	version = "${project.module_version}
 	group = rootProject.maven_group
 	if (project.hasProperty("archive_base_name")){
 		archivesBaseName = project.archive_base_name
