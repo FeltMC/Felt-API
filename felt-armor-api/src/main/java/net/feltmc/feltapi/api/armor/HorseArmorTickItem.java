@@ -13,5 +13,7 @@ public interface HorseArmorTickItem {
      * @param level the level the horse is in
      * @param horse the horse wearing this armor
      */
-    void onHorseArmorTick(ItemStack stack, Level level, Mob horse);
+    default void onHorseArmorTick(ItemStack stack, Level level, Mob horse){
+
+    }
 }

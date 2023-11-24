@@ -8,5 +8,7 @@ public interface ArmorTickItem {
     /**
      * Called to tick armor in the armor slot. Override to do something
      */
-    void onArmorTick(ItemStack stack, Level level, Player player);
+    default void onArmorTick(ItemStack stack, Level level, Player player){
+
+    }
 }
