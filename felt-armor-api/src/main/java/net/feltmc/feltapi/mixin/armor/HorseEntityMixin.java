@@ -1,6 +1,5 @@
 package net.feltmc.feltapi.mixin.armor;
 
-import net.feltmc.feltapi.api.armor.HorseArmorTickItem;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.animal.horse.Horse;

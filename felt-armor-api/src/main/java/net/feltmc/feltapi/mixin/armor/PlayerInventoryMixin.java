@@ -1,7 +1,6 @@
 package net.feltmc.feltapi.mixin.armor;
 
 
-import net.feltmc.feltapi.api.armor.ArmorTickItem;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
