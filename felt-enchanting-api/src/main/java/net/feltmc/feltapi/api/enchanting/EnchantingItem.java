@@ -3,7 +3,7 @@ package net.feltmc.feltapi.api.enchanting;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 
-public interface EnchantabilityItem {
+public interface EnchantingItem {
     /**
      * ItemStack sensitive version of getEnchantability
      *
@@ -31,5 +31,17 @@ public interface EnchantabilityItem {
     default boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment)
     {
         return enchantment.category.canEnchant(stack.getItem());
+    }
+
+    /**
+     * Allow or forbid the specific book/item combination as an anvil enchant
+     *
+     * @param stack The item
+     * @param book  The book
+     * @return if the enchantment is allowed
+     */
+    default boolean isBookEnchantable(ItemStack stack, ItemStack book)
+    {
+        return true;
     }
 }
