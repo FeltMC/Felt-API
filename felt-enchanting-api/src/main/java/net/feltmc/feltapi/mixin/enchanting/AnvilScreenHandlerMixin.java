@@ -1,7 +1,5 @@
 package net.feltmc.feltapi.mixin.enchanting;
 
-import net.feltmc.feltapi.api.enchanting.BookEnchantableItem;
-import net.feltmc.feltapi.api.enchanting.EnchantingItem;
 import net.minecraft.world.inventory.AnvilMenu;
 import net.minecraft.world.item.EnchantedBookItem;
 import net.minecraft.world.item.ItemStack;
