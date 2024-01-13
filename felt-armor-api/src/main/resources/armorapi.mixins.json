@@ -8,6 +8,7 @@
   },
   "mixins": [
     "HorseEntityMixin",
+    "ItemMixin",
     "PlayerInventoryMixin",
     "PlayerScreenHandlerAccessor",
     "PlayerScreenHandlerMixin"

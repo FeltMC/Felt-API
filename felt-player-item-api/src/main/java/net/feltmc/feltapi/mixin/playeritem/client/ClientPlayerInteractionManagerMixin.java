@@ -1,6 +1,5 @@
 package net.feltmc.feltapi.mixin.playeritem.client;
 
-import net.feltmc.feltapi.api.playeritem.SneakBypassUseItem;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.multiplayer.MultiPlayerGameMode;
 import net.minecraft.client.player.LocalPlayer;
@@ -19,10 +18,6 @@ public class ClientPlayerInteractionManagerMixin {
         BlockPos blockPos = hitResult.getBlockPos();
         ItemStack mainStack = player.getMainHandItem();
         ItemStack offHandStack = player.getOffhandItem();
-        if (mainStack.getItem() instanceof SneakBypassUseItem extension)
-            return value && !extension.doesSneakBypassUse(mainStack, world, blockPos, player);
-        else if (offHandStack.getItem() instanceof SneakBypassUseItem extension)
-            return value && !extension.doesSneakBypassUse(offHandStack, world, blockPos, player);
-        return value;
+        return value && (!mainStack.getItem().doesSneakBypassUse(mainStack, world, blockPos, player) || !offHandStack.getItem().doesSneakBypassUse(offHandStack, world, blockPos, player));
     }
 }

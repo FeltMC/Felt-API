@@ -30,6 +30,11 @@
         "library"
       ],
       "parent": "felt-api"
+    },
+    "loom:injected_interfaces": {
+      "net/minecraft/class_1792": [
+        "net/feltmc/feltapi/api/playeritem/PlayerItem"
+      ]
     }
   }
 }

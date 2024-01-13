@@ -2,7 +2,6 @@ package net.feltmc.feltapi.mixin.mobitem;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import net.feltmc.feltapi.api.mobitem.EnderMaskItem;
 import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -15,9 +14,6 @@ public class EndermanEntityMixin {
 
     @WrapOperation(method = "isLookingAtMe", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z"))
     private boolean wrapIsStaring(ItemStack instance, Item pumpkin, Operation<Boolean> original, Player player){
-        if (instance.getItem() instanceof EnderMaskItem extension){
-            return extension.isEnderMask(instance, player, (EnderMan)(Object)this);
-        }
-        return original.call(instance, pumpkin);
+        return instance.getItem().isEnderMask(instance, player, (EnderMan)(Object)this);
     }
 }
