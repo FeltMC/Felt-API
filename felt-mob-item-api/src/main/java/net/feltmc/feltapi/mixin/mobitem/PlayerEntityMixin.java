@@ -2,7 +2,6 @@ package net.feltmc.feltapi.mixin.mobitem;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import net.feltmc.feltapi.api.mobitem.SweepHitBoxItem;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -24,9 +23,6 @@ public abstract class PlayerEntityMixin extends LivingEntity{
 
     @WrapOperation(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/EntityGetter;getEntitiesOfClass(Ljava/lang/Class;Lnet/minecraft/world/phys/AABB;)Ljava/util/List;"))
     private List<LivingEntity> wrapGetEntitiesInBox(Level instance, Class<LivingEntity> clazz, AABB originalBox, Operation<List<LivingEntity>> original, Entity target){
-        if (this.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof SweepHitBoxItem extension){
-            return instance.getEntitiesOfClass(clazz, extension.getSweepHitBox(this.getItemInHand(InteractionHand.MAIN_HAND), (Player)(Object)this, target));
-        }
-        return original.call(instance, clazz, originalBox);
+        return instance.getEntitiesOfClass(clazz, this.getItemInHand(InteractionHand.MAIN_HAND).getItem().getSweepHitBox(this.getItemInHand(InteractionHand.MAIN_HAND), (Player)(Object)this, target));
     }
 }
