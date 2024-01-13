@@ -8,6 +8,7 @@
   },
   "mixins": [
     "EndermanEntityMixin",
+    "ItemMixin",
     "PiglinBrainMixin",
     "PiglinEntityMixin",
     "PlayerEntityMixin"

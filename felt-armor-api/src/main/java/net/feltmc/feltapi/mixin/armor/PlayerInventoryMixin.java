@@ -1,7 +1,6 @@
 package net.feltmc.feltapi.mixin.armor;
 
 
-import net.feltmc.feltapi.api.armor.ArmorTickItem;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -22,7 +21,7 @@ public class PlayerInventoryMixin {
     @Inject(method = "tick", at = @At("TAIL"))
     private void injectOnArmorTick(CallbackInfo c){
         armor.forEach(e -> {
-            if (e.getItem() instanceof ArmorTickItem extension) extension.onArmorTick(e, player.level(), player);
+            e.getItem().onArmorTick(e, player.level(), player);
         });
     }
 
