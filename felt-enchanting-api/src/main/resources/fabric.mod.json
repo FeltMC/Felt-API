@@ -26,5 +26,15 @@
   },
   "recommends": {
     "feltfabric": "*"
+  },
+  "custom": {
+    "loom:injected_interfaces": {
+      "net/minecraft/class_1792": [
+        "net/feltmc/feltapi/api/enchanting/EnchantingItem"
+      ],
+      "net/minecraft/class_1887": [
+        "net/feltmc/feltapi/api/enchanting/EnchantmentExtension"
+      ]
+    }
   }
 }

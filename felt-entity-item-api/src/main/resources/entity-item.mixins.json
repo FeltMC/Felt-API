@@ -4,7 +4,8 @@
   "package": "net.feltmc.feltapi.mixin.entityitem",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "ItemEntityMixin"
+    "ItemEntityMixin",
+    "ItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1

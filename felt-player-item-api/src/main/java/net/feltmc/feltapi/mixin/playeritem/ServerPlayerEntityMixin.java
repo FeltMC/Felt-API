@@ -1,7 +1,6 @@
 package net.feltmc.feltapi.mixin.playeritem;
 
 import com.mojang.authlib.GameProfile;
-import net.feltmc.feltapi.api.playeritem.DroppedByPlayerItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
@@ -22,7 +21,7 @@ public abstract class ServerPlayerEntityMixin extends Player {
     @Inject(method = "drop(Z)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerPlayer;getInventory()Lnet/minecraft/world/entity/player/Inventory;", shift = At.Shift.AFTER), cancellable = true)
     private void injectDropSelectedItem(boolean entireStack, CallbackInfoReturnable<Boolean> cir){
         ItemStack selected = this.getInventory().getSelected();
-        if (selected.isEmpty() || (selected.getItem() instanceof DroppedByPlayerItem item && !item.onDroppedByPlayer(selected,this))) {
+        if (selected.isEmpty() || (!selected.getItem().onDroppedByPlayer(selected,this))) {
             cir.setReturnValue(false);
         }
     }
