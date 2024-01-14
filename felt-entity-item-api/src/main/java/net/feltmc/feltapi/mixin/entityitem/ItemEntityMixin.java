@@ -43,7 +43,7 @@ public abstract class ItemEntityMixin extends Entity {
 
     @ModifyConstant(method = "makeFakeItem", constant = @Constant(intValue = 5999))
     private int redirectSetDespawnImmediately(int constant){
-        return getItem().getItem().getEntityLifespan(getItem(), this.level()) - 1;
+        return getItem().getItem().getEntityLifespan(getItem(), this.level) - 1;
     }
 
     @WrapOperation(method = "hurt",at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;onDestroyed(Lnet/minecraft/world/entity/item/ItemEntity;)V"))
