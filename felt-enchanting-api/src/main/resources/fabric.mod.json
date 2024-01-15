@@ -22,10 +22,7 @@
   ],
   "depends": {
     "fabricloader": "*",
-    "minecraft": "*"
-  },
-  "recommends": {
-    "feltfabric": "*"
+    "minecraft": ">=1.18.2"
   },
   "custom": {
     "loom:injected_interfaces": {
