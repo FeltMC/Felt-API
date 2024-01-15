@@ -1,5 +1,6 @@
 archivesBaseName = "felt-shared-lifecycle-events"
 
 dependencies {
+    include "net.fabricmc.fabric-api:fabric-lifecycle-events-v1:2.1.1"
     testmodImplementation project(path: ':felt-shared-lifecycle-events', configuration: 'namedElements')
 }

@@ -1,0 +1,3 @@
+dependencies {
+    include "net.fabricmc.fabric-api:fabric-transfer-api-v1:1.6.4"
+}
